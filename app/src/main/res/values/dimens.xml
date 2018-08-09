@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Margins -->
+    <dimen name="shortMargin">20dp</dimen>
+    <dimen name="mediumMargin">30dp</dimen>
+    <dimen name="greatMargin">100dp</dimen>
+
+    <!-- Borders -->
+    <dimen name="borderWidth">1dp</dimen>
+    <dimen name="borderRadius">81dp</dimen>
+
+    <!-- Elevation textf -->
+    <dimen name="textfElevation">8dp</dimen>
+
+    <!-- Paddings textf -->
+    <dimen name="padRight">20dp</dimen>
+    <dimen name="padLeft">20dp</dimen>
+    <dimen name="padTop">10dp</dimen>
+    <dimen name="padBottom">10dp</dimen>
+
+</resources>

@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marti.amiclient.ui.LogInFragment"
+    android:background="@color/colorPrimary"
+    android:paddingLeft="70dp"
+    android:paddingRight="70dp"
+    android:focusableInTouchMode="true">
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/shortMargin"
+        android:text="@string/AMI_text"
+        android:textAlignment="center" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/identificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="@dimen/greatMargin"
+        style="@style/Widget.Design.TextInputLayout.CustomDesign"
+        >
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/ident"
+            android:background="@null"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/celular"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/identificacion"
+        android:layout_marginTop="@dimen/shortMargin"
+        style="@style/Widget.Design.TextInputLayout.CustomDesign"
+        >
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/cel"
+            android:background="@null"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <Button
+        android:id="@+id/ingresar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/celular"
+        android:text="@string/ingresar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/shortMargin"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"/>
+
+    <TextView
+        android:id="@+id/noreglabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/noreg"
+        android:layout_below="@+id/ingresar"
+        android:textAlignment="center"
+        />
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/noreglabel"
+        android:text="@string/terminosycond"
+        android:layout_marginTop="@dimen/mediumMargin"
+        />
+</RelativeLayout>
