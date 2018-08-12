@@ -3,12 +3,46 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
     <!-- LogIn Texts -->
-    <string name="AMI_text">AMI</string>
+    <string name="AMI_text">ami</string>
     <string name="ident">Identificación</string>
     <string name="cel">Celular</string>
     <string name="ingresar">Ingresar</string>
     <string name="noreg">¿No esta registrado?</string>
-    <string name="terminosycond">Acepto terminos y <strong>condiciones</strong></string>
+    <string name="terminosycond">Acepto terminos y</string>
+    <string name="condiciones">condiciones</string>
+
+    <!-- SendCode Texts -->
+    <string name="Bienvenido">Bienvenido a <b>ami</b></string>
+    <string name="Ingresarnum">Para empezar ingresa tu número</string>
+    <string name="continuar">Continuar</string>
+
+    <!-- Ingresar code Texts -->
+    <string name="insertarCod">Ingresar código</string>
+    <string name="listo">Listo</string>
+
+    <!-- Bienvenida Texts -->
+    <string name="bienvenidoperfil">Bienvenido.</string>
+    <string name="preguntaservicio">¿Para quien desea realizar el servicio?</string>
+    <string name="propio">Servicio propio</string>
+    <string name="otros">Otra persona</string>
+
+    <!-- Terminos y Condiciones Popup Texts -->
+    <string name="popupTitle">Terminos y Condiciones</string>
+    <string name="popupPositivo">Si</string>
+    <string name="popupNegativo">No</string>
+    <string name="popupMsg">En este campo van los detalles de los terminos y condiciones.</string>
+
+    <!-- Condigo Verificacion Texts -->
+    <string name="nocode">Tocar para recibir un nuevo código de verificación.</string>
+
+    <!-- Error texts -->
+
+    <string name="campovacio">Este campo no puede estar vacio.</string>
+    <string name="codigoincorrecto">El código ingresado no es el correcto. Vuelva a intentar.</string>
+
+
 </resources>

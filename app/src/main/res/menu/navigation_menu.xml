@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/perfil"
+        android:icon="@drawable/icono_perfil_negro"
+        android:title="Perfil"/>
+    <item android:id="@+id/movil"
+        android:icon="@drawable/icono_carro_negro"
+        android:title="Donde va mi móvil"/>
+    <item android:id="@+id/cerrar"
+        android:icon="@drawable/icono_sesion_negro"
+        android:title="Cerrar sesión"/>
+
+</menu>

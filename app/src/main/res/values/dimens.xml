@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="titleSize">50sp</dimen>
     <!-- Margins -->
     <dimen name="shortMargin">20dp</dimen>
     <dimen name="mediumMargin">30dp</dimen>
-    <dimen name="greatMargin">100dp</dimen>
+    <dimen name="greatMargin">70dp</dimen>
+    <dimen name="margin5dp">5dp</dimen>
+    <dimen name="margin10dp">10dp</dimen>
+    <dimen name="margin15dp">15dp</dimen>
 
     <!-- Borders -->
     <dimen name="borderWidth">1dp</dimen>
@@ -18,4 +23,7 @@
     <dimen name="padTop">10dp</dimen>
     <dimen name="padBottom">10dp</dimen>
 
+    <!-- Paddings Layout -->
+    <dimen name="layoutPadRight">40dp</dimen>
+    <dimen name="layoutPadLeft">40dp</dimen>
 </resources>

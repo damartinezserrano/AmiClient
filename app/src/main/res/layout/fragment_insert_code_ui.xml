@@ -1,0 +1,144 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.marti.amiclient.ui.InsertCodeUI"
+    android:background="@color/colorPrimary"
+    android:paddingStart="@dimen/layoutPadLeft"
+    android:paddingEnd="@dimen/layoutPadRight"
+    android:orientation="vertical"
+    android:weightSum="4">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shortMargin"
+        android:text="@string/AMI_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/titleSize"
+        android:layout_weight="0"
+        android:drawableEnd="@drawable/icono_corazon_verde"
+        android:drawablePadding="@dimen/margin5dp"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    <TextView
+        android:id="@+id/welcmtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Bienvenido"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/mediumMargin"
+       />
+
+    <TextView
+        android:id="@+id/ingr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcmtext"
+        android:text="@string/Ingresarnum"
+        android:textColor="@color/white"
+        android:textAlignment="center"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/codigoWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shortMargin"
+        style="@style/Widget.Design.TextInputLayout.CustomDesign"
+        >
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/codigo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/insertarCod"
+            android:background="@null"
+            android:drawableStart="@drawable/icono_celular"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <Button
+        android:id="@+id/listo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/codigoWrapper"
+        android:text="@string/listo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/shortMargin"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/mediumMargin"
+            app:buttonTint="@color/white"
+            />
+
+        <TextView
+            android:id="@+id/terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/checkbox"
+            android:text="@string/terminosycond"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/mediumMargin"
+            android:layout_marginStart="@dimen/margin5dp"
+            android:paddingTop="@dimen/margin5dp"
+
+            />
+
+        <TextView
+            android:id="@+id/cond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/terms"
+            android:text="@string/condiciones"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/mediumMargin"
+            android:layout_marginStart="@dimen/margin5dp"
+            android:paddingTop="@dimen/margin5dp"
+            android:textStyle="bold"
+            />
+
+
+        <TextView
+            android:id="@+id/newcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nocode"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/mediumMargin"
+            android:textStyle="bold"
+            android:layout_below="@id/cond"
+            android:layout_marginBottom="@dimen/margin5dp"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

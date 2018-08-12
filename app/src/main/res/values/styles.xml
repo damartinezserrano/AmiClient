@@ -10,7 +10,7 @@
 
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="android:windowBackground">@drawable/ic_launcher_foreground</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 
     <style name="Widget.Design.TextInputLayout.CustomDesign" >

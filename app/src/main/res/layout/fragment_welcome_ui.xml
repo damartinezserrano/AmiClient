@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marti.amiclient.ui.WelcomeUI"
+    android:orientation="vertical"
+    android:weightSum="3"
+    android:focusableInTouchMode="true"
+    android:background="@color/white">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bienvenidoperfil"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/titleSize"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/preguntaservicio"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_weight="0.2"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/propio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/propio"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"
+            android:paddingStart="@dimen/margin10dp"
+            android:paddingEnd="@dimen/margin10dp"
+            />
+        <Button
+            android:id="@+id/otros"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/propio"
+            android:text="@string/otros"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"
+            android:paddingStart="@dimen/margin5dp"
+            android:paddingEnd="@dimen/margin10dp"
+            android:layout_marginStart="@dimen/margin10dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
