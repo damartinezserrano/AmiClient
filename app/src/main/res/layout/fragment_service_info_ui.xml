@@ -1,0 +1,224 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.marti.amiclient.ui.ServiceInfoUI"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="@dimen/padLeft"
+    android:paddingEnd="@dimen/padRight"
+    android:background="@color/white"
+    android:weightSum="7">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/infoserv"
+        android:textSize="@dimen/mediumtitleSize"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_weight="1"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/motivoWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shortMargin"
+        style="@style/Widget.Design.TextInputLayout.CustomDesignWhite"
+        app:errorEnabled="true"
+        android:paddingStart="@dimen/padLeft"
+        android:paddingEnd="@dimen/padRight"
+        android:paddingTop="@dimen/padTop"
+        android:paddingBottom="@dimen/padBottom"
+        android:layout_weight="1"
+        >
+        <AutoCompleteTextView
+            android:id="@+id/motivo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/motivo"
+            android:background="@null"
+            android:drawableEnd="@drawable/flecha_verde"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/mciudadWrapper"
+        style="@style/Widget.Design.TextInputLayout.CustomDesignWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mediumMargin"
+        android:layout_weight="1"
+        android:paddingBottom="@dimen/padBottom"
+        android:paddingEnd="@dimen/padRight"
+        android:paddingStart="@dimen/padLeft"
+        android:paddingTop="@dimen/padTop"
+        app:errorEnabled="true">
+
+        <AutoCompleteTextView
+            android:id="@+id/ciudad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:drawableEnd="@drawable/flecha_verde"
+            android:hint="@string/ciudad" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/telefonoWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mediumMargin"
+        style="@style/Widget.Design.TextInputLayout.CustomDesignWhite"
+        app:errorEnabled="true"
+        android:paddingStart="@dimen/padLeft"
+        android:paddingEnd="@dimen/padRight"
+        android:paddingTop="@dimen/padTop"
+        android:paddingBottom="@dimen/padBottom"
+        android:layout_weight="1"
+        >
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/telefono"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/telefono"
+            android:background="@null"
+            />
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="@color/lightSilver"
+        android:layout_marginTop="@dimen/margin15dp"
+        android:layout_marginBottom="@dimen/margin15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/margin15dp"
+        android:weightSum="1">
+
+      <LinearLayout
+        android:id="@+id/ubicacionactual"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/margin5dp"
+          android:layout_marginEnd="@dimen/margin5dp"
+        android:layout_gravity="center"
+          android:layout_weight="0.5"
+        >
+
+         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/ubicacionactual"
+            android:drawableStart="@drawable/icono_ubicacion"
+            style="@style/CustomOptionsBoxes"
+            android:paddingTop="@dimen/margin15dp"
+            android:paddingBottom="@dimen/margin15dp"
+            android:paddingStart="@dimen/margin5dp"
+            android:paddingEnd="@dimen/margin5dp"
+            />
+
+      </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/nuevadireccion"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="@dimen/margin5dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/nuevadireccion"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                style="@style/CustomOptionsBoxes"
+                android:paddingTop="@dimen/margin20dp"
+                android:paddingStart="@dimen/margin5dp"
+                android:paddingEnd="@dimen/margin5dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/midireccionWrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/margin5dp"
+        android:layout_gravity="center"
+        style="@style/CustomOptionsBoxes"
+        android:layout_weight="1"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+        <ImageView
+            android:id="@+id/imageubic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icono_ubicacion"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@+id/imageubic"
+            >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/midireccion"
+            android:paddingStart="@dimen/margin5dp"
+            android:paddingEnd="@dimen/margin5dp"
+            />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/AMI_text"
+                android:paddingStart="@dimen/margin5dp"
+                android:paddingEnd="@dimen/margin5dp"
+                />
+
+
+        </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/continua"
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButtonRed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shortMargin"
+        android:layout_weight="1"
+        android:text="@string/continuar" />
+
+
+
+</LinearLayout>

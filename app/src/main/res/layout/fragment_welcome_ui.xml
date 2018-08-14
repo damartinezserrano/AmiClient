@@ -6,7 +6,9 @@
     android:orientation="vertical"
     android:weightSum="3"
     android:focusableInTouchMode="true"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -58,7 +60,7 @@
             android:layout_toEndOf="@id/propio"
             android:text="@string/otros"
             style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"
-            android:paddingStart="@dimen/margin5dp"
+            android:paddingStart="@dimen/margin10dp"
             android:paddingEnd="@dimen/margin10dp"
             android:layout_marginStart="@dimen/margin10dp"
             />

@@ -8,7 +8,9 @@
     android:paddingStart="@dimen/layoutPadLeft"
     android:paddingEnd="@dimen/layoutPadRight"
     android:orientation="vertical"
-    android:weightSum="4">
+    android:weightSum="4"
+    android:clickable="true"
+    android:focusable="true">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

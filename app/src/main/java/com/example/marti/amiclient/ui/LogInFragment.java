@@ -6,6 +6,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -21,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.marti.amiclient.R;
+import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,7 +53,6 @@ public class LogInFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_log_in, container, false);
-
 
         checkBox = view.findViewById(R.id.checkbox);
         inputLayoutIden = view.findViewById(R.id.identificacionWrapper);
@@ -121,6 +123,9 @@ public class LogInFragment extends Fragment {
     }
 
 
-
-
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        ((DrawerLocker)getActivity()).setDrawerEnabled(true);
+        super.onViewCreated(view, savedInstanceState);
+    }
 }

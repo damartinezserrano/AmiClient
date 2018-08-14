@@ -1,0 +1,106 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marti.amiclient.ui.ServiceOptionsUI"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:weightSum="4"
+    android:paddingStart="@dimen/padLeft"
+    android:paddingEnd="@dimen/padRight"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opcionesviewtitle"
+        android:textSize="@dimen/mediumtitleSize"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/margin5dp"
+        />
+
+    <LinearLayout
+        android:id="@+id/ingresarinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/margin5dp"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ingresarinfo"
+            android:drawableStart="@drawable/icono_hoja_verde"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            style="@style/CustomOptionsBoxes"
+            android:paddingTop="@dimen/padTopMora"
+            android:paddingBottom="@dimen/padTopMora"
+            android:paddingStart="@dimen/margin5dp"
+            android:paddingEnd="@dimen/margin5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/solicitarllamada"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/margin5dp"
+        android:layout_gravity="center"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/solicitarllamada"
+            android:drawableStart="@drawable/icono_auriculares_verde"
+            style="@style/CustomOptionsBoxes"
+            android:paddingTop="@dimen/padTopMora"
+            android:paddingBottom="@dimen/padTopMora"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:paddingStart="@dimen/margin5dp"
+            android:paddingEnd="@dimen/margin5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llamardirecto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin5dp"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/llamardirectamente"
+            android:drawableStart="@drawable/icono_telefono_verde"
+            style="@style/CustomOptionsBoxes"
+            android:paddingTop="@dimen/padTopMora"
+            android:paddingBottom="@dimen/padTopMora"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:paddingStart="@dimen/margin5dp"
+            android:paddingEnd="@dimen/margin5dp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

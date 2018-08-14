@@ -2,6 +2,7 @@
 <resources>
 
     <dimen name="titleSize">50sp</dimen>
+    <dimen name="mediumtitleSize">30sp</dimen>
     <!-- Margins -->
     <dimen name="shortMargin">20dp</dimen>
     <dimen name="mediumMargin">30dp</dimen>
@@ -9,10 +10,12 @@
     <dimen name="margin5dp">5dp</dimen>
     <dimen name="margin10dp">10dp</dimen>
     <dimen name="margin15dp">15dp</dimen>
+    <dimen name="margin20dp">20dp</dimen>
 
     <!-- Borders -->
     <dimen name="borderWidth">1dp</dimen>
     <dimen name="borderRadius">81dp</dimen>
+    <dimen name="borderRadiusMora">40dp</dimen>
 
     <!-- Elevation textf -->
     <dimen name="textfElevation">8dp</dimen>
@@ -26,4 +29,8 @@
     <!-- Paddings Layout -->
     <dimen name="layoutPadRight">40dp</dimen>
     <dimen name="layoutPadLeft">40dp</dimen>
+
+    <!-- Paddings Layout Mora -->
+    <dimen name="padTopMora">40dp</dimen>
+    <dimen name="padBottomMora">40dp</dimen>
 </resources>

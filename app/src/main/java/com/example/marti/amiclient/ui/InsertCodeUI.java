@@ -100,8 +100,8 @@ public class InsertCodeUI extends Fragment {
                     Log.i("campos","Escritos");
                      randomCode=sharedPreferences.getString(Constant.RANDOM_CODE,"0");
                      if (!campoCod.equals(randomCode)){
-                       //  inputLayoutCod.requestFocus();
-                        // codTView.setError(getResources().getString(R.string.codigoincorrecto));
+                         inputLayoutCod.requestFocus();
+                         codTView.setError(getResources().getString(R.string.codigoincorrecto));
                      }else{
                          Fragment fg = WelcomeUI.newInstance();
                          getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
@@ -111,6 +111,12 @@ public class InsertCodeUI extends Fragment {
                      //Entrada provisional para practicas
                     if (campoCod.equals("123")){
                         Fragment fg = WelcomeUI.newInstance();
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+
+                    }
+
+                    if (campoCod.equals("mora")){
+                        Fragment fg = MoraUI.newInstance();
                         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
 
                     }

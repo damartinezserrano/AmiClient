@@ -30,6 +30,26 @@
     <string name="propio">Servicio propio</string>
     <string name="otros">Otra persona</string>
 
+    <!-- En Mora Texts -->
+    <string name="enmora">Este usuario presenta inconvenientes al ingresar, por favor comunicate con cartera.</string>
+
+    <!-- Opciones Servicio Texts -->
+    <string name="opcionesviewtitle">Como deseas realizar tu servicio</string>
+    <string name="ingresarinfo">Ingresar información del servicio</string>
+    <string name="solicitarllamada">Solicitar llamada</string>
+    <string name="llamardirectamente">Llamar directamente</string>
+
+    <!-- Info Servicio Texts -->
+    <string name="infoserv">Información del Servicio</string>
+    <string name="motivo">Motivo de consulta</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="telefono">Telefono</string>
+    <string name="ubicacionactual">Ubicación actual</string>
+    <string name="nuevadireccion">Nueva dirección</string>
+    <string name="midireccion">Mi dirección</string>
+
+
+
     <!-- Terminos y Condiciones Popup Texts -->
     <string name="popupTitle">Terminos y Condiciones</string>
     <string name="popupPositivo">Si</string>
