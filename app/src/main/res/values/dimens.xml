@@ -3,6 +3,9 @@
 
     <dimen name="titleSize">50sp</dimen>
     <dimen name="mediumtitleSize">30sp</dimen>
+
+    <dimen name="subTitleSize">20sp</dimen>
+
     <!-- Margins -->
     <dimen name="shortMargin">20dp</dimen>
     <dimen name="mediumMargin">30dp</dimen>
@@ -17,12 +20,15 @@
     <dimen name="borderRadius">81dp</dimen>
     <dimen name="borderRadiusMora">40dp</dimen>
 
+    <!-- InputEdittextSize -->
+    <dimen name="editTextSize">35dp</dimen>
+
     <!-- Elevation textf -->
     <dimen name="textfElevation">8dp</dimen>
 
     <!-- Paddings textf -->
-    <dimen name="padRight">20dp</dimen>
-    <dimen name="padLeft">20dp</dimen>
+    <dimen name="padRight">10dp</dimen>
+    <dimen name="padLeft">10dp</dimen>
     <dimen name="padTop">10dp</dimen>
     <dimen name="padBottom">10dp</dimen>
 
@@ -31,6 +37,9 @@
     <dimen name="layoutPadLeft">40dp</dimen>
 
     <!-- Paddings Layout Mora -->
-    <dimen name="padTopMora">40dp</dimen>
-    <dimen name="padBottomMora">40dp</dimen>
+    <dimen name="padTopMora">20dp</dimen>
+    <dimen name="padBottomMora">20dp</dimen>
+
+    <!-- icon size -->
+    <dimen name="iconHeight">100dp</dimen>
 </resources>

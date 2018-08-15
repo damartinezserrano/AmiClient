@@ -48,6 +48,9 @@
     <string name="nuevadireccion">Nueva dirección</string>
     <string name="midireccion">Mi dirección</string>
 
+    <!-- Contactar servicio cliente -->
+    <string name="contactoservicio">Contactar servicio al cliente</string>
+    <string name="selciudad">Seleccionar ciudad</string>
 
 
     <!-- Terminos y Condiciones Popup Texts -->

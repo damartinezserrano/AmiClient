@@ -8,6 +8,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -19,14 +20,16 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
     DrawerLayout drawerLayout;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
+        setTheme(R.style.MainAppThemeWithNoBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE},1);
-
+        toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.layout);
+        setSupportActionBar(toolbar);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
@@ -67,6 +70,30 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
     public void setDrawerEnabled(boolean enabled) {
         int lockMode = enabled ? DrawerLayout.LOCK_MODE_UNLOCKED : DrawerLayout.LOCK_MODE_LOCKED_CLOSED;
         drawerLayout.setDrawerLockMode(lockMode);
+    }
+
+    @Override
+    public void hideToolbar() {
+        getSupportActionBar().hide();
+    }
+
+    @Override
+    public void showToolbar() {
+        getSupportActionBar().show();
+
+    }
+
+    @Override
+    public void toolbarBackground(int color) {
+        toolbar.setTitle("");
+        toolbar.setBackgroundColor(getResources().getColor(color));
+
+    }
+
+    @Override
+    public void hamburgerColor(int color) {
+        actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(color));
+
     }
 
 

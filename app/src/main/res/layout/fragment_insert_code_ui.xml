@@ -13,23 +13,20 @@
     android:focusable="true">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/shortMargin"
-        android:text="@string/AMI_text"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="@dimen/titleSize"
-        android:layout_weight="0"
-        android:drawableEnd="@drawable/icono_corazon_verde"
-        android:drawablePadding="@dimen/margin5dp"
-        android:layout_gravity="center"/>
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:src="@drawable/corazon_blanco_logo2"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shortMargin"
         android:layout_weight="1">
     <TextView
         android:id="@+id/welcmtext"
@@ -38,7 +35,7 @@
         android:text="@string/Bienvenido"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:layout_marginTop="@dimen/mediumMargin"
+        android:textSize="@dimen/subTitleSize"
        />
 
     <TextView
@@ -48,7 +45,8 @@
         android:layout_below="@+id/welcmtext"
         android:text="@string/Ingresarnum"
         android:textColor="@color/white"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="@dimen/subTitleSize"/>
 
     </RelativeLayout>
 
@@ -59,9 +57,10 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/codigoWrapper"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/shortMargin"
+        android:layout_height="@dimen/editTextSize"
         style="@style/Widget.Design.TextInputLayout.CustomDesign"
+        app:errorEnabled="true"
+        app:hintEnabled="false"
         >
         <android.support.design.widget.TextInputEditText
             android:id="@+id/codigo"
@@ -70,6 +69,8 @@
             android:hint="@string/insertarCod"
             android:background="@null"
             android:drawableStart="@drawable/icono_celular"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
             />
     </android.support.design.widget.TextInputLayout>
 

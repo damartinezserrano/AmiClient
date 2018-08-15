@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -98,20 +100,20 @@ public class LogInFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
                 }else{
                     Log.i("campos","vacios");
-
                     if(campoIden.equals("")) {
-                        inputLayoutIden.requestFocus();
-                        inputLayoutIden.setError("");
                         idenTView.requestFocus();
-                        idenTView.setError("Ha ocurrido un error en este campo");
+                        Drawable drError = getResources().getDrawable(R.drawable.if_sign_error);
+                        drError.setBounds(new Rect(0, 0, 50, 50));
+                        idenTView.setError("Ha ocurrido un error en este campo",drError);
                     }
 
                     if(campoCel.equals("")) {
-                        inputLayoutCel.requestFocus();
-                        inputLayoutCel.setError("");
                         celTView.requestFocus();
-                        celTView.setError("Ha ocurrido un error en este campo");
+                        Drawable drError = getResources().getDrawable(R.drawable.if_sign_error);
+                        drError.setBounds(new Rect(0, 0, 50, 50));
+                        celTView.setError("Ha ocurrido un error en este campo",drError);
                     }
+
 
 
                     layoutBotonesAyuda.setVisibility(View.VISIBLE);
@@ -125,7 +127,8 @@ public class LogInFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ((DrawerLocker)getActivity()).setDrawerEnabled(true);
+        ((DrawerLocker)getActivity()).setDrawerEnabled(false);
+        ((DrawerLocker)getActivity()).hideToolbar();
         super.onViewCreated(view, savedInstanceState);
     }
 }

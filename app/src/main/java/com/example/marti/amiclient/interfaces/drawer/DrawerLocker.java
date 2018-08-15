@@ -6,4 +6,8 @@ package com.example.marti.amiclient.interfaces.drawer;
 
 public interface DrawerLocker {
     public void setDrawerEnabled(boolean enabled);
+    public void hideToolbar();
+    public void showToolbar();
+    public void toolbarBackground(int color);
+    public void hamburgerColor(int color);
 }
