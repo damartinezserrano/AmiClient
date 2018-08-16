@@ -1,0 +1,105 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.marti.amiclient.ui.ContactServiceUI"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/padLeft"
+    android:paddingEnd="@dimen/padRight"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/iconHeight"
+        android:layout_gravity="center"
+        android:src="@drawable/telefono_rojo"
+        android:layout_marginTop="@dimen/margin20dp"
+        android:layout_marginBottom="@dimen/margin20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contactoservicio"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textSize="@dimen/mediumtitleSize"
+        android:textColor="@color/colorPrimary"/>
+
+
+    <Spinner
+        android:id="@+id/selCiudadSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shortMargin"
+        style="@style/Widget.Design.TextInputLayout.CustomDesignWhite"
+        android:paddingStart="@dimen/padLeft"
+        android:paddingEnd="@dimen/padRight"
+        android:paddingTop="@dimen/margin20dp"
+        android:paddingBottom="@dimen/margin20dp"
+        />
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/shortMargin">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/contact_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icono_contacto"
+                />
+
+            <TextView
+                android:id="@+id/ciudadfield"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ciudad"
+                android:layout_toEndOf="@+id/contact_icon"
+                android:layout_marginStart="@dimen/shortMargin"
+                android:textStyle="bold"
+                android:textSize="@dimen/subTitleSize"/>
+            <TextView
+                android:id="@+id/numero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="numero"
+                android:layout_toEndOf="@+id/contact_icon"
+                android:layout_below="@+id/ciudadfield"
+                android:layout_marginStart="@dimen/shortMargin"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icono_telef_alamb"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin10dp"
+                android:layout_marginTop="@dimen/margin5dp"/>
+
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dip"
+                android:background="@color/lightSilver"
+                android:layout_below="@+id/numero"
+                />
+
+        </RelativeLayout>
+
+
+
+
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>
