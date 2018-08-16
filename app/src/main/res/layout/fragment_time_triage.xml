@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marti.amiclient.ui.TimeTriage"
+    android:background="@color/colorPrimary"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/bajacomplejidad"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/subTitleSize"
+        android:layout_marginTop="@dimen/margin50dp"/>
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:background="@drawable/icono_carro_blanco"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin15dp"
+        />
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tiempollegada"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/subTitleSize"
+        android:layout_marginTop="@dimen/margin20dp"
+        style="@style/RedBoxWithWhiteBottomBorder"
+        android:paddingBottom="@dimen/margin15dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/margin10dp">
+
+        <ImageView
+            android:layout_width="@dimen/margin40dp"
+            android:layout_height="@dimen/margin40dp"
+            android:background="@drawable/reloj_peque_blanco"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/signIconBotSize"
+            android:text="1h y 30 min"
+            android:textSize="35sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/margin10dp"/>
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

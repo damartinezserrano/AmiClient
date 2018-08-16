@@ -14,6 +14,8 @@
     <string name="noreg">¿No esta registrado?</string>
     <string name="terminosycond">Acepto terminos y</string>
     <string name="condiciones">condiciones</string>
+    <string name="contactarcliente">Contactar servicio cliente</string>
+    <string name="asesorcomercial">Asesor comercial</string>
 
     <!-- SendCode Texts -->
     <string name="Bienvenido">Bienvenido a <b>ami</b></string>
@@ -47,6 +49,13 @@
     <string name="ubicacionactual">Ubicación actual</string>
     <string name="nuevadireccion">Nueva dirección</string>
     <string name="midireccion">Mi dirección</string>
+
+    <!-- triage Texts -->
+    <string name="recibimostu">Recibimos tu servicio estamos en el proceso de triage y asignación de tripulación medica</string>
+    <string name="triage">Triage</string>
+    <string name="consultar">Consultar</string>
+    <string name="bajacomplejidad">Triage baja complejidad</string>
+    <string name="tiempollegada">Tiempo estimado de llegada</string>
 
     <!-- Contactar servicio cliente -->
     <string name="contactoservicio">Contactar servicio al cliente</string>

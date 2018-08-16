@@ -1,12 +1,17 @@
 package com.example.marti.amiclient.ui;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.marti.amiclient.R;
@@ -20,6 +25,11 @@ import java.util.List;
  */
 public class ServiceInfoUI extends Fragment {
 
+    Button buttonContinue;
+    Spinner spinnerM,spinnerC;
+    TextInputEditText textInputEditTextTelefono;
+    EditText editTextDireccion;
+    Boolean camposErroneos=false;
 
     public ServiceInfoUI() {
         // Required empty public constructor
@@ -38,6 +48,9 @@ public class ServiceInfoUI extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_service_info_ui, container, false);
 
+        textInputEditTextTelefono = view.findViewById(R.id.telefono);
+        editTextDireccion = view.findViewById(R.id.midireccion);
+
         String[] motivos = new String[]{
                 getResources().getString(R.string.motivo),
                 "Motivo 1",
@@ -48,14 +61,14 @@ public class ServiceInfoUI extends Fragment {
 
         final List<String> motivosList = new ArrayList<>(Arrays.asList(motivos));
 
-        Spinner spinner = view.findViewById(R.id.motivoSpinner);
+        spinnerM = view.findViewById(R.id.motivoSpinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(),
                 R.layout.custom_spinner,
                 motivosList
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        spinnerM.setAdapter(adapter);
 
 
         String[] ciudades = new String[]{
@@ -68,7 +81,7 @@ public class ServiceInfoUI extends Fragment {
 
         final List<String> ciudadesList = new ArrayList<>(Arrays.asList(ciudades));
 
-        Spinner spinnerC = view.findViewById(R.id.ciudadSpinner);
+        spinnerC = view.findViewById(R.id.ciudadSpinner);
         ArrayAdapter<String> adapterC = new ArrayAdapter<String>(
                 getActivity(),
                 R.layout.custom_spinner,
@@ -77,6 +90,45 @@ public class ServiceInfoUI extends Fragment {
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerC.setAdapter(adapterC);
 
+
+        buttonContinue = view.findViewById(R.id.continua);
+        buttonContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                camposErroneos=false;
+                String motivoData = spinnerM.getSelectedItem().toString();
+                String ciudadData = spinnerC.getSelectedItem().toString();
+                String telefono = textInputEditTextTelefono.getText().toString();
+                String direccion = editTextDireccion.getText().toString();
+                String camposFaltantes = "Los siguientes campos necesitan ser completados :\n";
+
+                if(motivoData.equals(getResources().getString(R.string.motivo))){camposFaltantes=camposFaltantes+"Motivo\n"; camposErroneos=true;}
+                if(ciudadData.equals(getResources().getString(R.string.selciudad))){camposFaltantes=camposFaltantes+"Ciudad\n";camposErroneos=true;}
+                if(telefono.equals("")){camposFaltantes=camposFaltantes+"Telefono\n";camposErroneos=true;}
+                if(direccion.equals("")){camposFaltantes=camposFaltantes+"Dirección\n";camposErroneos=true;}
+
+               if(camposErroneos) {
+
+                   new AlertDialog.Builder(getContext())
+                           .setTitle("Algunos campos obligatorios no fueron completados.")
+                           .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                               @Override
+                               public void onClick(DialogInterface dialogInterface, int i) {
+
+                               }
+                           })
+                           .setMessage(camposFaltantes)
+                           .show();
+
+               }else{
+                   Fragment fg = TriageUI.newInstance();
+                   getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+               }
+
+
+            }
+        });
 
         return view;
     }

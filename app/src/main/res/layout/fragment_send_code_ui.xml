@@ -66,6 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/cel"
+            android:textColorHint="@color/white"
             android:background="@null"
             android:drawableStart="@drawable/icono_celular"
             android:gravity="center_vertical"
@@ -82,7 +83,9 @@
         android:text="@string/continuar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/shortMargin"
-        style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"/>
+        style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"
+        android:textAllCaps="false"
+        />
     </RelativeLayout>
 
 </LinearLayout>

@@ -9,7 +9,6 @@
     android:paddingEnd="@dimen/layoutPadRight"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:weightSum="7"
     android:clickable="true"
     android:focusable="true">
 
@@ -18,12 +17,10 @@
     <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/shortMargin"
-        android:layout_weight="1"
+        android:layout_width="@dimen/logoWidth"
+        android:layout_height="@dimen/logoHeight"
         android:layout_gravity="center"
-        android:src="@drawable/corazon_blanco_logo2"
+        android:background="@drawable/corazon_blanco_logo2"
         />
 
 
@@ -31,9 +28,8 @@
         android:id="@+id/identificacionWrapper"
         android:layout_width="match_parent"
         android:layout_height="@dimen/editTextSize"
-        android:layout_marginTop="@dimen/greatMargin"
+        android:layout_marginTop="@dimen/margin50dp"
         style="@style/Widget.Design.TextInputLayout.CustomDesign"
-        android:layout_weight="1"
         app:errorEnabled="true"
         app:hintEnabled="false"
         >
@@ -42,6 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/ident"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/superSmallWordSize"
             android:background="@null"
             android:drawableStart="@drawable/icono_usuario"
             android:textColor="@color/white"
@@ -56,7 +54,6 @@
         android:layout_height="@dimen/editTextSize"
         android:layout_marginTop="@dimen/shortMargin"
         style="@style/Widget.Design.TextInputLayout.CustomDesign"
-        android:layout_weight="1"
         app:errorEnabled="true"
         app:hintEnabled="false"
         >
@@ -65,6 +62,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/cel"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/superSmallWordSize"
             android:background="@null"
             android:drawableStart="@drawable/icono_celular"
             android:textColor="@color/white"
@@ -76,7 +75,6 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:weightSum="2"
       android:orientation="vertical">
     <Button
         android:id="@+id/ingresar"
@@ -85,7 +83,7 @@
         android:text="@string/ingresar"
         android:layout_marginTop="@dimen/shortMargin"
         style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"
-        android:layout_weight="1"
+        android:textAllCaps="false"
         />
 
     <TextView
@@ -95,15 +93,13 @@
         android:text="@string/noreg"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:layout_weight="1"
         />
   </LinearLayout>
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_marginBottom="@dimen/shortMargin"
+        android:layout_marginBottom="@dimen/margin10dp"
         >
 
     <android.support.v7.widget.AppCompatCheckBox
@@ -142,30 +138,70 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/botonesayuda"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:visibility="invisible"
-        android:layout_marginBottom="@dimen/shortMargin"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        android:layout_marginTop="@dimen/margin20dp"
        >
+        <LinearLayout
+            android:id="@+id/leftSec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="3"
+            >
 
         <ImageButton
             android:id="@+id/serviciocliente"
+            android:layout_width="@dimen/signIconBotSize"
+            android:layout_height="@dimen/signIconBotSize"
+            android:background="@drawable/icono_telefono_blanco"
+            android:layout_gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/contactarcliente"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="@dimen/word10sp"
+            android:layout_gravity="center"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rightSec"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icono_telefono_blanco"
-            android:layout_marginStart="@dimen/mediumMargin"/>
+            android:orientation="vertical"
+            android:layout_weight="3"
+            >
 
         <ImageButton
             android:id="@+id/asesorcomercial"
+            android:layout_width="@dimen/signIconBotSize"
+            android:layout_height="@dimen/signIconBotSize"
+            android:background="@drawable/icono_llamada_blanco"
+            android:layout_gravity="center"
+            />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/icono_llamada_blanco"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="@dimen/mediumMargin"/>
+            android:text="@string/asesorcomercial"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:textSize="@dimen/word10sp"
+            android:layout_gravity="center"
+            />
 
-    </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </LinearLayout>

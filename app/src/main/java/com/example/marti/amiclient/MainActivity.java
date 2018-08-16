@@ -96,5 +96,8 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+            getSupportFragmentManager().popBackStack();
+    }
 }

@@ -58,7 +58,7 @@ public class InsertCodeUI extends Fragment {
             public void onClick(View view) {
 
                 Fragment fg = SendCodeUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
 
             }
@@ -104,20 +104,22 @@ public class InsertCodeUI extends Fragment {
                          codTView.setError(getResources().getString(R.string.codigoincorrecto));
                      }else{
                          Fragment fg = WelcomeUI.newInstance();
-                         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
                      }
 
                      //Entrada provisional para practicas
                     if (campoCod.equals("123")){
                         Fragment fg = WelcomeUI.newInstance();
-                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                        codTView.setError(null);
 
                     }
 
                     if (campoCod.equals("mora")){
                         Fragment fg = MoraUI.newInstance();
-                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                        codTView.setError(null);
 
                     }
 

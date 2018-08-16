@@ -24,7 +24,7 @@ import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
  */
 public class ServiceOptionsUI extends Fragment {
 
-    LinearLayout ingresarinfo, solicitarLlamada;
+    LinearLayout ingresarinfo, solicitarLlamada, llamarDir;
     TextView textViewInfo,textViewSol,textViewDir;
 
 
@@ -56,7 +56,7 @@ public class ServiceOptionsUI extends Fragment {
             public void onClick(View view) {
 
                 Fragment fg = ServiceInfoUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
             }
         });
@@ -67,7 +67,18 @@ public class ServiceOptionsUI extends Fragment {
             public void onClick(View view) {
 
                 Fragment fg = ContactServiceUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+            }
+        });
+
+        llamarDir = view.findViewById(R.id.llamardirecto);
+        llamarDir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment fg = ContactServiceUI.newInstance();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
             }
         });

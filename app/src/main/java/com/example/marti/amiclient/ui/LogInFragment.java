@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -37,7 +38,7 @@ public class LogInFragment extends Fragment {
     TextInputEditText idenTView,celTView;
     Button loginBtn;
     AppCompatCheckBox checkBox;
-    RelativeLayout layoutBotonesAyuda;
+    LinearLayout layoutBotonesAyuda;
     String campoIden,campoCel;
 
     public LogInFragment() {
@@ -97,7 +98,7 @@ public class LogInFragment extends Fragment {
                 if(!campoIden.equals("")&&!campoCel.equals("")){
                     Log.i("campos","Escritos");
                     Fragment fg = SendCodeUI.newInstance();
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
                 }else{
                     Log.i("campos","vacios");
                     if(campoIden.equals("")) {

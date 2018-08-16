@@ -17,7 +17,7 @@ import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
  */
 public class WelcomeUI extends Fragment {
 
-    Button buttonOtros;
+    Button buttonOtros,buttonPropio;
 
 
     public WelcomeUI() {
@@ -41,7 +41,19 @@ public class WelcomeUI extends Fragment {
             public void onClick(View view) {
 
                 Fragment fg = ServiceOptionsUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+            }
+        });
+
+
+        buttonPropio = view.findViewById(R.id.propio);
+        buttonPropio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Fragment fg = ServiceOptionsUI.newInstance();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
             }
         });

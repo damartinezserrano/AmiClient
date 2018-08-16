@@ -53,7 +53,16 @@
     </style>
 
     <style name="CustomOptionsBoxes" >
+        <item name="android:elevation">@dimen/textfElevation</item>
         <item name="android:background">@drawable/element_background</item>
+    </style>
+
+    <style name="CustomOptionsBoxesRed" >
+        <item name="android:elevation">@dimen/textfElevation</item>
+        <item name="android:background">@drawable/custombox_red</item>
+    </style>
+    <style name="RedBoxWithWhiteBottomBorder" >
+        <item name="android:background">@drawable/white_bottom_border_redbox</item>
     </style>
 
 </resources>

@@ -150,7 +150,7 @@
         android:layout_marginBottom="@dimen/margin5dp"
         android:layout_gravity="center"
         style="@style/CustomOptionsBoxes"
-        android:layout_weight="1"
+        android:layout_weight="0"
         >
 
         <RelativeLayout
@@ -163,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icono_ubicacion"
-
+            android:layout_marginTop="@dimen/margin15dp"
             />
 
         <LinearLayout
@@ -179,16 +179,18 @@
             android:text="@string/midireccion"
             android:paddingStart="@dimen/margin5dp"
             android:paddingEnd="@dimen/margin5dp"
+            android:textSize="@dimen/smallWordSize"
             />
 
 
-            <TextView
+            <EditText
                 android:id="@+id/midireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/AMI_text"
+                android:hint="Carrera 44 Calle 65"
                 android:paddingStart="@dimen/margin5dp"
                 android:paddingEnd="@dimen/margin5dp"
+                android:textSize="@dimen/smallWordSize"
                 />
 
 

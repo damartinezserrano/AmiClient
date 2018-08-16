@@ -58,7 +58,7 @@ public class SendCodeUI extends Fragment {
                     Log.i("campos","Escritos");
                     sendSMS(campoNumero);
                     Fragment fg = InsertCodeUI.newInstance();
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
                 }else{
                     Log.i("campos","vacios");
                 }
@@ -90,5 +90,7 @@ public class SendCodeUI extends Fragment {
         sharedPreferences.edit().putString(Constant.RANDOM_CODE,randomCode).apply();
         return randomCode;
     }
+
+
 
 }
