@@ -24,11 +24,13 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/pregunta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/preguntaservicio"
         android:textColor="@color/black"
         android:textAlignment="center"
+        android:textSize="@dimen/subTitleSize"
         android:layout_gravity="center"
         android:layout_weight="0.2"
         android:layout_marginTop="@dimen/greatMargin"/>
@@ -45,9 +47,11 @@
             android:layout_height="wrap_content"
             android:text="@string/propio"
             android:textColor="@color/black"
+            android:textSize="@dimen/smallWordSize"
             style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"
             android:paddingStart="@dimen/margin10dp"
             android:paddingEnd="@dimen/margin10dp"
+            android:textAllCaps="false"
             />
         <Button
             android:id="@+id/otros"
@@ -56,10 +60,12 @@
             android:layout_toEndOf="@id/propio"
             android:text="@string/otros"
             android:textColor="@color/black"
+            android:textSize="@dimen/smallWordSize"
             style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButton"
             android:paddingStart="@dimen/margin10dp"
             android:paddingEnd="@dimen/margin10dp"
             android:layout_marginStart="@dimen/margin10dp"
+            android:textAllCaps="false"
             />
     </RelativeLayout>
 

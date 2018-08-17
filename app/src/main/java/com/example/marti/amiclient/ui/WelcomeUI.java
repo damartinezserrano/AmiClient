@@ -1,6 +1,7 @@
 package com.example.marti.amiclient.ui;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
@@ -18,6 +20,7 @@ import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 public class WelcomeUI extends Fragment {
 
     Button buttonOtros,buttonPropio;
+    TextView textViewPreguta;
 
 
     public WelcomeUI() {
@@ -34,6 +37,8 @@ public class WelcomeUI extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_welcome_ui, container, false);
+
+        textViewPreguta=view.findViewById(R.id.pregunta);
 
         buttonOtros = view.findViewById(R.id.otros);
         buttonOtros.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +63,8 @@ public class WelcomeUI extends Fragment {
             }
         });
 
+        implementFonts();
+
 
         return view;
     }
@@ -66,5 +73,12 @@ public class WelcomeUI extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ((DrawerLocker)getActivity()).setDrawerEnabled(true);
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public void implementFonts(){
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "font/futura_book_font.ttf");
+        textViewPreguta.setTypeface(typeface);
+        buttonPropio.setTypeface(typeface);
+        buttonOtros.setTypeface(typeface);
     }
 }

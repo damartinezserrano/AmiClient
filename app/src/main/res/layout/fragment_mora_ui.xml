@@ -23,8 +23,8 @@
 
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/logoWidth"
+        android:layout_height="@dimen/logoHeight"
         android:src="@drawable/corazon_blanco_logo"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/shortMargin"
@@ -37,6 +37,8 @@
         android:orientation="vertical"
         style="@style/CustomLayout"
         android:layout_weight="0"
+        android:paddingTop="@dimen/margin40dp"
+        android:paddingBottom="@dimen/margin40dp"
         >
 
         <TextView
@@ -44,17 +46,87 @@
             android:layout_height="wrap_content"
             android:text="@string/enmora"
             android:layout_marginBottom="@dimen/mediumMargin"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
 
         <ImageButton
             android:id="@+id/llamada"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/signIconBotSize"
+            android:layout_height="@dimen/signIconBotSize"
             android:background="@drawable/icono_servcioc_rojo"
             android:layout_gravity="center"/>
 
 
     </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/botonesayuda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:orientation="horizontal"
+            android:weightSum="6"
+            android:gravity="bottom"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/mediumMargin"
+            >
+            <LinearLayout
+                android:id="@+id/leftSec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="3"
+                >
+
+                <ImageButton
+                    android:id="@+id/serviciocliente"
+                    android:layout_width="@dimen/signIconBotSize"
+                    android:layout_height="@dimen/signIconBotSize"
+                    android:background="@drawable/icono_telefono_blanco"
+                    android:layout_gravity="center"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/contactarcliente"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/word10sp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/rightSec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="3"
+                >
+
+                <ImageButton
+                    android:id="@+id/asesorcomercial"
+                    android:layout_width="@dimen/signIconBotSize"
+                    android:layout_height="@dimen/signIconBotSize"
+                    android:background="@drawable/icono_llamada_blanco"
+                    android:layout_gravity="center"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/asesorcomercial"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/word10sp"
+                    android:layout_gravity="center"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

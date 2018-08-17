@@ -39,8 +39,8 @@
         style="@style/Widget.Design.TextInputLayout.CustomDesignWhite"
         android:paddingStart="@dimen/padLeft"
         android:paddingEnd="@dimen/padRight"
-        android:paddingTop="@dimen/margin20dp"
-        android:paddingBottom="@dimen/margin20dp"
+        android:paddingTop="@dimen/padTop"
+        android:paddingBottom="@dimen/padBottom"
         />
 
     <android.support.v7.widget.CardView

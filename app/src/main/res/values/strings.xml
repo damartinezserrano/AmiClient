@@ -49,6 +49,8 @@
     <string name="ubicacionactual">Ubicación actual</string>
     <string name="nuevadireccion">Nueva dirección</string>
     <string name="midireccion">Mi dirección</string>
+    <string name="sintomas">Sintomas</string>
+    <string name="benef">Beneficiarios</string>
 
     <!-- triage Texts -->
     <string name="recibimostu">Recibimos tu servicio estamos en el proceso de triage y asignación de tripulación medica</string>

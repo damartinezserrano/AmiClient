@@ -15,8 +15,8 @@
     <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/logoWidth"
+        android:layout_height="@dimen/logoHeight"
         android:layout_marginTop="@dimen/shortMargin"
         android:layout_weight="1"
         android:layout_gravity="center"
@@ -26,8 +26,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/shortMargin"
-        android:layout_weight="1">
+        android:layout_weight="0.5">
     <TextView
         android:id="@+id/welcmtext"
         android:layout_width="match_parent"
@@ -46,14 +45,14 @@
         android:text="@string/Ingresarnum"
         android:textColor="@color/white"
         android:textAlignment="center"
-        android:textSize="@dimen/subTitleSize"/>
+        android:textSize="@dimen/superSmallWordSize"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="0">
     <android.support.design.widget.TextInputLayout
         android:id="@+id/codigoWrapper"
         android:layout_width="match_parent"
@@ -95,13 +94,13 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="0"
+        android:layout_marginTop="@dimen/margin5dp">
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/mediumMargin"
             app:buttonTint="@color/white"
             />
 
@@ -112,7 +111,6 @@
             android:layout_toEndOf="@+id/checkbox"
             android:text="@string/terminosycond"
             android:textColor="@color/white"
-            android:layout_marginTop="@dimen/mediumMargin"
             android:layout_marginStart="@dimen/margin5dp"
             android:paddingTop="@dimen/margin5dp"
 
@@ -125,7 +123,6 @@
             android:layout_toEndOf="@+id/terms"
             android:text="@string/condiciones"
             android:textColor="@color/white"
-            android:layout_marginTop="@dimen/mediumMargin"
             android:layout_marginStart="@dimen/margin5dp"
             android:paddingTop="@dimen/margin5dp"
             android:textStyle="bold"

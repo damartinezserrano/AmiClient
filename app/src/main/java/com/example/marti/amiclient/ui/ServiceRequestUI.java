@@ -2,10 +2,6 @@ package com.example.marti.amiclient.ui;
 
 
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
@@ -28,7 +24,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ServiceInfoUI extends Fragment {
+public class ServiceRequestUI extends Fragment {
 
     Button buttonContinue;
     Spinner spinnerM,spinnerC;
@@ -37,22 +33,22 @@ public class ServiceInfoUI extends Fragment {
     TextView textViewSpinner;
     Boolean camposErroneos=false;
 
-    public ServiceInfoUI() {
+
+    public ServiceRequestUI() {
         // Required empty public constructor
     }
 
     public static Fragment newInstance() {
-        ServiceInfoUI serviceInfoUI = new ServiceInfoUI();
+        ServiceRequestUI serviceInfoUI = new ServiceRequestUI();
         return serviceInfoUI;
     }
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_service_info_ui, container, false);
+        View view = inflater.inflate(R.layout.fragment_service_request_ui, container, false);
 
         textInputEditTextTelefono = view.findViewById(R.id.telefono);
         editTextDireccion = view.findViewById(R.id.midireccion);
@@ -114,24 +110,24 @@ public class ServiceInfoUI extends Fragment {
                 if(telefono.equals("")){camposFaltantes=camposFaltantes+"Telefono\n";camposErroneos=true;}
                 if(direccion.equals("")){camposFaltantes=camposFaltantes+"Dirección\n";camposErroneos=true;}
 
-               if(camposErroneos) {
+                if(camposErroneos) {
 
-                   new AlertDialog.Builder(getContext())
-                           .setTitle("Algunos campos obligatorios no fueron completados.")
-                           .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                               @Override
-                               public void onClick(DialogInterface dialogInterface, int i) {
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Algunos campos obligatorios no fueron completados.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
 
-                               }
-                           })
-                           .setMessage(camposFaltantes)
-                           .show();
+                                }
+                            })
+                            .setMessage(camposFaltantes)
+                            .show();
 
-               }else{
-                   Fragment fg = TriageUI.newInstance();
-                   getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                }else{
+                    Fragment fg = TriageUI.newInstance();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
-               }
+                }
 
 
             }

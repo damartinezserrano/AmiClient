@@ -18,51 +18,51 @@
     <style name="SplashScreen" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@drawable/splash_screen</item>
-    </style>
+   </style>
 
-    <style name="Widget.Design.TextInputLayout.CustomDesign" >
-        <item name="android:elevation">@dimen/textfElevation</item>
-        <item name="android:textColorHint">@color/white</item>
-        <item name="android:backgroundTint">@color/whiteOpacity</item>
-        <item name="android:background">@drawable/textfieldshape</item>
-    </style>
+   <style name="Widget.Design.TextInputLayout.CustomDesign" >
+       <item name="android:elevation">@dimen/textfElevation</item>
+       <item name="android:textColorHint">@color/white</item>
+       <item name="android:backgroundTint">@color/whiteOpacity</item>
+       <item name="android:background">@drawable/textfieldshape</item>
+   </style>
 
-    <style name="Widget.Design.TextInputLayout.CustomDesignWhite" >
-        <item name="android:elevation">@dimen/textfElevation</item>
-        <item name="android:textColorHint">@color/black</item>
-        <item name="android:background">@drawable/textfieldshapewholewhite</item>
-    </style>
+   <style name="Widget.Design.TextInputLayout.CustomDesignWhite" >
+       <item name="android:elevation">@dimen/textfElevation</item>
+       <item name="android:textColorHint">@color/black</item>
+       <item name="android:background">@drawable/textfieldshapewholewhite</item>
+   </style>
 
-    <style name="Base.TextAppearance.AppCompat.Widget.Button.CustomButton">
-        <item name="android:elevation">@dimen/textfElevation</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:background">@drawable/buttonshape</item>
+   <style name="Base.TextAppearance.AppCompat.Widget.Button.CustomButton">
+       <item name="android:elevation">@dimen/textfElevation</item>
+       <item name="android:textColor">@color/colorPrimary</item>
+       <item name="android:background">@drawable/buttonshape</item>
 
-    </style>
+   </style>
 
-    <style name="Base.TextAppearance.AppCompat.Widget.Button.CustomButtonRed">
-        <item name="android:elevation">@dimen/textfElevation</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">@drawable/buttonshapered</item>
+   <style name="Base.TextAppearance.AppCompat.Widget.Button.CustomButtonRed">
+       <item name="android:elevation">@dimen/textfElevation</item>
+       <item name="android:textColor">@color/white</item>
+       <item name="android:background">@drawable/buttonshapered</item>
 
-    </style>
+   </style>
 
-    <style name="CustomLayout" >
-        <item name="android:textColorHint">@color/white</item>
-        <item name="android:background">@drawable/layoutmorashape</item>
-    </style>
+   <style name="CustomLayout" >
+       <item name="android:textColorHint">@color/white</item>
+       <item name="android:background">@drawable/layoutmorashape</item>
+   </style>
 
-    <style name="CustomOptionsBoxes" >
-        <item name="android:elevation">@dimen/textfElevation</item>
-        <item name="android:background">@drawable/element_background</item>
-    </style>
+   <style name="CustomOptionsBoxes" >
+       <item name="android:elevation">@dimen/textfElevation</item>
+       <item name="android:background">@drawable/element_background</item>
+   </style>
 
-    <style name="CustomOptionsBoxesRed" >
-        <item name="android:elevation">@dimen/textfElevation</item>
-        <item name="android:background">@drawable/custombox_red</item>
-    </style>
-    <style name="RedBoxWithWhiteBottomBorder" >
-        <item name="android:background">@drawable/white_bottom_border_redbox</item>
-    </style>
+   <style name="CustomOptionsBoxesRed" >
+       <item name="android:elevation">@dimen/textfElevation</item>
+       <item name="android:background">@drawable/custombox_red</item>
+   </style>
+   <style name="RedBoxWithWhiteBottomBorder" >
+       <item name="android:background">@drawable/white_bottom_border_redbox</item>
+   </style>
 
 </resources>
