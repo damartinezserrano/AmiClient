@@ -21,15 +21,11 @@
    </style>
 
    <style name="Widget.Design.TextInputLayout.CustomDesign" >
-       <item name="android:elevation">@dimen/textfElevation</item>
        <item name="android:textColorHint">@color/white</item>
-       <item name="android:backgroundTint">@color/whiteOpacity</item>
-       <item name="android:background">@drawable/textfieldshape</item>
+       <item name="android:background">@drawable/shadow_bottom_box</item>
    </style>
 
    <style name="Widget.Design.TextInputLayout.CustomDesignWhite" >
-       <item name="android:elevation">@dimen/textfElevation</item>
-       <item name="android:textColorHint">@color/black</item>
        <item name="android:background">@drawable/textfieldshapewholewhite</item>
    </style>
 
@@ -39,6 +35,12 @@
        <item name="android:background">@drawable/buttonshape</item>
 
    </style>
+
+    <style name="Base.TextAppearance.AppCompat.Widget.Button.CustomWelcomeButton">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:background">@drawable/welcome_button_shape</item>
+
+    </style>
 
    <style name="Base.TextAppearance.AppCompat.Widget.Button.CustomButtonRed">
        <item name="android:elevation">@dimen/textfElevation</item>

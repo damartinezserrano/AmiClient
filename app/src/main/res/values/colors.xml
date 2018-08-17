@@ -12,4 +12,9 @@
     <color name="redOpacity">#80d2112f</color>
     <color name="black">#000000</color>
     <color name="blackOpacity">#73000000</color>
+    <color name="grisFondoCuadros">#FCFCFC</color>
+    <color name="rojoClaro">#e26170</color>
+    <color name="grisClaro">#808080</color>
+    <color name="somdras1">#c4c4c4</color> <!-- cuadros como mi ubicacion -->
+    <color name="somdras2">#918c8d</color> <!-- fields como tel y ciudad en form info -->
 </resources>

@@ -4,24 +4,25 @@
 
     <stroke
         android:width="@dimen/borderWidth"
-        android:color="@color/whiteOpacity">
+        android:color="@color/somdras2">
 
     </stroke>
 
     <corners
-        android:radius="@dimen/borderRadius">
+        android:radius="@dimen/borderRadius"
+        android:color="@color/rojoClaro">
 
     </corners>
 
     <solid
-        android:color="@color/whiteOpacity">
+        android:color="@color/rojoClaro">
 
     </solid>
 
     <padding
         android:right="@dimen/padRight"
         android:left="@dimen/padLeft"
-        >
+        android:color="@color/rojoClaro">
 
     </padding>
 
