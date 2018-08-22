@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
+import com.example.marti.amiclient.settings.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,8 +56,13 @@ public class ServiceOptionsUI extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Fragment fg = ServiceInfoUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                if(!Constant.formularioOtros) {
+                    Fragment fg = ServiceInfoUI.newInstance();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                }else{
+                    Fragment fg = ServiceRequestUI.newInstance();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                }
 
             }
         });

@@ -15,6 +15,7 @@
     <color name="grisFondoCuadros">#FCFCFC</color>
     <color name="rojoClaro">#e26170</color>
     <color name="grisClaro">#808080</color>
+    <color name="transparent">#0000ffff</color>
     <color name="somdras1">#c4c4c4</color> <!-- cuadros como mi ubicacion -->
     <color name="somdras2">#918c8d</color> <!-- fields como tel y ciudad en form info -->
 </resources>

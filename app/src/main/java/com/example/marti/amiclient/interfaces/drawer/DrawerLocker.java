@@ -10,4 +10,8 @@ public interface DrawerLocker {
     public void showToolbar();
     public void toolbarBackground(int color);
     public void hamburgerColor(int color);
+    public void removeToolbar();
+    public void openDrawer();
+    public void closeDrawer();
+
 }

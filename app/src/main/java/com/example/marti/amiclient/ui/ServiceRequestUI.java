@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.marti.amiclient.R;
+import com.example.marti.amiclient.settings.Constant;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -124,8 +125,9 @@ public class ServiceRequestUI extends Fragment {
                             .show();
 
                 }else{
-                    Fragment fg = TriageUI.newInstance();
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+                        Fragment fg = TriageUI.newInstance();
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
                 }
 

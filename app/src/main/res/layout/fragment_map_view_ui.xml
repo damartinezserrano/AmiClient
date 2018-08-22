@@ -1,0 +1,77 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marti.amiclient.ui.MapViewUI"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        />
+
+
+    <LinearLayout
+        style="@style/CustomOptionsBoxes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginEnd="@dimen/margin10dp"
+        android:layout_marginStart="@dimen/margin10dp"
+        android:layout_marginTop="@dimen/margin10dp"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/margin20dp"
+        android:paddingBottom="@dimen/margin20dp"
+        android:paddingStart="@dimen/margin5dp"
+        android:paddingEnd="@dimen/margin5dp">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/icono_loc_verde" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/encamino" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/llegadaprox"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin5dp"
+                    android:text="@string/min"
+                    android:textColor="@color/darkGreenColor"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

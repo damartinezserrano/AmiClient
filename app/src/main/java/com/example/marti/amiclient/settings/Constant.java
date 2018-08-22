@@ -9,4 +9,6 @@ public class Constant {
     public static final String PREFERENCE_RANDOM = "codigo_verificacion_pref";
 
     public static final String RANDOM_CODE="codigo_aleatorio";
+
+    public static boolean formularioOtros = false;
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
+import com.example.marti.amiclient.settings.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,7 +45,7 @@ public class WelcomeUI extends Fragment {
         buttonOtros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Constant.formularioOtros=true;
                 Fragment fg = ServiceOptionsUI.newInstance();
                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
@@ -56,7 +57,7 @@ public class WelcomeUI extends Fragment {
         buttonPropio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Constant.formularioOtros=false;
                 Fragment fg = ServiceOptionsUI.newInstance();
                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
