@@ -1,0 +1,337 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marti.amiclient.ui.PerfilUI"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/padLeft"
+    android:paddingEnd="@dimen/padRight"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:background="@drawable/icono_perfil_negro"
+        android:layout_marginTop="@dimen/margin20dp"
+        android:layout_marginBottom="@dimen/margin20dp"/>
+
+
+    <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/shortMargin"
+            android:layout_marginBottom="@dimen/shortMargin">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/contact_icon1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icono_contacto"
+                    />
+
+                <TextView
+                    android:id="@+id/nombrefield1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombre"
+                    android:layout_toEndOf="@+id/contact_icon1"
+                    android:layout_marginStart="@dimen/shortMargin"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/subTitleSize"/>
+                <TextView
+                    android:id="@+id/nombre1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre Ejemplo"
+                    android:layout_toEndOf="@+id/contact_icon1"
+                    android:layout_below="@+id/nombrefield1"
+                    android:layout_marginStart="@dimen/shortMargin"/>
+                <ImageView
+                    android:id="@+id/editarnombre"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/modify_icon"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/margin10dp"
+                    android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="@color/lightSilver"
+                    android:layout_below="@+id/nombre1"
+                    />
+
+            </RelativeLayout>
+
+
+
+
+
+        </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/telfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tel"
+                        android:layout_toEndOf="@+id/contact_icon2"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tel"
+                        android:layout_toEndOf="@+id/contact_icon2"
+                        android:layout_below="@+id/telfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editartel"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/tel"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/mailfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mail"
+                        android:layout_toEndOf="@+id/contact_icon3"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/mail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mail"
+                        android:layout_toEndOf="@+id/contact_icon3"
+                        android:layout_below="@+id/mailfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editarmail"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/mail"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/ciudadfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ciud"
+                        android:layout_toEndOf="@+id/contact_icon4"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/ciudad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ciud"
+                        android:layout_toEndOf="@+id/contact_icon4"
+                        android:layout_below="@+id/ciudadfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editarciudad"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/ciudad"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/dirfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dir"
+                        android:layout_toEndOf="@+id/contact_icon"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/dir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dir"
+                        android:layout_toEndOf="@+id/contact_icon"
+                        android:layout_below="@+id/dirfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editardir"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/dir"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -13,10 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
+import com.example.marti.amiclient.settings.Constant;
 import com.example.marti.amiclient.ui.LogInFragment;
 import com.example.marti.amiclient.ui.MapViewUI;
+import com.example.marti.amiclient.ui.PerfilUI;
+import com.example.marti.amiclient.ui.TriageACUI;
 
 public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
         setTheme(R.style.MainAppThemeWithNoBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE},1);
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.SEND_SMS,Manifest.permission.READ_PHONE_STATE,Manifest.permission.CALL_PHONE},1);
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.layout);
         setSupportActionBar(toolbar);
@@ -46,8 +50,21 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
                 int id = item.getItemId();
                 switch (id){
                     case R.id.movil:
-                        Fragment fg = MapViewUI.newInstance();
+                        if(!Constant.servicioAltaPrioridad) {
+                            Fragment fg = MapViewUI.newInstance();
+                            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                        }else{
+                            Fragment fg = TriageACUI.newInstance();
+                            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+                        }
+                        return true;
+
+                    case R.id.perfil:
+                        Fragment fg = PerfilUI.newInstance();
                         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                        return true;
+
                     default:
                         return true;
 
@@ -111,6 +128,13 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
     public void hamburgerColor(int color) {
         actionBarDrawerToggle.getDrawerArrowDrawable().setColor(getResources().getColor(color));
 
+    }
+
+    @Override
+    public void editHeaderName(String name) {
+        View header = navigationView.getHeaderView(0);
+        TextView nombreHeader = (TextView) header.findViewById(R.id.nombreusuario);
+        nombreHeader.setText(name);
     }
 
     @Override

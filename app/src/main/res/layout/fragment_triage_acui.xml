@@ -1,0 +1,103 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.marti.amiclient.ui.TriageUI"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true">
+
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/triage_corazon"
+            android:layout_marginTop="@dimen/margin40dp"
+            android:layout_marginBottom="@dimen/margin10dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/triage"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/smallWordSize"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="@dimen/greatMargin">
+
+        <Button
+            android:id="@+id/consultar"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/mediumMargin"
+            style="@style/CustomOptionsBoxesRed"
+            android:text="@string/consultar"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:paddingStart="@dimen/margin5dp"
+            android:paddingEnd="@dimen/margin5dp"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/padLeft"
+        android:paddingEnd="@dimen/padRight"
+        android:background="@color/blackOpacity"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingTop="@dimen/margin40dp"
+            android:paddingBottom="@dimen/margin40dp"
+            android:paddingStart="@dimen/margin20dp"
+            android:paddingEnd="@dimen/margin20dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/encaminoaltacomp"
+                android:layout_marginBottom="@dimen/mediumMargin"
+                android:textAlignment="center"/>
+
+            <ImageButton
+                android:id="@+id/llamada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icono_corazon_verde"
+                android:layout_gravity="center"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</FrameLayout>

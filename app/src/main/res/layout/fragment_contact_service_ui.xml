@@ -77,6 +77,7 @@
                 android:layout_below="@+id/ciudadfield"
                 android:layout_marginStart="@dimen/shortMargin"/>
             <ImageView
+                android:id="@+id/call"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icono_telef_alamb"

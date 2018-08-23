@@ -69,6 +69,31 @@
     <string name="llegadaprox">Llegada aproximada</string>
     <string name="min">En 45 min</string>
 
+    <!-- Triage alta complejidad -->
+    <string name="encaminoaltacomp">Recibimos tu solicitud, en el menor tiempo posible el móvil llegará</string>
+
+    <!-- Datos de Perfil -->
+    <string name="nombre">Nombre :</string>
+    <string name="tel">Telefono :</string>
+    <string name="mail">E-mail :</string>
+    <string name="ciud">Ciudad :</string>
+    <string name="dir">Dirección :</string>
+
+    <string name="editarnombre">Ingresar Nombre :</string>
+    <string name="editartel">Ingresar Telefono :</string>
+    <string name="editarmail">Ingresar E-mail :</string>
+    <string name="editarciud">Ingresar Ciudad :</string>
+    <string name="editardir">Ingresar Dirección :</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <!-- Datos de Perfil -->
+    <string name="calificar">Califica tu experiencia</string>
+    <string name="observ">Observaciones</string>
+    <string name="enviar">Enviar</string>
+
+
     <!-- Terminos y Condiciones Popup Texts -->
     <string name="popupTitle">Terminos y Condiciones</string>
     <string name="popupPositivo">Si</string>

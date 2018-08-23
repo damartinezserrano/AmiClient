@@ -95,8 +95,8 @@ public class MapViewUI extends Fragment implements OnMapReadyCallback {
         LatLng destino = new LatLng(10.9891167,-74.79982380000001);
         map.moveCamera(CameraUpdateFactory.newLatLng(origen));
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(origen,15));
-       // map.addMarker(new MarkerOptions().position(origen))
-       //         .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icono_ambulancia));
+        map.addMarker(new MarkerOptions().position(origen))
+                .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icono_corazon_verde));
 
 
         String url = getUrl(origen,destino);

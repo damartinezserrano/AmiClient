@@ -19,6 +19,7 @@
         android:layout_marginTop="@dimen/margin50dp"/>
 
     <ImageView
+        android:id="@+id/ambulancia"
         android:layout_width="200dp"
         android:layout_height="120dp"
         android:background="@drawable/icono_carro_blanco"

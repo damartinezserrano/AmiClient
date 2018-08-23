@@ -1,12 +1,18 @@
 package com.example.marti.amiclient.ui;
 
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.marti.amiclient.R;
@@ -19,6 +25,8 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class ContactServiceUI extends Fragment {
+
+    ImageView callButton;
 
 
     public ContactServiceUI() {
@@ -36,6 +44,8 @@ public class ContactServiceUI extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contact_service_ui, container, false);
+
+        callButton = view.findViewById(R.id.call);
 
         String[] ciudades = new String[]{
                 getResources().getString(R.string.selciudad),
@@ -55,6 +65,21 @@ public class ContactServiceUI extends Fragment {
         );
         adapterC.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerC.setAdapter(adapterC);
+
+
+        callButton.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+
+                intent.setData(Uri.parse("tel:" + "3168656151"));
+                try{
+                    getActivity().startActivity(intent);
+                }catch (Exception e){e.printStackTrace();}
+
+            }
+        });
 
         return view;
     }
