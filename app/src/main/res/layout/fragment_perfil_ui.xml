@@ -171,7 +171,7 @@
                         android:id="@+id/mailfield"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/mail"
+                        android:text="Numero documento :"
                         android:layout_toEndOf="@+id/contact_icon3"
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
@@ -180,7 +180,7 @@
                         android:id="@+id/mail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/mail"
+                        android:text="documento"
                         android:layout_toEndOf="@+id/contact_icon3"
                         android:layout_below="@+id/mailfield"
                         android:layout_marginStart="@dimen/shortMargin"/>
@@ -320,6 +320,67 @@
                         android:layout_height="1dip"
                         android:background="@color/lightSilver"
                         android:layout_below="@+id/dir"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/benefield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Beneficiarios :"
+                        android:layout_toEndOf="@+id/contact_icon5"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/benef"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Beneficiarios"
+                        android:layout_toEndOf="@+id/contact_icon5"
+                        android:layout_below="@+id/benefield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editarbenef"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/benef"
                         />
 
                 </RelativeLayout>

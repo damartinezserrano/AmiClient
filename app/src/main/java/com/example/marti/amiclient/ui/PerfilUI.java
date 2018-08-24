@@ -21,8 +21,8 @@ import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
  */
 public class PerfilUI extends Fragment {
 
-    TextView nombre,tel,mail,ciudad,dir;
-    ImageView editarNombre, editarTel,editarMail,editarCiudad,editarDir;
+    TextView nombre,tel,mail,ciudad,dir, benef;
+    ImageView editarNombre, editarTel,editarMail,editarCiudad,editarDir,editarBenef;
     String m_Text = "";
     EditText input;
 
@@ -47,13 +47,14 @@ public class PerfilUI extends Fragment {
         mail = view.findViewById(R.id.mail);
         ciudad = view.findViewById(R.id.ciudad);
         dir = view.findViewById(R.id.dir);
+        benef = view.findViewById(R.id.benef);
 
         editarNombre = view.findViewById(R.id.editarnombre);
         editarTel = view.findViewById(R.id.editartel);
         editarMail = view.findViewById(R.id.editarmail);
         editarCiudad = view.findViewById(R.id.editarciudad);
         editarDir = view.findViewById(R.id.editardir);
-
+        editarBenef = view.findViewById(R.id.editarbenef);
 
 
 
@@ -78,7 +79,7 @@ public class PerfilUI extends Fragment {
             @Override
             public void onClick(View view) {
 
-                editDialog(getResources().getString(R.string.editarmail),mail,InputType.TYPE_CLASS_TEXT);
+                editDialog(getResources().getString(R.string.editardocum),mail,InputType.TYPE_CLASS_NUMBER);
             }
         });
 
@@ -94,6 +95,14 @@ public class PerfilUI extends Fragment {
             @Override
             public void onClick(View view) {
                 editDialog(getResources().getString(R.string.editardir),dir,InputType.TYPE_CLASS_TEXT);
+
+            }
+        });
+
+        editarBenef.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editDialog(getResources().getString(R.string.editarbenef),benef,InputType.TYPE_CLASS_TEXT);
 
             }
         });

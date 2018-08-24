@@ -32,7 +32,7 @@ public class ServiceInfoUI extends Fragment {
 
     Button buttonContinue;
     Spinner spinnerM,spinnerC;
-    TextInputEditText textInputEditTextTelefono;
+    TextInputEditText textInputEditTextTelefono, textInputEditTextSintomas;
     EditText editTextDireccion;
     TextView textViewSpinner;
     Boolean camposErroneos=false;
@@ -55,6 +55,7 @@ public class ServiceInfoUI extends Fragment {
         View view = inflater.inflate(R.layout.fragment_service_info_ui, container, false);
 
         textInputEditTextTelefono = view.findViewById(R.id.telefono);
+        textInputEditTextSintomas = view.findViewById(R.id.sintomas);
         editTextDireccion = view.findViewById(R.id.midireccion);
 
         String[] motivos = new String[]{
@@ -106,12 +107,14 @@ public class ServiceInfoUI extends Fragment {
                 String motivoData = spinnerM.getSelectedItem().toString();
                 String ciudadData = spinnerC.getSelectedItem().toString();
                 String telefono = textInputEditTextTelefono.getText().toString();
+                String sintomas = textInputEditTextSintomas.getText().toString();
                 String direccion = editTextDireccion.getText().toString();
                 String camposFaltantes = "Los siguientes campos necesitan ser completados :\n";
 
                 if(motivoData.equals(getResources().getString(R.string.motivo))){camposFaltantes=camposFaltantes+"Motivo\n"; camposErroneos=true;}
                 if(ciudadData.equals(getResources().getString(R.string.selciudad))){camposFaltantes=camposFaltantes+"Ciudad\n";camposErroneos=true;}
                 if(telefono.equals("")){camposFaltantes=camposFaltantes+"Telefono\n";camposErroneos=true;}
+                if(sintomas.equals("")){camposFaltantes=camposFaltantes+"Sintomas\n";camposErroneos=true;}
                 if(direccion.equals("")){camposFaltantes=camposFaltantes+"Dirección\n";camposErroneos=true;}
 
                if(camposErroneos) {

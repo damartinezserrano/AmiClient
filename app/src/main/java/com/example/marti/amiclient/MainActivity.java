@@ -58,11 +58,13 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
                             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
                         }
+                        closeDrawer();
                         return true;
 
                     case R.id.perfil:
                         Fragment fg = PerfilUI.newInstance();
                         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                        closeDrawer();
                         return true;
 
                     default:

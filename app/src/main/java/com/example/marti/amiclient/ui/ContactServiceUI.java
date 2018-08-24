@@ -73,7 +73,7 @@ public class ContactServiceUI extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_CALL);
 
-                intent.setData(Uri.parse("tel:" + "3168656151"));
+                intent.setData(Uri.parse("tel:" + "3168656167"));
                 try{
                     getActivity().startActivity(intent);
                 }catch (Exception e){e.printStackTrace();}

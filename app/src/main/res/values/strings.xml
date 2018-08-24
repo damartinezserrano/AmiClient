@@ -78,12 +78,16 @@
     <string name="mail">E-mail :</string>
     <string name="ciud">Ciudad :</string>
     <string name="dir">Dirección :</string>
+    <string name="benefi">Beneficiarios :</string>
+    <string name="docum">Documento :</string>
 
     <string name="editarnombre">Ingresar Nombre :</string>
     <string name="editartel">Ingresar Telefono :</string>
     <string name="editarmail">Ingresar E-mail :</string>
     <string name="editarciud">Ingresar Ciudad :</string>
     <string name="editardir">Ingresar Dirección :</string>
+    <string name="editarbenef">Ingresar Información :</string>
+    <string name="editardocum">Ingresar Número de Documento :</string>
 
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>

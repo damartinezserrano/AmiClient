@@ -7,17 +7,23 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:weightSum="3"
     >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/greatMargin"
-        android:orientation="vertical"
+        android:layout_height="120dp"
         android:background="@drawable/ami_doctora"
-        android:layout_weight="1"
         >
     </LinearLayout>
 
@@ -31,7 +37,7 @@
         android:textSize="@dimen/subTitleSize"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/shortMargin"
-        android:layout_weight="0"/>
+        />
 
 
     <LinearLayout
@@ -42,7 +48,7 @@
         android:layout_marginTop="@dimen/margin20dp"
         android:layout_marginStart="@dimen/margin10dp"
         android:layout_marginEnd="@dimen/margin10dp"
-        android:weightSum="2">
+        >
 
         <LinearLayout
             android:id="@+id/ubicacionactual"
@@ -52,7 +58,6 @@
             android:layout_marginBottom="@dimen/margin20dp"
             android:layout_marginTop="@dimen/margin5dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
             style="@style/CustomOptionsBoxes"
             android:paddingTop="@dimen/margin20dp"
             android:paddingBottom="@dimen/margin20dp"
@@ -120,7 +125,6 @@
             android:layout_marginBottom="@dimen/margin5dp"
             android:layout_marginTop="@dimen/margin5dp"
             android:layout_gravity="center"
-            android:layout_weight="1"
             >
 
             <EditText
@@ -150,6 +154,11 @@
         android:layout_marginBottom="@dimen/margin20dp"
         android:layout_marginStart="@dimen/margin10dp"
         android:layout_marginEnd="@dimen/margin10dp"
-        android:layout_weight="0"/>
+       />
+
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
