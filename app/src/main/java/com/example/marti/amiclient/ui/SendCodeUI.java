@@ -3,6 +3,8 @@ package com.example.marti.amiclient.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
@@ -61,6 +63,10 @@ public class SendCodeUI extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
                 }else{
                     Log.i("campos","vacios");
+                    textInputEditText.requestFocus();
+                    Drawable drError = getResources().getDrawable(R.drawable.error);
+                    drError.setBounds(new Rect(0, 0, textInputEditText.getHeight()/2, textInputEditText.getHeight()/2));
+                    textInputEditText.setError("Ha ocurrido un error en este campo",drError);
                 }
             }
         });

@@ -73,7 +73,9 @@
             android:drawableStart="@drawable/icono_celular"
             android:gravity="center_vertical"
             android:textColor="@color/white"
-            android:inputType="number"
+            android:inputType="phone"
+            android:digits="0123456789+"
+            android:maxLength="14"
             />
     </android.support.design.widget.TextInputLayout>
 

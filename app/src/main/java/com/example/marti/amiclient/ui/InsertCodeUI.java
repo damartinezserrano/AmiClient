@@ -4,6 +4,8 @@ package com.example.marti.amiclient.ui;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -101,7 +103,9 @@ public class InsertCodeUI extends Fragment {
                      randomCode=sharedPreferences.getString(Constant.RANDOM_CODE,"0");
                      if (!campoCod.equals(randomCode)){
                          inputLayoutCod.requestFocus();
-                         codTView.setError(getResources().getString(R.string.codigoincorrecto));
+                         Drawable drError = getResources().getDrawable(R.drawable.error);
+                         drError.setBounds(new Rect(0, 0, codTView.getHeight()/2, codTView.getHeight()/2));
+                         codTView.setError(getResources().getString(R.string.codigoincorrecto),drError);
                      }else{
                          Fragment fg = WelcomeUI.newInstance();
                          getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
@@ -128,7 +132,9 @@ public class InsertCodeUI extends Fragment {
 
                     if(campoCod.equals("")) {
                         inputLayoutCod.requestFocus();
-                        codTView.setError(getResources().getString(R.string.campovacio));
+                        Drawable drError = getResources().getDrawable(R.drawable.error);
+                        drError.setBounds(new Rect(0, 0, codTView.getHeight()/2, codTView.getHeight()/2));
+                        codTView.setError(getResources().getString(R.string.campovacio),drError);
 
                     }
 
