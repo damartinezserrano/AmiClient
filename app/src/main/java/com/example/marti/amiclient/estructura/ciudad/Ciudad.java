@@ -1,0 +1,51 @@
+package com.example.marti.amiclient.estructura.ciudad;
+
+/**
+ * Created by Marti on 10/09/18.
+ */
+
+public class Ciudad {
+
+    String _id;
+
+    String nombre;
+
+    String pais;
+
+    String __v;
+
+    public Ciudad() {
+    }
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String get__v() {
+        return __v;
+    }
+
+    public void set__v(String __v) {
+        this.__v = __v;
+    }
+}

@@ -204,6 +204,7 @@ public class LogInFragment extends Fragment {
                 response -> {
 
                     Log.i("LogInFragment", "Se ha realizado el user post con exito");
+                    Constant.ID = campoIden;
                     parseLogInResponse2(response);
 
                 }, error -> {

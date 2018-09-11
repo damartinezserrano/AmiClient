@@ -14,6 +14,7 @@ public class Constant {
 
     public static boolean servicioAltaPrioridad = false;
 
+    public static String ID="";
     //formulario
 
     public static  String beneficiarios="";
@@ -32,6 +33,14 @@ public class Constant {
     public static  String ENDPOINT_USUARIO="/usuario";
 
     public static  String VALIDAR_USUARIO="/validar_usuario";
+
+    // servicios web nativapps
+
+    public static  String HTTP_DOMAIN_DVD="http://35.237.175.163:3000";
+
+    public static  String END_POINT_MOTIV="/reasons";
+
+    public static  String END_POINT_CIUDAD="/cities";
 
 
 
