@@ -8,9 +8,13 @@ public class Ciudad {
 
     String _id;
 
+    String codigo;
+
     String nombre;
 
     String pais;
+
+    String observaciones;
 
     String __v;
 
@@ -47,5 +51,21 @@ public class Ciudad {
 
     public void set__v(String __v) {
         this.__v = __v;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getObservaciones() {
+        return observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
     }
 }

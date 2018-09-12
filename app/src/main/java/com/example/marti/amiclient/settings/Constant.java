@@ -34,6 +34,9 @@ public class Constant {
 
     public static  String VALIDAR_USUARIO="/validar_usuario";
 
+    public static  String SOLICITAR_SERVICIO="/solicitar_servicio";
+
+
     // servicios web nativapps
 
     public static  String HTTP_DOMAIN_DVD="http://35.237.175.163:3000";

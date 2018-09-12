@@ -31,18 +31,25 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.estructura.EstructuraLogin;
+import com.example.marti.amiclient.estructura.EstructuraSolicitarServicio;
 import com.example.marti.amiclient.estructura.ciudad.Ciudad;
 import com.example.marti.amiclient.estructura.motivo.ListaMotivos;
 import com.example.marti.amiclient.estructura.motivo.Motivo;
+import com.example.marti.amiclient.estructura.persona.Identificacion;
 import com.example.marti.amiclient.settings.Constant;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -69,6 +76,10 @@ public class ServiceInfoUI extends Fragment {
     String[] cod_motivo;
 
     String[] ciudades;
+    String[] cod_ciud;
+
+    GsonBuilder gsonBuilder;
+    Gson gson;
 
     public ServiceInfoUI() {
         // Required empty public constructor
@@ -110,7 +121,9 @@ public class ServiceInfoUI extends Fragment {
             public void onClick(View view) {
                 camposErroneos=false;
                 String motivoData = spinnerM.getSelectedItem().toString();
+                String codMotivoData = getCodigoMotivoSeleccionado(spinnerM.getSelectedItemPosition());
                 String ciudadData = spinnerC.getSelectedItem().toString();
+                String codCiudadData = getCodigoCiudadSeleccionado(spinnerC.getSelectedItemPosition());
                 String telefono = textInputEditTextTelefono.getText().toString();
                 String sintomas = textInputEditTextSintomas.getText().toString();
                 String direccion = editTextDireccion.getText().toString();
@@ -162,11 +175,14 @@ public class ServiceInfoUI extends Fragment {
                            .show();
 
                }else{
+                    try {
+                        postSolicitarServicio(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_SERVICIO, "123988", Constant.ID, codMotivoData, direccion, codCiudadData, telefono);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }finally {
+                        resetValores();
+                    }
 
-                   resetValores();
-
-                   Fragment fg = TriageUI.newInstance();
-                   getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
                }
 
@@ -302,7 +318,7 @@ public class ServiceInfoUI extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) { //errores de peticion
-                Log.i("schema :", "error");
+                Log.i("ServiceInfoUI :", "error");
             }
         }) {
 
@@ -375,7 +391,7 @@ public class ServiceInfoUI extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) { //errores de peticion
-                Log.i("schema :", "error");
+                Log.i("ServiceInfoUI :", "error");
             }
         }) {
 
@@ -402,11 +418,12 @@ public class ServiceInfoUI extends Fragment {
 
         ciudades = new String[ciudad.length+1];
         ciudades[0]=getResources().getString(R.string.selciudad);
-
+        cod_ciud = new String[ciudad.length+1];
+        cod_ciud[0]=" codigo_ciudades";
 
         for (int i = 1 ; i<=ciudad.length ; i++){
             ciudades[i]=ciudad[i-1].getNombre();
-
+            cod_ciud[i]=ciudad[i-1].getCodigo();
         }
 
         final List<String> ciudadesList = new ArrayList<>(Arrays.asList(ciudades));
@@ -422,4 +439,102 @@ public class ServiceInfoUI extends Fragment {
         spinnerCiud.setSelection(Constant.ciudad_pos);
     }
 
+    public void postSolicitarServicio(String URL, String noContrato, String personaCC, String motivoConsulta, String direccionServicio, String codCiudad, String telefonoServicio) {
+
+
+
+        requestQueue = getRequestQueue();
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, solicitarServicioBodyJSON(noContrato,personaCC,motivoConsulta,direccionServicio,codCiudad,telefonoServicio), //hacemos la peticion post
+                response -> {
+
+                    Log.i("ServiceInfoUI", "Se ha realizado el servicio post con exito");
+
+                    Fragment fg = TriageUI.newInstance();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+
+
+                }, error -> {
+                   Log.i("ServiceInfoUI", "Ha ocurrido un error en el post servicio");
+                   parseSolicitarServicioError(error);
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                String auth = "Basic QW1pQXBwQWRtaW5pc3RyYWRvcjoqQW1pQWRtaW5BcHAyMDE4Kg==";
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", auth);
+                return headers;
+            }
+
+        };
+
+        requestQueue.add(request);
+    }
+
+    public JSONObject solicitarServicioBodyJSON(String noContrato, String personaCC, String motivoConsulta, String direccionServicio, String codCiudad, String telefonoServicio) { //construimos el json
+        //primero json device
+        String solicitarServicioBody="";
+        JSONObject jsonObject=null;
+
+        EstructuraSolicitarServicio  estructuraSolicitarServicio= new EstructuraSolicitarServicio();
+        estructuraSolicitarServicio.setContrato_nro_contrato(noContrato);
+        estructuraSolicitarServicio.setPersona_cc(personaCC);
+        estructuraSolicitarServicio.setMotivo_consulta(motivoConsulta);
+        estructuraSolicitarServicio.setDireccion_servicio(direccionServicio);
+        estructuraSolicitarServicio.setCiudad_cod_ciudad(codCiudad);
+        estructuraSolicitarServicio.setTelefono_servicio(telefonoServicio);
+
+        gsonBuilder = new GsonBuilder();
+        gson = gsonBuilder.create();
+
+        solicitarServicioBody = gson.toJson(estructuraSolicitarServicio);
+        Log.i("loginRbody",solicitarServicioBody);
+
+        try {
+            jsonObject = new JSONObject(solicitarServicioBody);
+            Log.i("jsonObject",jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+    }
+
+    public String getCodigoMotivoSeleccionado(int posicion){
+        return cod_motivo[posicion];
+    }
+
+    public String getCodigoCiudadSeleccionado(int posicion){
+        return cod_ciud[posicion];
+    }
+
+    public void parseSolicitarServicioError(VolleyError error) {
+
+        try {
+            String responseBody = new String(error.networkResponse.data, "utf-8");
+            JSONObject data = new JSONObject(responseBody);
+            boolean estado = data.getBoolean("estado");
+            String mensaje = data.getString("mensaje");
+            new AlertDialog.Builder(getContext())
+                    .setTitle("INFORMACIÓN")
+                    .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                        }
+                    })
+                    .setMessage(mensaje)
+                    .show();
+            Log.i("LogInFragment", "Ha ocurrido un error en el Login : "+estado+" , "+mensaje);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
