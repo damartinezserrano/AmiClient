@@ -227,7 +227,7 @@
                 android:paddingStart="@dimen/margin5dp"
                 android:paddingEnd="@dimen/margin5dp"
                 android:textSize="@dimen/superSmallWordSize"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 "
                 android:maxLength="100"
                 />
 

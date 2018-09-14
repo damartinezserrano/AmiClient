@@ -411,7 +411,6 @@ public class ServiceInfoUI extends Fragment {
     public void parseCiudadResponse(String response, Spinner spinnerCiud) {
 
         Gson gson3 = new Gson();
-        ListaMotivos listaMotivos = new ListaMotivos();
         Ciudad[] ciudad;
         ciudad = gson3.fromJson(response,Ciudad[].class);
 

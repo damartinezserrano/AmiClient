@@ -53,7 +53,7 @@
             android:textSize="@dimen/superSmallWordSize"
             android:background="@null"
             android:gravity="center_vertical"
-            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789, "
             android:maxLength="100"
             />
     </android.support.design.widget.TextInputLayout>
@@ -247,7 +247,7 @@
                     android:paddingStart="@dimen/margin5dp"
                     android:paddingEnd="@dimen/margin5dp"
                     android:textSize="@dimen/superSmallWordSize"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 "
                     android:maxLength="100"
                     />
 

@@ -107,14 +107,14 @@ public class InsertCodeUI extends Fragment {
                          drError.setBounds(new Rect(0, 0, codTView.getHeight()/2, codTView.getHeight()/2));
                          codTView.setError(getResources().getString(R.string.codigoincorrecto),drError);
                      }else{
-                         Fragment fg = WelcomeUI.newInstance();
+                         Fragment fg = ListaContratosUI.newInstance();
                          getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
                      }
 
                      //Entrada provisional para practicas
                     if (campoCod.equals("123")){
-                        Fragment fg = WelcomeUI.newInstance();
+                        Fragment fg = ListaContratosUI.newInstance();
                         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
                         codTView.setError(null);
 

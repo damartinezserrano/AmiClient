@@ -27,6 +27,7 @@ public class ServiceOptionsUI extends Fragment {
 
     LinearLayout ingresarinfo, solicitarLlamada, llamarDir;
     TextView textViewInfo,textViewSol,textViewDir;
+    public static boolean solLlamada=false, llamarDirecto=false;
 
 
     public ServiceOptionsUI() {
@@ -71,7 +72,8 @@ public class ServiceOptionsUI extends Fragment {
         solicitarLlamada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                solLlamada=true;
+                llamarDirecto=false;
                 Fragment fg = ContactServiceUI.newInstance();
                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
@@ -82,7 +84,8 @@ public class ServiceOptionsUI extends Fragment {
         llamarDir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                llamarDirecto=true;
+                solLlamada=false;
                 Fragment fg = ContactServiceUI.newInstance();
                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 

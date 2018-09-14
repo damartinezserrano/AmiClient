@@ -14,7 +14,11 @@ public class Constant {
 
     public static boolean servicioAltaPrioridad = false;
 
+    public static String SLASH="/";
+
     public static String ID="";
+
+    public static String DIRECCION_ACTUAL_GOOGLE="";
     //formulario
 
     public static  String beneficiarios="";
@@ -36,6 +40,11 @@ public class Constant {
 
     public static  String SOLICITAR_SERVICIO="/solicitar_servicio";
 
+    public static  String SOLICITAR_LLAMADA="/solicitar_llamada";
+
+    public static  String LISTAR_CONTRATO="/listar_contrato";
+
+
 
     // servicios web nativapps
 
@@ -44,6 +53,8 @@ public class Constant {
     public static  String END_POINT_MOTIV="/reasons";
 
     public static  String END_POINT_CIUDAD="/cities";
+
+    public static  String END_POINT_LINEAS="/lines";
 
 
 
