@@ -63,8 +63,8 @@ public class ListaContratosUI extends Fragment {
         View view = inflater.inflate(R.layout.fragment_lista_contratos_ui, container, false);
 
         spinnerContratos = view.findViewById(R.id.contratoSpinner);
-        getListaContratos(Constant.HTTP_DOMAIN+Constant.APP_PATH+Constant.ENDPOINT_USUARIO+Constant.LISTAR_CONTRATO+Constant.SLASH+Constant.ID,spinnerContratos);
-
+        //getListaContratos(Constant.HTTP_DOMAIN+Constant.APP_PATH+Constant.ENDPOINT_USUARIO+Constant.LISTAR_CONTRATO+Constant.SLASH+Constant.ID,spinnerContratos);
+        getStaticListaContratos(spinnerContratos);
 
         buttonContinue = view.findViewById(R.id.continuar);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
@@ -72,8 +72,20 @@ public class ListaContratosUI extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Fragment fg = WelcomeUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                int selectedContrato = spinnerContratos.getSelectedItemPosition();
+
+                if(selectedContrato>0){
+                    if(contrato[selectedContrato].equals("3")){
+                        Fragment fg = MoraUI.newInstance();
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                    }else{
+                        Constant.NRO_CONTRATO_SELECCIONADO = num_contrato[selectedContrato];
+                        Fragment fg = WelcomeUI.newInstance();
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+                    }
+                }
+
 
             }
         });
@@ -167,6 +179,57 @@ public class ListaContratosUI extends Fragment {
                 }
             }
         }
+    }
+
+
+    public void getStaticListaContratos(Spinner spinnerContrato) {
+
+        ListaContratos listaContratos = new ListaContratos();
+
+
+        if(Constant.slistaContratos.length>1) {
+
+            contrato = new String[Constant.slistaContratos.length + 1];
+            contrato[0] = "Estado Contrato";
+            num_contrato = new String[Constant.slistaContratos.length + 1];
+            num_contrato[0] = "Seleccionar Contrato";
+
+            for (int i = 1; i <= Constant.slistaContratos.length; i++) {// si esta activo agregarlo a droplist
+                num_contrato[i] = Constant.slistaContratos[i - 1].getContrato_nro_contrato();
+                contrato[i] = Constant.slistaContratos[i - 1].getEstado();
+            }
+
+            final List<String> contratosList = new ArrayList<>(Arrays.asList(num_contrato));
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    getActivity(),
+                    R.layout.custom_spinner,
+                    contratosList
+            );
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerContrato.setAdapter(adapter);
+
+            spinnerContrato.setSelection(0);
+
+        }else{
+            if(Constant.slistaContratos.length==1) {
+                if(contrato[1].equals("3")){
+                    Fragment fg = MoraUI.newInstance();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+                }else {
+                    Constant.NRO_CONTRATO_SELECCIONADO = num_contrato[1];
+                    Fragment fg = WelcomeUI.newInstance();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                }
+            }else{
+                if(listaContratos.getLista().length==0) {
+                    Fragment fg = MoraUI.newInstance();
+                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                }
+            }
+        }
+
     }
 
 }

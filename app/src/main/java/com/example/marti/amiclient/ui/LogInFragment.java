@@ -204,7 +204,7 @@ public class LogInFragment extends Fragment {
                 response -> {
 
                     Log.i("LogInFragment", "Se ha realizado el user post con exito");
-                    Constant.ID = campoIden;
+                    //Constant.ID = campoIden;
                     parseLogInResponse2(response);
 
                 }, error -> {
@@ -284,7 +284,14 @@ public class LogInFragment extends Fragment {
         Gson gson3 = new Gson();
         EstructuraLogin estructuraLogin = gson3.fromJson(response.toString(),EstructuraLogin.class);
 
-        if(estructuraLogin.getUsuario().getEstado().equals("2")){
+        Constant.ID = estructuraLogin.getUsuario().getCedula();
+        Constant.TOKEN = estructuraLogin.getToken();
+        Constant.slistaContratos = estructuraLogin.getLista();
+
+        Fragment fg = SendCodeUI.newInstance();
+        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+      /*  if(estructuraLogin.getUsuario().getEstado().equals("2")){
             Fragment fg = MoraUI.newInstance();
             getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
@@ -293,7 +300,7 @@ public class LogInFragment extends Fragment {
                 Fragment fg = SendCodeUI.newInstance();
                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
             }
-        }
+        }*/
 
 
     }

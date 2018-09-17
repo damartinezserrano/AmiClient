@@ -168,7 +168,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/mailfield"
+                        android:id="@+id/documfield"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Numero documento :"
@@ -177,15 +177,15 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
                     <TextView
-                        android:id="@+id/mail"
+                        android:id="@+id/docum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="documento"
                         android:layout_toEndOf="@+id/contact_icon3"
-                        android:layout_below="@+id/mailfield"
+                        android:layout_below="@+id/documfield"
                         android:layout_marginStart="@dimen/shortMargin"/>
                     <ImageView
-                        android:id="@+id/editarmail"
+                        android:id="@+id/editardocum"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/modify_icon"
@@ -199,7 +199,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="1dip"
                         android:background="@color/lightSilver"
-                        android:layout_below="@+id/mail"
+                        android:layout_below="@+id/docum"
                         />
 
                 </RelativeLayout>

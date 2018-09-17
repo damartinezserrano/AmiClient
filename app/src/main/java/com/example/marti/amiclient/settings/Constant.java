@@ -1,5 +1,7 @@
 package com.example.marti.amiclient.settings;
 
+import com.example.marti.amiclient.estructura.contrato.Contrato;
+
 /**
  * Created by Marti on 12/08/18.
  */
@@ -17,6 +19,13 @@ public class Constant {
     public static String SLASH="/";
 
     public static String ID="";
+
+    public static String TOKEN="";
+
+    public static String NRO_CONTRATO_SELECCIONADO="";
+
+
+
 
     public static String DIRECCION_ACTUAL_GOOGLE="";
     //formulario
@@ -44,6 +53,8 @@ public class Constant {
 
     public static  String LISTAR_CONTRATO="/listar_contrato";
 
+    public static  String CONSULTAR_DATOS_PERSONALES="/consultar_datos_personales";
+
 
 
     // servicios web nativapps
@@ -58,7 +69,9 @@ public class Constant {
 
 
 
+    //lista contratos estatica
 
+    public static Contrato[] slistaContratos;
 
 
 }

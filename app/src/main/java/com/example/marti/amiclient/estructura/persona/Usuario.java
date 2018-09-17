@@ -16,19 +16,11 @@ public class Usuario {
 
     String cedula;
 
-    String estado;
+
 
     public Usuario() {
     }
 
-    public Usuario(String primer_nombre, String segundo_nombre, String primer_apellido, String segundo_apellido, String cedula, String estado) {
-        this.primer_nombre = primer_nombre;
-        this.segundo_nombre = segundo_nombre;
-        this.primer_apellido = primer_apellido;
-        this.segundo_apellido = segundo_apellido;
-        this.cedula = cedula;
-        this.estado = estado;
-    }
 
     public String getPrimer_nombre() {
         return primer_nombre;
@@ -70,11 +62,4 @@ public class Usuario {
         this.cedula = cedula;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }

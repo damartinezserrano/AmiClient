@@ -1,5 +1,6 @@
 package com.example.marti.amiclient.estructura;
 
+import com.example.marti.amiclient.estructura.contrato.Contrato;
 import com.example.marti.amiclient.estructura.persona.Usuario;
 
 /**
@@ -13,6 +14,10 @@ public class EstructuraLogin {
     String mensaje;
 
     Usuario usuario;
+
+    Contrato[] lista;
+
+    String token;
 
     public EstructuraLogin() {
     }
@@ -45,5 +50,21 @@ public class EstructuraLogin {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Contrato[] getLista() {
+        return lista;
+    }
+
+    public void setLista(Contrato[] lista) {
+        this.lista = lista;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
