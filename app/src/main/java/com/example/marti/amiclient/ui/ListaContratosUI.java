@@ -213,6 +213,15 @@ public class ListaContratosUI extends Fragment {
 
         }else{
             if(Constant.slistaContratos.length==1) {
+                contrato = new String[Constant.slistaContratos.length + 1];
+                contrato[0] = "Estado Contrato";
+                num_contrato = new String[Constant.slistaContratos.length + 1];
+                num_contrato[0] = "Seleccionar Contrato";
+
+                for (int i = 1; i <= Constant.slistaContratos.length; i++) {// si esta activo agregarlo a droplist
+                    num_contrato[i] = Constant.slistaContratos[i - 1].getContrato_nro_contrato();
+                    contrato[i] = Constant.slistaContratos[i - 1].getEstado();
+                }
                 if(contrato[1].equals("3")){
                     Fragment fg = MoraUI.newInstance();
                     getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();

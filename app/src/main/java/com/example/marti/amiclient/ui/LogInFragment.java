@@ -215,9 +215,8 @@ public class LogInFragment extends Fragment {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
                 Map<String, String> headers = new HashMap<>();
-                String auth = "Basic QW1pQXBwQWRtaW5pc3RyYWRvcjoqQW1pQWRtaW5BcHAyMDE4Kg==";
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", auth);
+                headers.put("Authorization", Constant.AUTH);
                 return headers;
             }
 
@@ -287,20 +286,10 @@ public class LogInFragment extends Fragment {
         Constant.ID = estructuraLogin.getUsuario().getCedula();
         Constant.TOKEN = estructuraLogin.getToken();
         Constant.slistaContratos = estructuraLogin.getLista();
-
         Fragment fg = SendCodeUI.newInstance();
         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
-      /*  if(estructuraLogin.getUsuario().getEstado().equals("2")){
-            Fragment fg = MoraUI.newInstance();
-            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
-        }else{
-            if(estructuraLogin.getUsuario().getEstado().equals("3")){
-                Fragment fg = SendCodeUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
-            }
-        }*/
 
 
     }

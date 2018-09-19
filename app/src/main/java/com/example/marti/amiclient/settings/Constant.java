@@ -22,6 +22,8 @@ public class Constant {
 
     public static String TOKEN="";
 
+    public static String AUTH="Basic QW1pQXBwQWRtaW5pc3RyYWRvcjoqQW1pQWRtaW5BcHAyMDE4Kg==";
+
     public static String NRO_CONTRATO_SELECCIONADO="";
 
 
