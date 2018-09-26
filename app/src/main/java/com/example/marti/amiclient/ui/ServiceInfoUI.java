@@ -176,7 +176,7 @@ public class ServiceInfoUI extends Fragment {
 
                }else{
                     try {
-                        postSolicitarServicio(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_SERVICIO, "123988", Constant.ID, codMotivoData, direccion, codCiudadData, telefono);
+                    postSolicitarServicio(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_SERVICIO, Constant.NRO_CONTRATO_SELECCIONADO, Constant.ID, codMotivoData, direccion, codCiudadData, telefono);
                     }catch (Exception e){
                         e.printStackTrace();
                     }finally {
@@ -224,9 +224,9 @@ public class ServiceInfoUI extends Fragment {
 
                 switch (textInputEditText.getId()){
 
-                    case R.id.beneficiarios :
+                    /*case R.id.beneficiarios :
                         Constant.beneficiarios=textInputEditText.getText().toString();
-                        break;
+                        break;*/
 
                     case R.id.telefono :
                         Constant.telefono=textInputEditText.getText().toString();
@@ -463,9 +463,9 @@ public class ServiceInfoUI extends Fragment {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
                 Map<String, String> headers = new HashMap<>();
-                String auth = "Basic QW1pQXBwQWRtaW5pc3RyYWRvcjoqQW1pQWRtaW5BcHAyMDE4Kg==";
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", auth);
                 return headers;
             }
 

@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -92,6 +93,13 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
                         closeDrawer();
                         return true;
 
+                    case R.id.cerrar:
+                        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        Fragment fg2 = LogInFragment.newInstance();
+                        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg2).addToBackStack(null).commit();
+
+                        return true;
+
                     default:
                         return true;
 
@@ -151,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
         Fragment fg = LogInFragment.newInstance();
         //Fragment fg = LogInFragment.newInstance();
         // adding fragment to relative layout by using layout id
-        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
     }
 
 
@@ -229,7 +237,14 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
     @Override
     public void onBackPressed() {
-            getSupportFragmentManager().popBackStack();
+
+            Log.i("count :",String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
+
+            if(getSupportFragmentManager().getBackStackEntryCount()>1) {
+                getSupportFragmentManager().popBackStack();
+            }else{
+                this.finish();
+            }
     }
 
 
@@ -267,4 +282,9 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
         }
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

@@ -38,6 +38,7 @@ public class Constant {
     public static  String direccion="";
     public static  int consulta_motivo_pos=0;
     public static  int ciudad_pos=0;
+    public static  int benef_pos=0;
 
     // servicios web
 
@@ -54,6 +55,8 @@ public class Constant {
     public static  String SOLICITAR_LLAMADA="/solicitar_llamada";
 
     public static  String LISTAR_CONTRATO="/listar_contrato";
+
+    public static  String LISTAR_INSCRITOS="/listar_inscritos";
 
     public static  String CONSULTAR_DATOS_PERSONALES="/consultar_datos_personales";
 

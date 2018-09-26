@@ -36,6 +36,7 @@ import com.example.marti.amiclient.estructura.EstructuraSolicitarServicio;
 import com.example.marti.amiclient.estructura.ciudad.Ciudad;
 import com.example.marti.amiclient.estructura.motivo.ListaMotivos;
 import com.example.marti.amiclient.estructura.motivo.Motivo;
+import com.example.marti.amiclient.estructura.persona.ListaInscritos;
 import com.example.marti.amiclient.settings.Constant;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -56,7 +57,7 @@ import java.util.Map;
 public class ServiceRequestUI extends Fragment {
 
     Button buttonContinue;
-    Spinner spinnerM,spinnerC;
+    Spinner spinnerM,spinnerC,spinnerB;
     TextInputEditText textInputEditTextTelefono,textInputEditTextSintomas,textInputEditTextBenef;
     TextInputLayout telWrap;
     TextInputEditText editTextDireccion;
@@ -71,6 +72,9 @@ public class ServiceRequestUI extends Fragment {
 
     String[] ciudades;
     String[] cod_ciud;
+
+    String[] nombreBenef;
+    String[] cedulaBenef;
 
     GsonBuilder gsonBuilder;
     Gson gson;
@@ -95,7 +99,7 @@ public class ServiceRequestUI extends Fragment {
         textInputEditTextTelefono = view.findViewById(R.id.telefono);
         telWrap = view.findViewById(R.id.telefonoWrapper);
         textInputEditTextSintomas = view.findViewById(R.id.sintomas);
-        textInputEditTextBenef = view.findViewById(R.id.beneficiarios);
+        //textInputEditTextBenef = view.findViewById(R.id.beneficiarios);
         editTextDireccion = view.findViewById(R.id.midireccion);
 
 
@@ -107,6 +111,8 @@ public class ServiceRequestUI extends Fragment {
         spinnerC = view.findViewById(R.id.ciudadSpinner);
         getListaCiudades(Constant.HTTP_DOMAIN_DVD+Constant.END_POINT_CIUDAD,spinnerC);
 
+        spinnerB = view.findViewById(R.id.beneficiarioSpinner);
+        getListaInscritos(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_INSCRITOS + Constant.SLASH + Constant.ID + Constant.SLASH + Constant.NRO_CONTRATO_SELECCIONADO,spinnerB);
 
         buttonContinue = view.findViewById(R.id.continua);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
@@ -117,14 +123,17 @@ public class ServiceRequestUI extends Fragment {
                 String codMotivoData = getCodigoMotivoSeleccionado(spinnerM.getSelectedItemPosition());
                 String ciudadData = spinnerC.getSelectedItem().toString();
                 String codCiudadData = getCodigoCiudadSeleccionado(spinnerC.getSelectedItemPosition());
+                String nombreB = spinnerB.getSelectedItem().toString();
+                String cedulaB = getCedulaBenefSeleccionado(spinnerB.getSelectedItemPosition());
                 String telefono = textInputEditTextTelefono.getText().toString();
                 String sintomas = textInputEditTextSintomas.getText().toString();
-                String benef = textInputEditTextBenef.getText().toString();
+                //String benef = textInputEditTextBenef.getText().toString();
                 String direccion = editTextDireccion.getText().toString();
                 String camposFaltantes = "Los siguientes campos necesitan ser completados :\n";
 
                 if(motivoData.equals(getResources().getString(R.string.motivo))){camposFaltantes=camposFaltantes+"Motivo\n"; camposErroneos=true;}
                 if(ciudadData.equals(getResources().getString(R.string.selciudad))){camposFaltantes=camposFaltantes+"Ciudad\n";camposErroneos=true;}
+                if(nombreB.equals(getResources().getString(R.string.selbenef))){camposFaltantes=camposFaltantes+"Beneficiario\n";camposErroneos=true;}
                 if(telefono.equals("")||telefono.length()<4){
 
                     if(telefono.equals("")) {
@@ -148,12 +157,12 @@ public class ServiceRequestUI extends Fragment {
                     drError.setBounds(new Rect(0, 0, textInputEditTextSintomas.getHeight()/2, textInputEditTextSintomas.getHeight()/2));
                     textInputEditTextSintomas.setError("Este campo no puede estar vacio",drError);
                 }
-                if(benef.equals("")){
+                /*if(benef.equals("")){
                     camposFaltantes=camposFaltantes+"Beneficiarios\n";camposErroneos=true;
                     Drawable drError = getResources().getDrawable(R.drawable.cancel);
                     drError.setBounds(new Rect(0, 0, textInputEditTextBenef.getHeight()/2, textInputEditTextBenef.getHeight()/2));
                     textInputEditTextBenef.setError("Este campo no puede estar vacio",drError);
-                }
+                }*/
                 if(direccion.equals("")){
                     camposFaltantes=camposFaltantes+"Dirección\n";camposErroneos=true;
                     Drawable drError = getResources().getDrawable(R.drawable.cancel);
@@ -176,7 +185,7 @@ public class ServiceRequestUI extends Fragment {
 
                 }else{
                     try {
-                        postSolicitarServicio(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_SERVICIO, "123988", Constant.ID, codMotivoData, direccion, codCiudadData, telefono);
+                        postSolicitarServicio(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_SERVICIO, Constant.NRO_CONTRATO_SELECCIONADO, cedulaB, codMotivoData, direccion, codCiudadData, telefono);
                     }catch (Exception e){
                         e.printStackTrace();
                     }finally {
@@ -195,20 +204,21 @@ public class ServiceRequestUI extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        textInputEditTextBenef.setText(Constant.beneficiarios);
+        //textInputEditTextBenef.setText(Constant.beneficiarios);
         textInputEditTextTelefono.setText(Constant.telefono);
         textInputEditTextSintomas.setText(Constant.sintomas);
         editTextDireccion.setText(Constant.direccion);
         spinnerC.setSelection(Constant.ciudad_pos);
         spinnerM.setSelection(Constant.consulta_motivo_pos);
+        spinnerB.setSelection(Constant.benef_pos);
 
-        retenerValoresTextos(textInputEditTextBenef);
+        //retenerValoresTextos(textInputEditTextBenef);
         retenerValoresTextos(textInputEditTextTelefono);
         retenerValoresTextos(textInputEditTextSintomas);
         retenerValoresTextos(editTextDireccion);
         retenerValoresSpinner(spinnerC);
         retenerValoresSpinner(spinnerM);
-
+        retenerValoresSpinner(spinnerB);
     }
 
     public void retenerValoresTextos(final TextInputEditText textInputEditText){
@@ -224,9 +234,6 @@ public class ServiceRequestUI extends Fragment {
 
                 switch (textInputEditText.getId()){
 
-                    case R.id.beneficiarios :
-                        Constant.beneficiarios=textInputEditText.getText().toString();
-                        break;
 
                     case R.id.telefono :
                         Constant.telefono=textInputEditText.getText().toString();
@@ -269,7 +276,9 @@ public class ServiceRequestUI extends Fragment {
                         Constant.ciudad_pos=position;
                         break;
 
-
+                    case R.id.beneficiarioSpinner :
+                        Constant.benef_pos=position;
+                        break;
 
                 }
 
@@ -296,12 +305,13 @@ public class ServiceRequestUI extends Fragment {
 
         Constant.ciudad_pos=0;
 
-        textInputEditTextBenef.setText(Constant.beneficiarios);
+        //textInputEditTextBenef.setText(Constant.beneficiarios);
         textInputEditTextTelefono.setText(Constant.telefono);
         textInputEditTextSintomas.setText(Constant.sintomas);
         editTextDireccion.setText(Constant.direccion);
         spinnerC.setSelection(Constant.ciudad_pos);
         spinnerM.setSelection(Constant.consulta_motivo_pos);
+        spinnerB.setSelection(Constant.benef_pos);
     }
 
     public void getListaMotivos(String UrlQuest, Spinner spinnerMotiv) {
@@ -439,6 +449,68 @@ public class ServiceRequestUI extends Fragment {
         spinnerCiud.setSelection(Constant.ciudad_pos);
     }
 
+    public void getListaInscritos(String UrlQuest, Spinner spinnerB) {
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        parseInscritosResponse(response,spinnerB);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("ServiceInfoUI :", "error");
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseInscritosResponse(String response, Spinner spinnerB) {
+
+        Gson gson3 = new Gson();
+        ListaInscritos listaInscritos = new ListaInscritos();
+
+        listaInscritos = gson3.fromJson(response,ListaInscritos.class);
+
+
+        nombreBenef = new String[listaInscritos.getLista().length+1];
+        nombreBenef[0]=getResources().getString(R.string.selbenef);
+        cedulaBenef = new String[listaInscritos.getLista().length+1];
+        cedulaBenef[0]="cedula benef";
+
+        for (int i = 1 ; i<=listaInscritos.getLista().length ; i++){
+            nombreBenef[i]=listaInscritos.getLista()[i-1].getPrimer_nombre()+" "+listaInscritos.getLista()[i-1].getPrimer_apellido();
+            cedulaBenef[i]=listaInscritos.getLista()[i-1].getCedula();
+        }
+
+        final List<String> benefList = new ArrayList<>(Arrays.asList(nombreBenef));
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(),
+                R.layout.custom_spinner,
+                benefList
+        );
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerB.setAdapter(adapter);
+
+        spinnerB.setSelection(Constant.ciudad_pos);
+    }
+
     public void postSolicitarServicio(String URL, String noContrato, String personaCC, String motivoConsulta, String direccionServicio, String codCiudad, String telefonoServicio) {
 
 
@@ -464,9 +536,9 @@ public class ServiceRequestUI extends Fragment {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
                 Map<String, String> headers = new HashMap<>();
-                String auth = "Basic QW1pQXBwQWRtaW5pc3RyYWRvcjoqQW1pQWRtaW5BcHAyMDE4Kg==";
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", auth);
                 return headers;
             }
 
@@ -510,6 +582,10 @@ public class ServiceRequestUI extends Fragment {
 
     public String getCodigoCiudadSeleccionado(int posicion){
         return cod_ciud[posicion];
+    }
+
+    public String getCedulaBenefSeleccionado(int posicion){
+        return cedulaBenef[posicion];
     }
 
     public void parseSolicitarServicioError(VolleyError error) {

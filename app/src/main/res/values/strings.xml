@@ -63,6 +63,7 @@
     <!-- Contactar servicio cliente -->
     <string name="contactoservicio">Contactar servicio al cliente</string>
     <string name="selciudad">Seleccionar ciudad</string>
+    <string name="selbenef">Seleccionar beneficiario</string>
 
     <!-- MapView texts -->
     <string name="encamino">El movil va en camino a la Calle 84 # 56-98</string>
