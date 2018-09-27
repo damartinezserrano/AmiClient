@@ -3,6 +3,8 @@ package com.example.marti.amiclient;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -22,21 +24,37 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.marti.amiclient.estructura.calificaciones.ListaCalificacionesPendientes;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 import com.example.marti.amiclient.settings.Constant;
 import com.example.marti.amiclient.settings.LocationAddress;
 import com.example.marti.amiclient.settings.address.DownloadAddressData;
+import com.example.marti.amiclient.ui.CalificarUI;
 import com.example.marti.amiclient.ui.LogInFragment;
 import com.example.marti.amiclient.ui.MapViewUI;
 import com.example.marti.amiclient.ui.PerfilUI;
 import com.example.marti.amiclient.ui.TriageACUI;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
@@ -52,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
     double longitude = 0, latitude = 0;
     String direccionActual="";
+
+    RequestQueue requestQueue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -240,11 +260,22 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
             Log.i("count :",String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
 
+            Fragment fragmentCalif = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
             if(getSupportFragmentManager().getBackStackEntryCount()>1) {
-                getSupportFragmentManager().popBackStack();
+
+                if(fragmentCalif instanceof CalificarUI){
+                    //
+                }else{
+                    getSupportFragmentManager().popBackStack();
+                }
+
+
             }else{
                 this.finish();
             }
+
+
     }
 
 
@@ -280,6 +311,81 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
             }
 
         }
+    }
+
+    public RequestQueue getRequestQueue() {
+        // lazy initialize the request queue, the queue instance will be
+        // created when it is accessed for the first time
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(this);
+        }
+
+        return requestQueue;
+    }
+
+
+    public void getCalificacionesPendientes(String UrlQuest){
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        parseCalificacionesResponse(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("califpend :", "error");
+                parseLogInError(error);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                Log.i("auth",Constant.TOKEN+" "+Constant.AUTH);
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseCalificacionesResponse(String response) {
+        Gson gson3 = new Gson();
+        ListaCalificacionesPendientes listaCalificacionesPendientes = new ListaCalificacionesPendientes();
+
+        listaCalificacionesPendientes = gson3.fromJson(response,ListaCalificacionesPendientes.class);
+
+        if(listaCalificacionesPendientes.getLista().length>0){
+            Constant.CONSEC_MOVSERV_ACTUAL=listaCalificacionesPendientes.getLista()[0].getConsec_movserv();
+             Fragment fg = CalificarUI.newInstance();
+             this.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+        }
+    }
+    public void parseLogInError(VolleyError error) {
+
+        try {
+            String responseBody = new String(error.networkResponse.data, "utf-8");
+            JSONObject data = new JSONObject(responseBody);
+            boolean estado = data.getBoolean("estado");
+            String mensaje = data.getString("error");
+            Log.i("MainAct", "Ha ocurrido un error en el Login : "+estado+" , "+mensaje);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
     }
 
 

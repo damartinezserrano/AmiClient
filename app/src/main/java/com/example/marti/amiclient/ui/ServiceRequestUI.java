@@ -61,7 +61,7 @@ public class ServiceRequestUI extends Fragment {
     TextInputEditText textInputEditTextTelefono,textInputEditTextSintomas,textInputEditTextBenef;
     TextInputLayout telWrap;
     TextInputEditText editTextDireccion;
-    TextView textViewSpinner;
+    TextView ubicActual,nuevaUbic;
     Boolean camposErroneos=false;
 
     RequestQueue requestQueue;
@@ -101,7 +101,8 @@ public class ServiceRequestUI extends Fragment {
         textInputEditTextSintomas = view.findViewById(R.id.sintomas);
         //textInputEditTextBenef = view.findViewById(R.id.beneficiarios);
         editTextDireccion = view.findViewById(R.id.midireccion);
-
+        ubicActual = view.findViewById(R.id.ubicactual);
+        nuevaUbic = view.findViewById(R.id.nuevadir);
 
         spinnerM = view.findViewById(R.id.motivoSpinner);
         getListaMotivos(Constant.HTTP_DOMAIN_DVD+Constant.END_POINT_MOTIV,spinnerM);
@@ -113,6 +114,21 @@ public class ServiceRequestUI extends Fragment {
 
         spinnerB = view.findViewById(R.id.beneficiarioSpinner);
         getListaInscritos(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_INSCRITOS + Constant.SLASH + Constant.ID + Constant.SLASH + Constant.NRO_CONTRATO_SELECCIONADO,spinnerB);
+
+
+        ubicActual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editTextDireccion.setText(Constant.DIRECCION_ACTUAL_GOOGLE);
+            }
+        });
+
+        nuevaUbic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editTextDireccion.requestFocus();
+            }
+        });
 
         buttonContinue = view.findViewById(R.id.continua);
         buttonContinue.setOnClickListener(new View.OnClickListener() {

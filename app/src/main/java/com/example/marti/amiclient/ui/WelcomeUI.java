@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 import com.example.marti.amiclient.settings.Constant;
@@ -73,6 +74,7 @@ public class WelcomeUI extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ((DrawerLocker)getActivity()).setDrawerEnabled(true);
+        ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
         super.onViewCreated(view, savedInstanceState);
     }
 

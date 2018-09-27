@@ -139,6 +139,8 @@
           >
 
          <TextView
+             android:id="@+id/ubicactual"
+             android:clickable="true"
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin40dp"
             android:text="@string/ubicacionactual"
@@ -162,6 +164,8 @@
             >
 
             <TextView
+                android:id="@+id/nuevadir"
+                android:clickable="true"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin40dp"
                 android:text="@string/nuevadireccion"
@@ -223,7 +227,7 @@
                 android:id="@+id/midireccion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Carrera 44 Calle 65"
+                android:hint="Dirección"
                 android:paddingStart="@dimen/margin5dp"
                 android:paddingEnd="@dimen/margin5dp"
                 android:textSize="@dimen/superSmallWordSize"

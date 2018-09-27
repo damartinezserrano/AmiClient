@@ -118,7 +118,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/nuevadireccion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -128,6 +127,7 @@
             >
 
             <EditText
+                android:id="@+id/observaciones"
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:hint="@string/observ"
@@ -144,7 +144,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/continua"
+        android:id="@+id/enviar"
         style="@style/Base.TextAppearance.AppCompat.Widget.Button.CustomButtonRed"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin40dp"

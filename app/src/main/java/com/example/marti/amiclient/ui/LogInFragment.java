@@ -290,7 +290,7 @@ public class LogInFragment extends Fragment {
         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
 
-
+        Log.i("TOKEN ",Constant.TOKEN);
 
     }
 

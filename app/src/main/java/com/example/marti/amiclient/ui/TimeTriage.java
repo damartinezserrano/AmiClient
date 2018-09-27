@@ -39,8 +39,8 @@ public class TimeTriage extends Fragment {
         ambulancia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment fg = CalificarUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+               // Fragment fg = CalificarUI.newInstance();
+               // getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
 
             }

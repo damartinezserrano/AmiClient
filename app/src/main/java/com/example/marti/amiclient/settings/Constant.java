@@ -26,10 +26,11 @@ public class Constant {
 
     public static String NRO_CONTRATO_SELECCIONADO="";
 
-
-
+    public static String CONSEC_MOVSERV_ACTUAL="";
 
     public static String DIRECCION_ACTUAL_GOOGLE="";
+
+
     //formulario
 
     public static  String beneficiarios="";
@@ -59,6 +60,10 @@ public class Constant {
     public static  String LISTAR_INSCRITOS="/listar_inscritos";
 
     public static  String CONSULTAR_DATOS_PERSONALES="/consultar_datos_personales";
+
+    public static  String CALIFICAR_SERVICIO="/calificar_servicio";
+
+    public static  String LISTAR_CALIFICACIONES_PENDIENTES="/listar_calificaciones_pendientes";
 
 
 

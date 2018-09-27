@@ -32,8 +32,8 @@ public class LocationAddress {
             addresses = geocoder.getFromLocation(latitude, longitude, 1);
             if(addresses.size()>0) {
                 String address = addresses.get(0).getAddressLine(0); //si address.size = 0 falla
-                String city = addresses.get(0).getLocality();
-                return address + " - " + city;
+                //String city = addresses.get(0).getLocality();
+                return address;
             }else{ return "AddressNotFound";}
         } catch (IOException e) {
             e.printStackTrace();
