@@ -176,7 +176,8 @@ public class CalificarUI extends Fragment {
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, URL, putCalificacionBodyJSON(codserv,calif,observ), //hacemos la peticion post
                 response -> {
 
-                    Log.i("LogInFragment", "Se ha realizado el user post con exito");
+                    Log.i("LogInFragment", "Se ha realizado el put calificar con exito");
+                    getActivity().getSupportFragmentManager().popBackStack();
                     ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
 
                 }, error -> {

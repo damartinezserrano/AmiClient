@@ -3,13 +3,16 @@ package com.example.marti.amiclient.ui;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
+import com.example.marti.amiclient.settings.Constant;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,4 +53,9 @@ public class TimeTriage extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
+    }
 }

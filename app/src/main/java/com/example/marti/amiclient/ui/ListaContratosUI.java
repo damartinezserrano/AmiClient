@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
 
 import com.android.volley.AuthFailureError;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.estructura.ciudad.Ciudad;
 import com.example.marti.amiclient.estructura.contrato.ListaContratos;
@@ -38,6 +40,7 @@ public class ListaContratosUI extends Fragment {
 
     Button buttonContinue;
     Spinner spinnerContratos;
+    NumberPicker numberPicker;
 
     RequestQueue requestQueue;
 
@@ -62,9 +65,15 @@ public class ListaContratosUI extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lista_contratos_ui, container, false);
 
-        spinnerContratos = view.findViewById(R.id.contratoSpinner);
+        //spinnerContratos = view.findViewById(R.id.contratoSpinner);
+        numberPicker = view.findViewById(R.id.string_picker);
         //getListaContratos(Constant.HTTP_DOMAIN+Constant.APP_PATH+Constant.ENDPOINT_USUARIO+Constant.LISTAR_CONTRATO+Constant.SLASH+Constant.ID,spinnerContratos);
-        getStaticListaContratos(spinnerContratos);
+        getStaticListaContratos();
+
+        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue((num_contrato.length)-1);
+        numberPicker.setDisplayedValues(num_contrato);
+
 
         buttonContinue = view.findViewById(R.id.continuar);
         buttonContinue.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +81,8 @@ public class ListaContratosUI extends Fragment {
             @Override
             public void onClick(View view) {
 
-                int selectedContrato = spinnerContratos.getSelectedItemPosition();
+                //int selectedContrato = spinnerContratos.getSelectedItemPosition();
+                  int selectedContrato = numberPicker.getValue();
 
                 if(selectedContrato>0){
                     if(contrato[selectedContrato].equals("3")){
@@ -182,12 +192,15 @@ public class ListaContratosUI extends Fragment {
     }
 
 
-    public void getStaticListaContratos(Spinner spinnerContrato) {
+    public void getStaticListaContratos() {
 
         ListaContratos listaContratos = new ListaContratos();
 
 
         if(Constant.slistaContratos.length>1) {
+
+            ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
+
 
             contrato = new String[Constant.slistaContratos.length + 1];
             contrato[0] = "Estado Contrato";
@@ -207,9 +220,9 @@ public class ListaContratosUI extends Fragment {
                     contratosList
             );
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinnerContrato.setAdapter(adapter);
+            //spinnerContrato.setAdapter(adapter);
 
-            spinnerContrato.setSelection(0);
+            //spinnerContrato.setSelection(0);
 
         }else{
             if(Constant.slistaContratos.length==1) {
@@ -232,7 +245,14 @@ public class ListaContratosUI extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
                 }
             }else{
-                if(listaContratos.getLista().length==0) {
+                if(listaContratos!=null) {
+
+                    if (listaContratos.getLista().length == 0) {
+                        Fragment fg = MoraUI.newInstance();
+                        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                    }
+
+                }else{
                     Fragment fg = MoraUI.newInstance();
                     getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
                 }

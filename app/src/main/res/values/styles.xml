@@ -63,8 +63,12 @@
        <item name="android:elevation">@dimen/textfElevation</item>
        <item name="android:background">@drawable/custombox_red</item>
    </style>
+
    <style name="RedBoxWithWhiteBottomBorder" >
        <item name="android:background">@drawable/white_bottom_border_redbox</item>
    </style>
 
+    <style name="AppTheme.Picker" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
 </resources>

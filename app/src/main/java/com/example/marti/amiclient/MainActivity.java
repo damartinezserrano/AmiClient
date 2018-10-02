@@ -40,7 +40,10 @@ import com.example.marti.amiclient.ui.CalificarUI;
 import com.example.marti.amiclient.ui.LogInFragment;
 import com.example.marti.amiclient.ui.MapViewUI;
 import com.example.marti.amiclient.ui.PerfilUI;
+import com.example.marti.amiclient.ui.TimeTriage;
 import com.example.marti.amiclient.ui.TriageACUI;
+import com.example.marti.amiclient.ui.TriageUI;
+import com.example.marti.amiclient.ui.WelcomeUI;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -260,14 +263,20 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
             Log.i("count :",String.valueOf(getSupportFragmentManager().getBackStackEntryCount()));
 
-            Fragment fragmentCalif = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            Fragment actualFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
 
             if(getSupportFragmentManager().getBackStackEntryCount()>1) {
 
-                if(fragmentCalif instanceof CalificarUI){
+                if(actualFragment instanceof CalificarUI || actualFragment instanceof WelcomeUI){
                     //
                 }else{
-                    getSupportFragmentManager().popBackStack();
+                    if(actualFragment instanceof TimeTriage || actualFragment instanceof TriageUI || actualFragment instanceof TriageACUI){
+                        Fragment fg = WelcomeUI.newInstance();
+                        this.getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+                    }else {
+                        getSupportFragmentManager().popBackStack();
+                    }
                 }
 
 
@@ -332,7 +341,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        Log.i("califpend :", "success");
                         parseCalificacionesResponse(response);
                     }
                 }, new Response.ErrorListener() {
@@ -375,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
             String responseBody = new String(error.networkResponse.data, "utf-8");
             JSONObject data = new JSONObject(responseBody);
             boolean estado = data.getBoolean("estado");
-            String mensaje = data.getString("error");
+            String mensaje = data.getString("mensaje");
             Log.i("MainAct", "Ha ocurrido un error en el Login : "+estado+" , "+mensaje);
 
         } catch (UnsupportedEncodingException e) {

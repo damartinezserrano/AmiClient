@@ -30,6 +30,7 @@ import com.android.volley.toolbox.HttpResponse;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.estructura.contrato.ListaContratos;
 import com.example.marti.amiclient.estructura.persona.DatosPersonales;
@@ -168,6 +169,7 @@ public class PerfilUI extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
        getDatosPerfil(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.CONSULTAR_DATOS_PERSONALES + Constant.SLASH + Constant.ID + Constant.SLASH + Constant.NRO_CONTRATO_SELECCIONADO);
+        ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
 
        // new ConnTest().execute(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.CONSULTAR_DATOS_PERSONALES + Constant.SLASH + Constant.ID + Constant.SLASH + Constant.NRO_CONTRATO_SELECCIONADO + Constant.SLASH);
     }

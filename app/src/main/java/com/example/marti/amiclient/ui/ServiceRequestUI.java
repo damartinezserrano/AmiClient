@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -31,6 +32,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.estructura.EstructuraSolicitarServicio;
 import com.example.marti.amiclient.estructura.ciudad.Ciudad;
@@ -57,7 +59,8 @@ import java.util.Map;
 public class ServiceRequestUI extends Fragment {
 
     Button buttonContinue;
-    Spinner spinnerM,spinnerC,spinnerB;
+    Spinner spinnerC,spinnerB;
+    AutoCompleteTextView spinnerM;
     TextInputEditText textInputEditTextTelefono,textInputEditTextSintomas,textInputEditTextBenef;
     TextInputLayout telWrap;
     TextInputEditText editTextDireccion;
@@ -69,6 +72,7 @@ public class ServiceRequestUI extends Fragment {
 
     String[] motivos;
     String[] cod_motivo;
+    Map<String, String> motandcod = new HashMap<>();
 
     String[] ciudades;
     String[] cod_ciud;
@@ -135,8 +139,9 @@ public class ServiceRequestUI extends Fragment {
             @Override
             public void onClick(View view) {
                 camposErroneos=false;
-                String motivoData = spinnerM.getSelectedItem().toString();
-                String codMotivoData = getCodigoMotivoSeleccionado(spinnerM.getSelectedItemPosition());
+                String codMotivoData;
+                String motivoData = spinnerM.getText().toString();
+                codMotivoData = motandcod.get(motivoData); // si es null el motivo no existe en la bd
                 String ciudadData = spinnerC.getSelectedItem().toString();
                 String codCiudadData = getCodigoCiudadSeleccionado(spinnerC.getSelectedItemPosition());
                 String nombreB = spinnerB.getSelectedItem().toString();
@@ -147,7 +152,7 @@ public class ServiceRequestUI extends Fragment {
                 String direccion = editTextDireccion.getText().toString();
                 String camposFaltantes = "Los siguientes campos necesitan ser completados :\n";
 
-                if(motivoData.equals(getResources().getString(R.string.motivo))){camposFaltantes=camposFaltantes+"Motivo\n"; camposErroneos=true;}
+                if(codMotivoData==null){camposFaltantes=camposFaltantes+"Motivo\n"; camposErroneos=true;}
                 if(ciudadData.equals(getResources().getString(R.string.selciudad))){camposFaltantes=camposFaltantes+"Ciudad\n";camposErroneos=true;}
                 if(nombreB.equals(getResources().getString(R.string.selbenef))){camposFaltantes=camposFaltantes+"Beneficiario\n";camposErroneos=true;}
                 if(telefono.equals("")||telefono.length()<4){
@@ -217,6 +222,13 @@ public class ServiceRequestUI extends Fragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
+
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -233,7 +245,7 @@ public class ServiceRequestUI extends Fragment {
         retenerValoresTextos(textInputEditTextSintomas);
         retenerValoresTextos(editTextDireccion);
         retenerValoresSpinner(spinnerC);
-        retenerValoresSpinner(spinnerM);
+        //retenerValoresSpinner(spinnerM);
         retenerValoresSpinner(spinnerB);
     }
 
@@ -326,11 +338,11 @@ public class ServiceRequestUI extends Fragment {
         textInputEditTextSintomas.setText(Constant.sintomas);
         editTextDireccion.setText(Constant.direccion);
         spinnerC.setSelection(Constant.ciudad_pos);
-        spinnerM.setSelection(Constant.consulta_motivo_pos);
+        //spinnerM.setSelection(Constant.consulta_motivo_pos);
         spinnerB.setSelection(Constant.benef_pos);
     }
 
-    public void getListaMotivos(String UrlQuest, Spinner spinnerMotiv) {
+    public void getListaMotivos(String UrlQuest, AutoCompleteTextView spinnerMotiv) {
 
         requestQueue = getRequestQueue();
 
@@ -371,7 +383,7 @@ public class ServiceRequestUI extends Fragment {
         return requestQueue;
     }
 
-    public void parseMotivosResponse(String response, Spinner spinnerMotiv) {
+    public void parseMotivosResponse(String response, AutoCompleteTextView spinnerMotiv) {
 
         Gson gson3 = new Gson();
         ListaMotivos listaMotivos = new ListaMotivos();
@@ -379,28 +391,29 @@ public class ServiceRequestUI extends Fragment {
         motivo = gson3.fromJson(response,Motivo[].class);
         listaMotivos.setLista(motivo);
 
-        motivos = new String[listaMotivos.getLista().length+1];
-        cod_motivo = new String[listaMotivos.getLista().length+1];
-        motivos[0]=getResources().getString(R.string.motivo);
-        cod_motivo[0]="codigo_motivo";
+        motivos = new String[listaMotivos.getLista().length];
+        cod_motivo = new String[listaMotivos.getLista().length];
+        //motivos[0]=getResources().getString(R.string.motivo);
+        //cod_motivo[0]="codigo_motivo";
 
 
-        for (int i = 1 ; i<=listaMotivos.getLista().length ; i++){
-            motivos[i]=listaMotivos.getLista()[i-1].getNombre();
-            cod_motivo[i]=listaMotivos.getLista()[i-1].getCodigo();
+        for (int i = 0 ; i<listaMotivos.getLista().length ; i++){
+            motivos[i]=listaMotivos.getLista()[i].getNombre();
+            cod_motivo[i]=listaMotivos.getLista()[i].getCodigo();
+            motandcod.put(motivos[i], cod_motivo[i]);
         }
 
         final List<String> motivosList = new ArrayList<>(Arrays.asList(motivos));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(),
-                R.layout.custom_spinner,
+                android.R.layout.simple_list_item_1,
                 motivosList
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMotiv.setAdapter(adapter);
 
-        spinnerMotiv.setSelection(Constant.consulta_motivo_pos);
+        //spinnerMotiv.setSelection(Constant.consulta_motivo_pos);
     }
 
     public void getListaCiudades(String UrlQuest, Spinner spinnerCiud) {

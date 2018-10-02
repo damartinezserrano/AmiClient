@@ -7,15 +7,18 @@
     android:clickable="true"
     android:focusable="true"
     android:background="@color/colorPrimary"
-    android:paddingStart="@dimen/layoutPadLeft"
-    android:paddingEnd="@dimen/layoutPadRight">
+  >
+
+
 
     <!-- TODO: Update blank fragment layout -->
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingStart="@dimen/layoutPadLeft"
+        android:paddingEnd="@dimen/layoutPadRight">
 
         <ImageView
             android:id="@+id/title"
@@ -37,12 +40,17 @@
             >
 
 
-            <Spinner
+            <TextView
                 android:id="@+id/contratoSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/shortMargin"
-                style="@style/Widget.Design.TextInputLayout.CustomDesignWhite"
+                android:text="Por favor selecciona un contrato"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/superSmallWordSize"
+                style="@style/Widget.Design.TextInputLayout.CustomDesign"
                 android:paddingStart="@dimen/padLeft"
                 android:paddingEnd="@dimen/padRight"
                 android:paddingTop="@dimen/padTop"
@@ -72,5 +80,34 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar"
+            android:textSize="@dimen/mediumMargin"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:background="@color/rojoClaro"
+            android:paddingStart="@dimen/margin10dp"/>
+
+        <NumberPicker
+            android:id="@+id/string_picker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.Picker"
+            android:solidColor="@color/colorPrimary"
+            >
+
+        </NumberPicker>
+
+    </LinearLayout>
 
 </LinearLayout>
