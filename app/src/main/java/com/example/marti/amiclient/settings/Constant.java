@@ -20,6 +20,8 @@ public class Constant {
 
     public static String ID="";
 
+    public static String CELULAR="";
+
     public static String TOKEN="";
 
     public static String AUTH="Basic QW1pQXBwQWRtaW5pc3RyYWRvcjoqQW1pQWRtaW5BcHAyMDE4Kg==";
@@ -65,7 +67,7 @@ public class Constant {
 
     public static  String LISTAR_CALIFICACIONES_PENDIENTES="/listar_calificaciones_pendientes";
 
-
+    public static  String LISTAR_EPS="/listar_eps";
 
     // servicios web nativapps
 
@@ -75,7 +77,13 @@ public class Constant {
 
     public static  String END_POINT_CIUDAD="/cities";
 
+    public static  String END_POINT_CODIGO="/codigo";
+
     public static  String END_POINT_LINEAS="/lines";
+
+    public static  String END_POINT_BARRIO="/neighborhood";
+
+    public static  String END_POINT_CODE="/code";
 
 
 

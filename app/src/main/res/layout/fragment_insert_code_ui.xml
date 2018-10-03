@@ -31,7 +31,7 @@
         android:id="@+id/welcmtext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Bienvenido"
+        android:text="Por favor ingresa el código de verificación enviado a"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="@dimen/subTitleSize"
@@ -42,8 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/welcmtext"
-        android:text="@string/Ingresarnum"
+        android:text=""
         android:textColor="@color/white"
+        android:textStyle="bold"
         android:textAlignment="center"
         android:textSize="@dimen/superSmallWordSize"/>
 

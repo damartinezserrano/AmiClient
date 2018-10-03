@@ -27,7 +27,7 @@ import com.example.marti.amiclient.settings.Constant;
  */
 public class InsertCodeUI extends Fragment {
 
-    TextView newcodeTView,conditionsTView;
+    TextView newcodeTView,conditionsTView,ingresarLabel;
     AppCompatCheckBox checkBox;
     Button listoBtn;
     TextInputLayout inputLayoutCod;
@@ -142,6 +142,10 @@ public class InsertCodeUI extends Fragment {
             }
         });
 
+
+        ingresarLabel = view.findViewById(R.id.ingr);
+
+        ingresarLabel.setText(Constant.CELULAR);
 
         return view;
     }

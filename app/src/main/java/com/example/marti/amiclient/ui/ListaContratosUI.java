@@ -65,14 +65,14 @@ public class ListaContratosUI extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lista_contratos_ui, container, false);
 
-        //spinnerContratos = view.findViewById(R.id.contratoSpinner);
-        numberPicker = view.findViewById(R.id.string_picker);
+        spinnerContratos = view.findViewById(R.id.contratoSpinner);
+        //numberPicker = view.findViewById(R.id.string_picker);
         //getListaContratos(Constant.HTTP_DOMAIN+Constant.APP_PATH+Constant.ENDPOINT_USUARIO+Constant.LISTAR_CONTRATO+Constant.SLASH+Constant.ID,spinnerContratos);
-        getStaticListaContratos();
+        getStaticListaContratos(spinnerContratos);
 
-        numberPicker.setMinValue(0);
+        /*numberPicker.setMinValue(0);
         numberPicker.setMaxValue((num_contrato.length)-1);
-        numberPicker.setDisplayedValues(num_contrato);
+        numberPicker.setDisplayedValues(num_contrato);*/
 
 
         buttonContinue = view.findViewById(R.id.continuar);
@@ -81,8 +81,8 @@ public class ListaContratosUI extends Fragment {
             @Override
             public void onClick(View view) {
 
-                //int selectedContrato = spinnerContratos.getSelectedItemPosition();
-                  int selectedContrato = numberPicker.getValue();
+                int selectedContrato = spinnerContratos.getSelectedItemPosition();
+                 // int selectedContrato = numberPicker.getValue();
 
                 if(selectedContrato>0){
                     if(contrato[selectedContrato].equals("3")){
@@ -104,95 +104,8 @@ public class ListaContratosUI extends Fragment {
         return view;
     }
 
-    public RequestQueue getRequestQueue() {
-        // lazy initialize the request queue, the queue instance will be
-        // created when it is accessed for the first time
-        if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(getActivity());
-        }
 
-        return requestQueue;
-    }
-
-
-    public void getListaContratos(String UrlQuest, Spinner spinnerContrato) {
-
-        requestQueue = getRequestQueue();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.i("ListaContratosUI :", "success");
-                        parseContratoResponse(response,spinnerContrato);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) { //errores de peticion
-                Log.i("ListaContratosUI :", "error");
-            }
-        }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
-                Map<String, String> headers = new HashMap<>();
-                String auth = "Basic QW1pQXBwQWRtaW5pc3RyYWRvcjoqQW1pQWRtaW5BcHAyMDE4Kg==";
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", auth);
-
-                return headers;
-            }
-
-        };
-        requestQueue.add(stringRequest);
-    }
-
-
-    public void parseContratoResponse(String response, Spinner spinnerContrato) {
-
-        Gson gson3 = new Gson();
-        ListaContratos listaContratos = new ListaContratos();
-        listaContratos = gson3.fromJson(response,ListaContratos.class);
-
-
-        if(listaContratos.getLista().length>1) {
-
-            contrato = new String[listaContratos.getLista().length + 1];
-            contrato[0] = "Seleccionar Contrato";
-            num_contrato = new String[listaContratos.getLista().length + 1];
-            num_contrato[0] = "Seleccionar Contrato";
-
-            for (int i = 1; i <= listaContratos.getLista().length; i++) {// si esta activo agregarlo a droplist
-                num_contrato[i] = listaContratos.getLista()[i - 1].getContrato_nro_contrato();
-            }
-
-            final List<String> ciudadesList = new ArrayList<>(Arrays.asList(num_contrato));
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                    getActivity(),
-                    R.layout.custom_spinner,
-                    ciudadesList
-            );
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinnerContrato.setAdapter(adapter);
-
-            spinnerContrato.setSelection(Constant.ciudad_pos);
-
-        }else{
-            if(listaContratos.getLista().length==1) {
-                Fragment fg = WelcomeUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
-            }else{
-                if(listaContratos.getLista().length==0) {
-                    Fragment fg = MoraUI.newInstance();
-                    getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
-                }
-            }
-        }
-    }
-
-
-    public void getStaticListaContratos() {
+    public void getStaticListaContratos(Spinner spinnerContrato) {
 
         ListaContratos listaContratos = new ListaContratos();
 
@@ -205,7 +118,7 @@ public class ListaContratosUI extends Fragment {
             contrato = new String[Constant.slistaContratos.length + 1];
             contrato[0] = "Estado Contrato";
             num_contrato = new String[Constant.slistaContratos.length + 1];
-            num_contrato[0] = "Seleccionar Contrato";
+            num_contrato[0] = "Seleccione contrato";
 
             for (int i = 1; i <= Constant.slistaContratos.length; i++) {// si esta activo agregarlo a droplist
                 num_contrato[i] = Constant.slistaContratos[i - 1].getContrato_nro_contrato();
@@ -220,9 +133,9 @@ public class ListaContratosUI extends Fragment {
                     contratosList
             );
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            //spinnerContrato.setAdapter(adapter);
+            spinnerContrato.setAdapter(adapter);
 
-            //spinnerContrato.setSelection(0);
+            spinnerContrato.setSelection(0);
 
         }else{
             if(Constant.slistaContratos.length==1) {

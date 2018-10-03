@@ -283,6 +283,7 @@ public class LogInFragment extends Fragment {
         Gson gson3 = new Gson();
         EstructuraLogin estructuraLogin = gson3.fromJson(response.toString(),EstructuraLogin.class);
 
+        Constant.CELULAR = campoCel;
         Constant.ID = estructuraLogin.getUsuario().getCedula();
         Constant.TOKEN = estructuraLogin.getToken();
         Constant.slistaContratos = estructuraLogin.getLista();

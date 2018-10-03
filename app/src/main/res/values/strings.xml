@@ -74,13 +74,19 @@
     <string name="encaminoaltacomp">Recibimos tu solicitud, en el menor tiempo posible el móvil llegará</string>
 
     <!-- Datos de Perfil -->
-    <string name="nombre">Nombre :</string>
-    <string name="tel">Telefono :</string>
-    <string name="mail">E-mail :</string>
+    <string name="pnombre">Primer nombre :</string>
+    <string name="snombre">Segundo nombre :</string>
+    <string name="papellido">Primer apellido :</string>
+    <string name="sapellido">Segundo apeliido :</string>
+    <string name="tel">Teléfono :</string>
+    <string name="mail">Correo electrónico :</string>
     <string name="ciud">Ciudad :</string>
+    <string name="barrio">Barrio :</string>
     <string name="dir">Dirección :</string>
     <string name="benefi">Beneficiarios :</string>
-    <string name="docum">Documento :</string>
+    <string name="docum">Número de documento :</string>
+    <string name="ref">Referencia :</string>
+    <string name="eps">EPS :</string>
 
     <string name="editarnombre">Ingresar Nombre :</string>
     <string name="editartel">Ingresar Telefono :</string>

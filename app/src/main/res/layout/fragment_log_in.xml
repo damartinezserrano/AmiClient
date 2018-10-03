@@ -111,14 +111,14 @@
         android:textAllCaps="false"
         />
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/noreglabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/noreg"
         android:textAlignment="center"
         android:textColor="@color/white"
-        />
+        /> -->
   </LinearLayout>
 
     <RelativeLayout

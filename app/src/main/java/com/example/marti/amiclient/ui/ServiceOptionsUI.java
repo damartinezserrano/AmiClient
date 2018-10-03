@@ -1,6 +1,7 @@
 package com.example.marti.amiclient.ui;
 
 
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
@@ -10,16 +11,34 @@ import android.graphics.drawable.ScaleDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
+import com.example.marti.amiclient.estructura.EstructuraSolicitarLlamada;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 import com.example.marti.amiclient.settings.Constant;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +48,9 @@ public class ServiceOptionsUI extends Fragment {
     LinearLayout ingresarinfo, solicitarLlamada, llamarDir;
     TextView textViewInfo,textViewSol,textViewDir;
     public static boolean solLlamada=false, llamarDirecto=false;
+    GsonBuilder gsonBuilder;
+    Gson gson;
+    RequestQueue requestQueue;
 
 
     public ServiceOptionsUI() {
@@ -75,8 +97,9 @@ public class ServiceOptionsUI extends Fragment {
             public void onClick(View view) {
                 solLlamada=true;
                 llamarDirecto=false;
-                Fragment fg = ContactServiceUI.newInstance();
-                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+                popupSolicitarLlamada();
+                //Fragment fg = ContactServiceUI.newInstance();
+                //getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
             }
         });
@@ -124,4 +147,130 @@ public class ServiceOptionsUI extends Fragment {
         ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
 
     }
+
+    public void popupSolicitarLlamada(){
+
+        new AlertDialog.Builder(getContext())
+                .setTitle("Solicitar llamada")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        postSolicitarLlamada(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_LLAMADA,Constant.ID,Constant.CELULAR);
+
+                    }
+                })
+                .setNegativeButton("No",null)
+                .setMessage("¿Desea solicitar una llamada?")
+                .show();
+    }
+
+    public RequestQueue getRequestQueue() {
+        // lazy initialize the request queue, the queue instance will be
+        // created when it is accessed for the first time
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getActivity());
+        }
+
+        return requestQueue;
+    }
+
+    public void postSolicitarLlamada(String URL, String id, String tel) {
+
+
+
+        requestQueue = getRequestQueue();
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, solicitarLlamadaBodyJSON(id,tel), //hacemos la peticion post
+                response -> {
+
+                    Log.i("ContactServiceUI", "Se ha realizado el user post con exito");
+
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("Llamada Solicitada")
+                            .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                }
+                            })
+                            .setMessage("La solicitud de llamada se ha realizado correctamente. En breve el servicio de AMI lo contactará")
+                            .show();
+
+                    // parseLogInResponse2(response);
+
+                }, error -> {
+            Log.i("ContactServiceUI", "Error");
+            parseLogInError(error);
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+        };
+
+        requestQueue.add(request);
+    }
+
+    public JSONObject solicitarLlamadaBodyJSON(String id, String telefono) { //construimos el json
+        //primero json device
+        String solicitarLlamadaBody="";
+        JSONObject jsonObject=null;
+
+        EstructuraSolicitarLlamada estructuraSolicitarLlamada = new EstructuraSolicitarLlamada();
+        estructuraSolicitarLlamada.setPersona_cc(id);
+        estructuraSolicitarLlamada.setTelefono(telefono);
+
+        gsonBuilder = new GsonBuilder();
+        gson = gsonBuilder.create();
+
+        solicitarLlamadaBody = gson.toJson(estructuraSolicitarLlamada);
+        Log.i("body",solicitarLlamadaBody);
+
+        try {
+            jsonObject = new JSONObject(solicitarLlamadaBody);
+            Log.i("jsonObject",jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+    }
+
+    public void parseLogInError(VolleyError error) {
+
+        try {
+            String responseBody = new String(error.networkResponse.data, "utf-8");
+            JSONObject data = new JSONObject(responseBody);
+            boolean estado = data.getBoolean("estado");
+            String mensaje = data.getString("mensaje");
+            new AlertDialog.Builder(getContext())
+                    .setTitle("Llamada Solicitada")
+                    .setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .setMessage(mensaje)
+                    .show();
+            Log.i("LogInFragment", "Ha ocurrido un error en el Login : "+estado+" , "+mensaje);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
+    }
+
 }

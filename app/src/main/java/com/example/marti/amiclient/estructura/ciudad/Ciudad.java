@@ -16,7 +16,7 @@ public class Ciudad {
 
     String observaciones;
 
-    String __v;
+    int __v;
 
     public Ciudad() {
     }
@@ -45,11 +45,11 @@ public class Ciudad {
         this.pais = pais;
     }
 
-    public String get__v() {
+    public int get__v() {
         return __v;
     }
 
-    public void set__v(String __v) {
+    public void set__v(int __v) {
         this.__v = __v;
     }
 

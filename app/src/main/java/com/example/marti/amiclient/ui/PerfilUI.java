@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -32,7 +33,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
+import com.example.marti.amiclient.estructura.barrio.Barrio;
+import com.example.marti.amiclient.estructura.barrio.BarrioPorCodigo;
+import com.example.marti.amiclient.estructura.ciudad.Ciudad;
+import com.example.marti.amiclient.estructura.ciudad.CiudadPorCodigo;
 import com.example.marti.amiclient.estructura.contrato.ListaContratos;
+import com.example.marti.amiclient.estructura.eps.ListaEPS;
 import com.example.marti.amiclient.estructura.persona.DatosPersonales;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 import com.example.marti.amiclient.settings.Constant;
@@ -71,10 +77,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PerfilUI extends Fragment {
 
-    TextView nombre,tel,docum,ciudad,dir, benef;
-    ImageView editarNombre, editarTel,editarDocum,editarCiudad,editarDir,editarBenef;
+    TextView nombre,nombre2,apellido,apellido2,mail,tel,docum,ciudad,barrio,ref,eps,dir, benef;
+    ImageView editarNombre, editarSnombre, editarPap, editarSap, editarMail, editarTel,editarDocum,editarCiudad,editarDir,editarBenef,editarBarrio,editarEps;
     String m_Text = "";
     EditText input;
+    AutoCompleteTextView autoCompleteTextView;
+
+    String[] nombre_barrio;
+    String[] codigo_barrio;
+    String codBarrioElegido;
+
+    String[] nombre_eps;
+    String[] codigo_eps;
+    String codEpsElegido;
 
     RequestQueue requestQueue;
 
@@ -96,18 +111,31 @@ public class PerfilUI extends Fragment {
         View view = inflater.inflate(R.layout.fragment_perfil_ui, container, false);
 
         nombre = view.findViewById(R.id.nombre1);
+        nombre2 = view.findViewById(R.id.snom);
+        apellido = view.findViewById(R.id.pap);
+        apellido2 = view.findViewById(R.id.sap);
+        mail = view.findViewById(R.id.mail);
         tel = view.findViewById(R.id.tel);
         docum = view.findViewById(R.id.docum);
         ciudad = view.findViewById(R.id.ciudad);
+        barrio = view.findViewById(R.id.barrio);
+        ref = view.findViewById(R.id.ref);
+        eps = view.findViewById(R.id.eps);
         dir = view.findViewById(R.id.dir);
-        benef = view.findViewById(R.id.benef);
+        //benef = view.findViewById(R.id.benef);
 
         editarNombre = view.findViewById(R.id.editarnombre);
         editarTel = view.findViewById(R.id.editartel);
         editarDocum = view.findViewById(R.id.editardocum);
-        editarCiudad = view.findViewById(R.id.editarciudad);
+        editarCiudad = view.findViewById(R.id.editarciud);
         editarDir = view.findViewById(R.id.editardir);
-        editarBenef = view.findViewById(R.id.editarbenef);
+        editarBarrio = view.findViewById(R.id.editarbarrio);
+        editarEps = view.findViewById(R.id.editareps);
+        editarSnombre = view.findViewById(R.id.editsnom);
+        editarPap = view.findViewById(R.id.editpap);
+        editarSap = view.findViewById(R.id.editsap);
+        editarMail = view.findViewById(R.id.editmail);
+        //editarBenef = view.findViewById(R.id.editarbenef);
 
 
 
@@ -152,14 +180,53 @@ public class PerfilUI extends Fragment {
             }
         });
 
-        editarBenef.setOnClickListener(new View.OnClickListener() {
+        editarBarrio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editDialog(getResources().getString(R.string.editarbenef),benef,InputType.TYPE_CLASS_TEXT);
+                editAutocompleteDialog("Ingresar barrio",barrio,InputType.TYPE_CLASS_TEXT);
 
             }
         });
 
+        editarEps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editAutocompleteDialog("Ingresar EPS",eps,InputType.TYPE_CLASS_TEXT);
+
+            }
+        });
+
+        editarSnombre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editDialog("Ingresar segundo nombre",nombre2,InputType.TYPE_CLASS_TEXT);
+
+            }
+        });
+
+        editarPap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editDialog("Ingresar primer apellido",apellido,InputType.TYPE_CLASS_TEXT);
+
+            }
+        });
+
+        editarSap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editDialog("Ingresar segundo apellido",apellido2,InputType.TYPE_CLASS_TEXT);
+
+            }
+        });
+
+        editarMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editDialog("Ingresar e-mail",mail,InputType.TYPE_CLASS_TEXT);
+
+            }
+        });
 
         return view;
     }
@@ -187,6 +254,70 @@ public class PerfilUI extends Fragment {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         m_Text = input.getText().toString();
                         textView.setText(m_Text);
+
+                        if(textView.getId()==R.id.nombre1){
+                            ((DrawerLocker)getActivity()).editHeaderName(m_Text);
+                        }
+                    }
+                })
+                .setNegativeButton(getResources().getString(R.string.cancelar),null)
+                .show();
+    }
+
+    public void editAutocompleteDialog(String title, final TextView textView, int inputType){
+
+        autoCompleteTextView = new AutoCompleteTextView(getActivity());
+        autoCompleteTextView.setInputType(inputType);
+    try {
+        if (title.equals("Ingresar barrio")) {
+            final List<String> motivosList = new ArrayList<>(Arrays.asList(nombre_barrio));
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    getActivity(),
+                    android.R.layout.simple_list_item_1,
+                    motivosList
+            );
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            autoCompleteTextView.setAdapter(adapter);
+        } else {
+
+            if (title.equals("Ingresar EPS")) {
+                final List<String> motivosList = new ArrayList<>(Arrays.asList(nombre_eps));
+
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                        getActivity(),
+                        android.R.layout.simple_list_item_1,
+                        motivosList
+                );
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                autoCompleteTextView.setAdapter(adapter);
+            }
+        }
+
+    }catch (Exception e){e.printStackTrace();}
+
+        new AlertDialog.Builder(getContext())
+                .setTitle(title)
+                .setView(autoCompleteTextView)
+                .setPositiveButton(getResources().getString(R.string.guardar), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try {
+                            m_Text = autoCompleteTextView.getText().toString();
+                            //textView.setText(m_Text);
+
+                            if (title.equals("Ingresar barrio")) {
+                                codBarrioElegido = codigo_barrio[autoCompleteTextView.getListSelection()];
+                                textView.setText(m_Text);
+                            } else {
+
+                                if (title.equals("Ingresar EPS")) {
+                                    codEpsElegido = codigo_eps[autoCompleteTextView.getListSelection()];
+                                    textView.setText(m_Text);
+
+                                }
+                            }
+                        }catch (Exception e){e.printStackTrace();}
 
                         if(textView.getId()==R.id.nombre1){
                             ((DrawerLocker)getActivity()).editHeaderName(m_Text);
@@ -239,15 +370,26 @@ public class PerfilUI extends Fragment {
         requestQueue.add(stringRequest);
     }
 
-
     public void parseDatosPerfil(String response) {
 
         Gson gson3 = new Gson();
         DatosPersonales datosPersonales = new DatosPersonales();
         datosPersonales = gson3.fromJson(response,DatosPersonales.class);
 
-        String setNombre = datosPersonales.getPrimer_nombre()+" "+datosPersonales.getPrimer_apellido();
+        String setNombre = datosPersonales.getPrimer_nombre();
         nombre.setText(setNombre);
+
+        String setSnombre = datosPersonales.getSegundo_nombre();
+        nombre2.setText(setSnombre);
+
+        String setPap = datosPersonales.getPrimer_apellido();
+        apellido.setText(setPap);
+
+        String setSap = datosPersonales.getSegundo_apellido();
+        apellido2.setText(setSap);
+
+        String setMail = datosPersonales.getEmail();
+        mail.setText(setMail);
 
         String setTel = datosPersonales.getTelefono();
         tel.setText(setTel);
@@ -257,10 +399,182 @@ public class PerfilUI extends Fragment {
         String setDir = datosPersonales.getDir1()+" "+datosPersonales.getDir2()+" # "+datosPersonales.getDir3()+" - "+datosPersonales.getDir4();
         dir.setText(setDir);
 
+        String setRef = datosPersonales.getPunto_referencia();
+        ref.setText(setRef);
+
+        getCiudadPerfil(Constant.HTTP_DOMAIN_DVD+Constant.END_POINT_CIUDAD+Constant.END_POINT_CODIGO+Constant.SLASH+datosPersonales.getCod_ciudad());
+
+        getBarrioPerfil(Constant.HTTP_DOMAIN_DVD+Constant.END_POINT_BARRIO+Constant.END_POINT_CODE+Constant.SLASH+datosPersonales.getBarrio_cod_barrio());
+
+        getEpsPerfil(Constant.HTTP_DOMAIN+Constant.APP_PATH+Constant.ENDPOINT_USUARIO+Constant.LISTAR_EPS+Constant.SLASH+Constant.ID,datosPersonales.getEps_cod_eps());
 
 
     }
 
+
+    public void getCiudadPerfil(String UrlQuest) {
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("PerfilUI :", "success");
+                        parseCiudadPerfil(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("PerfilUI :", "error");
+                parseLogInError(error);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                Log.i("PerfilUIToken ", headers.toString());
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseCiudadPerfil(String response) {
+
+        Gson gson3 = new Gson();
+        CiudadPorCodigo ciudadPorCodigo = new CiudadPorCodigo();
+        ciudadPorCodigo = gson3.fromJson(response,CiudadPorCodigo.class);
+
+        try {
+
+            Ciudad ciudadActual = ciudadPorCodigo.getMessage()[0];
+            String setCiudd = ciudadActual.getNombre();
+            ciudad.setText(setCiudd);
+
+
+        }catch (Exception e){e.printStackTrace();}
+    }
+
+    public void getBarrioPerfil(String UrlQuest) {
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("PerfilUI :", "success");
+                        parseBarrioPerfil(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("PerfilUI :", "error");
+                parseLogInError(error);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                Log.i("PerfilUIToken ", headers.toString());
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseBarrioPerfil(String response) {
+
+        Gson gson3 = new Gson();
+        BarrioPorCodigo barrioPorCodigo = new BarrioPorCodigo();
+        barrioPorCodigo = gson3.fromJson(response,BarrioPorCodigo.class);
+
+        barrio.setText(barrioPorCodigo.getMessage());
+
+        try {
+
+           /* Barrio barrioActual = barrioPorCodigo.getMessage()[0];
+            String setBarrio = barrioActual.getNombre_barrio();
+            barrio.setText(setBarrio);
+
+            nombre_barrio = new String[barrioPorCodigo.getMessage().length];
+            codigo_barrio = new String[barrioPorCodigo.getMessage().length];
+
+            for (int i = 0 ; i<barrioPorCodigo.getMessage().length ; i++){
+                nombre_barrio[i]=barrioPorCodigo.getMessage()[i].getNombre_barrio();
+                codigo_barrio[i]=barrioPorCodigo.getMessage()[i].getCod_barrio();
+            }*/
+
+
+        }catch (Exception e){e.printStackTrace();}
+    }
+
+    public void getEpsPerfil(String UrlQuest, String epscode) {
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("PerfilUI :", "success");
+                        parseEpsPerfil(response,epscode);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("PerfilUI :", "error");
+                parseLogInError(error);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                Log.i("PerfilUIToken ", headers.toString());
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseEpsPerfil(String response, String epscode) {
+
+        Gson gson3 = new Gson();
+        ListaEPS listaEPS = new ListaEPS();
+        listaEPS = gson3.fromJson(response,ListaEPS.class);
+
+        try {
+
+            String myEPSName="";
+
+            nombre_eps = new String[listaEPS.getLista().length];
+            codigo_eps = new String[listaEPS.getLista().length];
+
+            for (int i = 0 ; i<listaEPS.getLista().length ; i++){
+                nombre_eps[i]=listaEPS.getLista()[i].getNom_eps();
+                codigo_eps[i]=listaEPS.getLista()[i].getCod_eps();
+                if(codigo_eps[i].equals(epscode)){
+                    myEPSName=nombre_eps[i];
+                    eps.setText(myEPSName);
+                }
+            }
+
+
+        }catch (Exception e){e.printStackTrace();}
+    }
 
 
     public void parseLogInError(VolleyError error) {
@@ -282,83 +596,4 @@ public class PerfilUI extends Fragment {
 
     }
 
-
-
-
-
-
-    public class ConnTest extends AsyncTask<String,Void,String> {
-
-        String numeroCalle="";
-        String numeroCarrera="";
-
-        public ConnTest(){
-
-        }
-
-        @Override
-        protected String doInBackground(String... url) {
-            String data = "";
-            getDatosPerfil2(url[0]);
-            return data;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-
-
-        }
-
-        public void getDatosPerfil2(String UrlQuest) {
-
-            BufferedReader in = null;
-
-
-            try {
-               /* HttpClient httpclient = new DefaultHttpClient();
-
-                HttpGet request = new HttpGet();
-                URI website = new URI(UrlQuest);
-                request.setURI(website);
-                request.addHeader("Authorization",Constant.AUTH);
-                request.addHeader("Token",Constant.TOKEN);
-                Log.i("token ", Constant.TOKEN);
-                org.apache.http.HttpResponse response = httpclient.execute(request);
-                in = new BufferedReader(new InputStreamReader(
-                        response.getEntity().getContent()));
-
-                String line = in.readLine();
-
-                Log.i("PerfilUIToken ", line+" - ");*/
-
-                OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
-                httpClient.addInterceptor(new Interceptor() {
-                    @Override
-                    public okhttp3.Response intercept(Interceptor.Chain chain) throws IOException {
-                        okhttp3.Request original = chain.request();
-
-                        okhttp3.Request request = original.newBuilder()
-                                .header("Authorization", Constant.AUTH)
-                                .header("Token", Constant.TOKEN)
-                                .method(original.method(), original.body())
-                                .build();
-
-                        return chain.proceed(request);
-                    }
-                });
-
-                OkHttpClient client = httpClient.build();
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl(UrlQuest)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .client(client)
-                        .build();
-
-            }catch (Exception e){e.printStackTrace();}
-        }
-
-    }
 }

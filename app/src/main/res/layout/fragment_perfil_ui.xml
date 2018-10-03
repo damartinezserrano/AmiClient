@@ -51,7 +51,7 @@
                     android:id="@+id/nombrefield1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/nombre"
+                    android:text="@string/pnombre"
                     android:layout_toEndOf="@+id/contact_icon1"
                     android:layout_marginStart="@dimen/shortMargin"
                     android:textStyle="bold"
@@ -60,7 +60,7 @@
                     android:id="@+id/nombre1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre Ejemplo"
+                    android:text=""
                     android:layout_toEndOf="@+id/contact_icon1"
                     android:layout_below="@+id/nombrefield1"
                     android:layout_marginStart="@dimen/shortMargin"/>
@@ -101,6 +101,246 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/contact_icon6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/snomfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/snombre"
+                        android:layout_toEndOf="@+id/contact_icon6"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/snom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_toEndOf="@+id/contact_icon6"
+                        android:layout_below="@+id/snomfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editsnom"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/snom"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/papfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/papellido"
+                        android:layout_toEndOf="@+id/contact_icon7"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/pap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_toEndOf="@+id/contact_icon7"
+                        android:layout_below="@+id/papfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editpap"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/pap"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/sapfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sapellido"
+                        android:layout_toEndOf="@+id/contact_icon8"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/sap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_toEndOf="@+id/contact_icon8"
+                        android:layout_below="@+id/sapfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editsap"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/sap"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/mailfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/mail"
+                        android:layout_toEndOf="@+id/contact_icon9"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/mail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_toEndOf="@+id/contact_icon9"
+                        android:layout_below="@+id/mailfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editmail"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/mail"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
                         android:id="@+id/contact_icon2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -120,7 +360,7 @@
                         android:id="@+id/tel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tel"
+                        android:text=""
                         android:layout_toEndOf="@+id/contact_icon2"
                         android:layout_below="@+id/telfield"
                         android:layout_marginStart="@dimen/shortMargin"/>
@@ -171,7 +411,7 @@
                         android:id="@+id/documfield"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Numero documento :"
+                        android:text="@string/docum"
                         android:layout_toEndOf="@+id/contact_icon3"
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
@@ -180,7 +420,7 @@
                         android:id="@+id/docum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="documento"
+                        android:text=""
                         android:layout_toEndOf="@+id/contact_icon3"
                         android:layout_below="@+id/documfield"
                         android:layout_marginStart="@dimen/shortMargin"/>
@@ -200,12 +440,10 @@
                         android:layout_height="1dip"
                         android:background="@color/lightSilver"
                         android:layout_below="@+id/docum"
-                        />
+                        android:id="@+id/view" />
+
 
                 </RelativeLayout>
-
-
-
 
 
             </android.support.v7.widget.CardView>
@@ -240,12 +478,69 @@
                         android:id="@+id/ciudad"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/ciud"
+                        android:text=""
                         android:layout_toEndOf="@+id/contact_icon4"
                         android:layout_below="@+id/ciudadfield"
                         android:layout_marginStart="@dimen/shortMargin"/>
+
                     <ImageView
-                        android:id="@+id/editarciudad"
+                        android:id="@+id/editarciud"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/ciudad"
+                        />
+
+
+                </RelativeLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/barriofield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/barrio"
+                        android:layout_toEndOf="@+id/contact_icon10"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/barrio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_toEndOf="@+id/contact_icon10"
+                        android:layout_below="@+id/barriofield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editarbarrio"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/modify_icon"
@@ -259,7 +554,7 @@
                         android:layout_width="fill_parent"
                         android:layout_height="1dip"
                         android:background="@color/lightSilver"
-                        android:layout_below="@+id/ciudad"
+                        android:layout_below="@+id/barrio"
                         />
 
                 </RelativeLayout>
@@ -300,7 +595,7 @@
                         android:id="@+id/dir"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/dir"
+                        android:text=""
                         android:layout_toEndOf="@+id/contact_icon"
                         android:layout_below="@+id/dirfield"
                         android:layout_marginStart="@dimen/shortMargin"/>
@@ -342,31 +637,31 @@
                     android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/contact_icon5"
+                        android:id="@+id/contact_icon11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/icono_contacto"
                         />
 
                     <TextView
-                        android:id="@+id/benefield"
+                        android:id="@+id/reffield"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Beneficiarios :"
-                        android:layout_toEndOf="@+id/contact_icon5"
+                        android:text="@string/ref"
+                        android:layout_toEndOf="@+id/contact_icon11"
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
                     <TextView
-                        android:id="@+id/benef"
+                        android:id="@+id/ref"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Beneficiarios"
-                        android:layout_toEndOf="@+id/contact_icon5"
-                        android:layout_below="@+id/benefield"
+                        android:text=""
+                        android:layout_toEndOf="@+id/contact_icon11"
+                        android:layout_below="@+id/reffield"
                         android:layout_marginStart="@dimen/shortMargin"/>
                     <ImageView
-                        android:id="@+id/editarbenef"
+                        android:id="@+id/editarref"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:background="@drawable/modify_icon"
@@ -380,7 +675,67 @@
                         android:layout_width="fill_parent"
                         android:layout_height="1dip"
                         android:background="@color/lightSilver"
-                        android:layout_below="@+id/benef"
+                        android:layout_below="@+id/ref"
+                        />
+
+                </RelativeLayout>
+
+
+
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/shortMargin"
+                android:layout_marginBottom="@dimen/shortMargin">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/contact_icon12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icono_contacto"
+                        />
+
+                    <TextView
+                        android:id="@+id/epsfield"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eps"
+                        android:layout_toEndOf="@+id/contact_icon12"
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/subTitleSize"/>
+                    <TextView
+                        android:id="@+id/eps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:layout_toEndOf="@+id/contact_icon12"
+                        android:layout_below="@+id/epsfield"
+                        android:layout_marginStart="@dimen/shortMargin"/>
+                    <ImageView
+                        android:id="@+id/editareps"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/modify_icon"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/margin10dp"
+                        android:layout_marginTop="@dimen/margin5dp"/>
+
+
+                    <View
+                        android:layout_width="fill_parent"
+                        android:layout_height="1dip"
+                        android:background="@color/lightSilver"
+                        android:layout_below="@+id/eps"
                         />
 
                 </RelativeLayout>

@@ -213,7 +213,7 @@ public class ContactServiceUI extends Fragment {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 getActivity(),
-                R.layout.custom_spinner,
+                R.layout.custom_spinner_b,
                 ciudadesList
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
