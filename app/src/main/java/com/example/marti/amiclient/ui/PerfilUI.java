@@ -35,6 +35,7 @@ import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
 import com.example.marti.amiclient.estructura.barrio.Barrio;
 import com.example.marti.amiclient.estructura.barrio.BarrioPorCodigo;
+import com.example.marti.amiclient.estructura.calificaciones.CalificarServicio;
 import com.example.marti.amiclient.estructura.ciudad.Ciudad;
 import com.example.marti.amiclient.estructura.ciudad.CiudadPorCodigo;
 import com.example.marti.amiclient.estructura.contrato.ListaContratos;
@@ -44,6 +45,7 @@ import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 import com.example.marti.amiclient.settings.Constant;
 import com.google.android.gms.common.util.IOUtils;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.HttpClient;
@@ -86,10 +88,17 @@ public class PerfilUI extends Fragment {
     String[] nombre_barrio;
     String[] codigo_barrio;
     String codBarrioElegido;
+    Map<String, String> barrioandcod = new HashMap<>();
+
 
     String[] nombre_eps;
     String[] codigo_eps;
     String codEpsElegido;
+    Map<String, String> epsandcod = new HashMap<>();
+
+    String[] nombre_ciudad;
+    String[] codigo_ciudad;
+
 
     RequestQueue requestQueue;
 
@@ -237,6 +246,7 @@ public class PerfilUI extends Fragment {
 
        getDatosPerfil(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.CONSULTAR_DATOS_PERSONALES + Constant.SLASH + Constant.ID + Constant.SLASH + Constant.NRO_CONTRATO_SELECCIONADO);
         ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
+        ((MainActivity)getActivity()).getTripulacionPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.VER_TRIPULACION + Constant.SLASH + Constant.ID);
 
        // new ConnTest().execute(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.CONSULTAR_DATOS_PERSONALES + Constant.SLASH + Constant.ID + Constant.SLASH + Constant.NRO_CONTRATO_SELECCIONADO + Constant.SLASH);
     }
@@ -307,12 +317,12 @@ public class PerfilUI extends Fragment {
                             //textView.setText(m_Text);
 
                             if (title.equals("Ingresar barrio")) {
-                                codBarrioElegido = codigo_barrio[autoCompleteTextView.getListSelection()];
+                                codBarrioElegido = barrioandcod.get(m_Text);
                                 textView.setText(m_Text);
                             } else {
 
                                 if (title.equals("Ingresar EPS")) {
-                                    codEpsElegido = codigo_eps[autoCompleteTextView.getListSelection()];
+                                    codEpsElegido = epsandcod.get(m_Text);
                                     textView.setText(m_Text);
 
                                 }
@@ -408,7 +418,7 @@ public class PerfilUI extends Fragment {
 
         getEpsPerfil(Constant.HTTP_DOMAIN+Constant.APP_PATH+Constant.ENDPOINT_USUARIO+Constant.LISTAR_EPS+Constant.SLASH+Constant.ID,datosPersonales.getEps_cod_eps());
 
-
+        getListBarrioPorCiudCod(Constant.HTTP_DOMAIN_DVD+Constant.END_POINT_BARRIO+Constant.SLASH+datosPersonales.getCod_ciudad());
     }
 
 
@@ -498,11 +508,11 @@ public class PerfilUI extends Fragment {
         BarrioPorCodigo barrioPorCodigo = new BarrioPorCodigo();
         barrioPorCodigo = gson3.fromJson(response,BarrioPorCodigo.class);
 
-        barrio.setText(barrioPorCodigo.getMessage());
+        //barrio.setText(barrioPorCodigo.getMessage());
 
         try {
 
-           /* Barrio barrioActual = barrioPorCodigo.getMessage()[0];
+            Barrio barrioActual = barrioPorCodigo.getMessage()[0];
             String setBarrio = barrioActual.getNombre_barrio();
             barrio.setText(setBarrio);
 
@@ -512,7 +522,9 @@ public class PerfilUI extends Fragment {
             for (int i = 0 ; i<barrioPorCodigo.getMessage().length ; i++){
                 nombre_barrio[i]=barrioPorCodigo.getMessage()[i].getNombre_barrio();
                 codigo_barrio[i]=barrioPorCodigo.getMessage()[i].getCod_barrio();
-            }*/
+                barrioandcod.put(nombre_barrio[i], codigo_barrio[i]);
+
+            }
 
 
         }catch (Exception e){e.printStackTrace();}
@@ -560,12 +572,8 @@ public class PerfilUI extends Fragment {
 
             String myEPSName="";
 
-            nombre_eps = new String[listaEPS.getLista().length];
-            codigo_eps = new String[listaEPS.getLista().length];
 
             for (int i = 0 ; i<listaEPS.getLista().length ; i++){
-                nombre_eps[i]=listaEPS.getLista()[i].getNom_eps();
-                codigo_eps[i]=listaEPS.getLista()[i].getCod_eps();
                 if(codigo_eps[i].equals(epscode)){
                     myEPSName=nombre_eps[i];
                     eps.setText(myEPSName);
@@ -574,6 +582,121 @@ public class PerfilUI extends Fragment {
 
 
         }catch (Exception e){e.printStackTrace();}
+    }
+
+    public void getListBarrioPorCiudCod(String UrlQuest) {
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("PerfilUI :", "success");
+                        parseBarrioPorCiudCod(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("PerfilUI :", "error");
+                parseLogInError(error);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                Log.i("PerfilUIToken ", headers.toString());
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseBarrioPorCiudCod(String response) {
+
+        Gson gson3 = new Gson();
+        BarrioPorCodigo barrioPorCodigo = new BarrioPorCodigo();
+        barrioPorCodigo = gson3.fromJson(response,BarrioPorCodigo.class);
+
+        try {
+
+            nombre_barrio = new String[barrioPorCodigo.getMessage().length];
+            codigo_barrio = new String[barrioPorCodigo.getMessage().length];
+
+            for (int i = 0 ; i<barrioPorCodigo.getMessage().length ; i++){
+                nombre_barrio[i]=barrioPorCodigo.getMessage()[i].getNombre_barrio();
+                codigo_barrio[i]=barrioPorCodigo.getMessage()[i].getCod_barrio();
+                barrioandcod.put(nombre_barrio[i], codigo_barrio[i]);
+
+            }
+
+
+        }catch (Exception e){e.printStackTrace();}
+    }
+
+    public void putActualizarDatosPersonales(String URL, String codserv, int calif, String observ) {
+
+
+
+        requestQueue = getRequestQueue();
+
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, URL, putActualizarBodyJSON(codserv,calif,observ), //hacemos la peticion post
+                response -> {
+
+                    Log.i("LogInFragment", "Se ha realizado el put perfil con exito");
+                    getActivity().getSupportFragmentManager().popBackStack();
+                    ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
+
+                }, error -> {
+
+            // parseLogInError(error);
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token", Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+        };
+
+        requestQueue.add(request);
+    }
+
+    public JSONObject putActualizarBodyJSON(String codserv, int calif, String observ) { //construimos el json
+        //primero json device
+        String loginBody="";
+        JSONObject jsonObject=null;
+
+       /* calificarServicio = new CalificarServicio();
+        calificarServicio.setConsec_movserv(codserv); //3282500
+        calificarServicio.setCalificacion_servicio(String.valueOf(calif)); //1 si , 2 no
+        calificarServicio.setObservacion_calificacion(observ);
+
+
+
+        gsonBuilder = new GsonBuilder();
+        gson = gsonBuilder.create();
+
+        loginBody = gson.toJson(calificarServicio);
+        Log.i("loginRbody",loginBody);
+
+        try {
+            jsonObject = new JSONObject(loginBody);
+            Log.i("jsonObject",jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }*/
+
+        return jsonObject;
     }
 
 

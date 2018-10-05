@@ -206,7 +206,7 @@ public class ServiceRequestUI extends Fragment {
 
                 }else{
                     try {
-                        postSolicitarServicio(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_SERVICIO, Constant.NRO_CONTRATO_SELECCIONADO, cedulaB, codMotivoData, direccion, codCiudadData, telefono);
+                        postSolicitarServicio(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.SOLICITAR_SERVICIO, Constant.NRO_CONTRATO_SELECCIONADO, cedulaB, codMotivoData, direccion, codCiudadData, telefono,sintomas);
                     }catch (Exception e){
                         e.printStackTrace();
                     }finally {
@@ -225,6 +225,7 @@ public class ServiceRequestUI extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
+        ((MainActivity)getActivity()).getTripulacionPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.VER_TRIPULACION + Constant.SLASH + Constant.ID);
 
     }
 
@@ -540,14 +541,14 @@ public class ServiceRequestUI extends Fragment {
         spinnerB.setSelection(Constant.ciudad_pos);
     }
 
-    public void postSolicitarServicio(String URL, String noContrato, String personaCC, String motivoConsulta, String direccionServicio, String codCiudad, String telefonoServicio) {
+    public void postSolicitarServicio(String URL, String noContrato, String personaCC, String motivoConsulta, String direccionServicio, String codCiudad, String telefonoServicio, String sintomas) {
 
 
 
         requestQueue = getRequestQueue();
 
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, solicitarServicioBodyJSON(noContrato,personaCC,motivoConsulta,direccionServicio,codCiudad,telefonoServicio), //hacemos la peticion post
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, solicitarServicioBodyJSON(noContrato,personaCC,motivoConsulta,direccionServicio,codCiudad,telefonoServicio,sintomas), //hacemos la peticion post
                 response -> {
 
                     Log.i("ServiceInfoUI", "Se ha realizado el servicio post con exito");
@@ -576,7 +577,7 @@ public class ServiceRequestUI extends Fragment {
         requestQueue.add(request);
     }
 
-    public JSONObject solicitarServicioBodyJSON(String noContrato, String personaCC, String motivoConsulta, String direccionServicio, String codCiudad, String telefonoServicio) { //construimos el json
+    public JSONObject solicitarServicioBodyJSON(String noContrato, String personaCC, String motivoConsulta, String direccionServicio, String codCiudad, String telefonoServicio, String sintomas) { //construimos el json
         //primero json device
         String solicitarServicioBody="";
         JSONObject jsonObject=null;
@@ -584,10 +585,12 @@ public class ServiceRequestUI extends Fragment {
         EstructuraSolicitarServicio estructuraSolicitarServicio= new EstructuraSolicitarServicio();
         estructuraSolicitarServicio.setContrato_nro_contrato(noContrato);
         estructuraSolicitarServicio.setPersona_cc(personaCC);
+        estructuraSolicitarServicio.setPersona_cc_solicitante(Constant.ID);
         estructuraSolicitarServicio.setMotivo_consulta(motivoConsulta);
         estructuraSolicitarServicio.setDireccion_servicio(direccionServicio);
         estructuraSolicitarServicio.setCiudad_cod_ciudad(codCiudad);
         estructuraSolicitarServicio.setTelefono_servicio(telefonoServicio);
+        estructuraSolicitarServicio.setObservacion(sintomas);
 
         gsonBuilder = new GsonBuilder();
         gson = gsonBuilder.create();

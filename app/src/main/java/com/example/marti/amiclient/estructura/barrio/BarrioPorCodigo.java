@@ -6,22 +6,22 @@ package com.example.marti.amiclient.estructura.barrio;
 
 public class BarrioPorCodigo {
 
-    //Barrio[] message;
+    Barrio[] message;
 
-    String message;
+    //String message;
 
     String type;
 
     public BarrioPorCodigo() {
     }
 
-    /*public Barrio[] getMessage() {
+    public Barrio[] getMessage() {
         return message;
     }
 
     public void setMessage(Barrio[] message) {
         this.message = message;
-    }*/
+    }
 
     public String getType() {
         return type;
@@ -31,11 +31,11 @@ public class BarrioPorCodigo {
         this.type = type;
     }
 
-    public String getMessage() {
+    /*public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
-    }
+    }*/
 }

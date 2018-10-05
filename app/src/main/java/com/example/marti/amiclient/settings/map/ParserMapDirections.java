@@ -79,7 +79,7 @@ public class ParserMapDirections extends AsyncTask< String,Integer,List<List<Has
            // polylineOptions.width(10);
           //  polylineOptions.color(Color.GREEN);
             if(position!=null)
-            mMap.addMarker(new MarkerOptions().position(position)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icono_ambulancia));
+            //mMap.addMarker(new MarkerOptions().position(position)).setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icono_ambulancia));
             Log.d("onPostExecute","onPostExecute lineoptions decoded");
         }
 

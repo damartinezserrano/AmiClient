@@ -30,6 +30,8 @@ public class Constant {
 
     public static String CONSEC_MOVSERV_ACTUAL="";
 
+    public static String CONSEC_MOVSERV_ASIGNADO_A_MEDICO="";
+
     public static String DIRECCION_ACTUAL_GOOGLE="";
 
 
@@ -69,6 +71,8 @@ public class Constant {
 
     public static  String LISTAR_EPS="/listar_eps";
 
+    public static  String VER_TRIPULACION="/ver_tripulacion";
+
     // servicios web nativapps
 
     public static  String HTTP_DOMAIN_DVD="http://35.237.175.163:3000";
@@ -84,6 +88,8 @@ public class Constant {
     public static  String END_POINT_BARRIO="/neighborhood";
 
     public static  String END_POINT_CODE="/code";
+
+    public static  String END_POINT_POSITION="/position";
 
 
 

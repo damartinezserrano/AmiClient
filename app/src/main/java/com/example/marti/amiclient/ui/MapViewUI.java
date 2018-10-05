@@ -8,6 +8,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import java.net.URL;
@@ -16,8 +18,18 @@ import com.akexorcist.googledirection.GoogleDirection;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Route;
 import com.akexorcist.googledirection.util.DirectionConverter;
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.marti.amiclient.MainActivity;
 import com.example.marti.amiclient.R;
+import com.example.marti.amiclient.estructura.ubicacion.UbicacionMedico;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
+import com.example.marti.amiclient.settings.Constant;
 import com.example.marti.amiclient.settings.map.DownloadDirectionsMapData;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,11 +38,17 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,6 +56,16 @@ import java.util.ArrayList;
 public class MapViewUI extends Fragment implements OnMapReadyCallback {
 
     GoogleMap map=null;
+    RequestQueue requestQueue;
+
+    double longitudeOrigen = 0, latitudeOrigen = 0; // pos medico
+    static boolean drawPolines = false;
+
+    Marker marker = null;
+    Timer timer;
+
+    ArrayList<LatLng> points;
+    PolylineOptions polylineOptions = null;
 
     public MapViewUI() {
         // Required empty public constructor
@@ -69,6 +97,18 @@ public class MapViewUI extends Fragment implements OnMapReadyCallback {
        // ((DrawerLocker)getActivity()).toolbarBackground(R.color.transparent);
        // ((DrawerLocker)getActivity()).removeToolbar();
 
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                getUbicacionMedico(Constant.HTTP_DOMAIN_DVD+Constant.END_POINT_POSITION+Constant.SLASH+Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO);
+
+            }
+
+
+        }, 0, 10000);
+
         super.onViewCreated(view, savedInstanceState);
     }
 
@@ -76,7 +116,7 @@ public class MapViewUI extends Fragment implements OnMapReadyCallback {
     public void onMapReady(GoogleMap googleMap) {
 
         map=googleMap;
-
+        polylineOptions = new PolylineOptions();
       /*  map.addPolyline(new PolylineOptions()
                 .clickable(true)
                 .add(
@@ -91,19 +131,26 @@ public class MapViewUI extends Fragment implements OnMapReadyCallback {
         map.animateCamera(CameraUpdateFactory.zoomTo(11));*/
 
 
-        LatLng origen = new LatLng(10.9997609,-74.79688529999999);
-        LatLng destino = new LatLng(10.9891167,-74.79982380000001);
-        map.moveCamera(CameraUpdateFactory.newLatLng(origen));
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(origen,15));
-        map.addMarker(new MarkerOptions().position(origen))
-                .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icono_corazon_verde));
+        if(drawPolines) {
+
+            if(latitudeOrigen!=0&&longitudeOrigen!=0&&MainActivity.latitude!=0&& MainActivity.longitude!=0) {
+
+                LatLng origen = new LatLng(latitudeOrigen, longitudeOrigen);
+                LatLng destino = new LatLng(MainActivity.latitude, MainActivity.longitude);
+           /* map.moveCamera(CameraUpdateFactory.newLatLng(origen));
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(origen, 15));
+            map.addMarker(new MarkerOptions().position(origen))
+                    .setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icono_corazon_verde));*/
 
 
-        String url = getUrl(origen,destino);
-        Log.d("URLis", url);
+                String url = getUrl(origen, destino);
+                Log.d("URLis", url);
 
-        DownloadDirectionsMapData downloadDirectionsMapData = new DownloadDirectionsMapData(map);
-        downloadDirectionsMapData.execute(url);
+                DownloadDirectionsMapData downloadDirectionsMapData = new DownloadDirectionsMapData(map);
+                downloadDirectionsMapData.execute(url);
+
+            }
+        }
 
 
      /*   GoogleDirection.withServerKey(getResources().getString(R.string.google_play_services_key))
@@ -160,9 +207,103 @@ public class MapViewUI extends Fragment implements OnMapReadyCallback {
         String output = "json";
 
         // Building the url to the web service
-        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters;
+        String url = "https://maps.googleapis.com/maps/api/directions/" + output + "?" + parameters + "&key=" + getResources().getString(R.string.google_play_services_key);
 
 
         return url;
     }
+
+    public RequestQueue getRequestQueue() {
+        // lazy initialize the request queue, the queue instance will be
+        // created when it is accessed for the first time
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getActivity());
+        }
+
+        return requestQueue;
+    }
+
+    public void getUbicacionMedico(String UrlQuest){
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(map!=null) {
+                            Log.i("mapUbi :", "success");
+                            parseUbicacionMedResponse(response);
+                        }else{
+                            Log.i("mapUbi :", "map null");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("mapUbi :", "error");
+
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token", Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                Log.i("auth",Constant.TOKEN+" "+Constant.AUTH);
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseUbicacionMedResponse(String response) {
+
+        Gson gson3 = new Gson();
+
+        UbicacionMedico ubicacionMedico = new UbicacionMedico();
+
+        ubicacionMedico = gson3.fromJson(response,UbicacionMedico.class);
+
+        String latStr = ubicacionMedico.getMessage().getLat();
+        String lngStr = ubicacionMedico.getMessage().getLng();
+
+        if(latStr!=null&&lngStr!=null&&!latStr.equals("")&&!lngStr.equals("")){
+
+            if(!latStr.equals("0")&&!lngStr.equals("0")&&MainActivity.latitude!=0&& MainActivity.longitude!=0){
+
+                latitudeOrigen = Double.valueOf(latStr);
+                longitudeOrigen = Double.valueOf(lngStr);
+
+                    LatLng origen = new LatLng(latitudeOrigen, longitudeOrigen);
+                    LatLng destino = new LatLng(MainActivity.latitude, MainActivity.longitude);
+
+                    if(marker==null) {
+                        map.moveCamera(CameraUpdateFactory.newLatLng(origen));
+                        map.animateCamera(CameraUpdateFactory.newLatLngZoom(origen, 15));
+                        marker = map.addMarker(new MarkerOptions().position(origen));
+                        marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.icono_ambulancia));
+                        String url = getUrl(origen, destino);
+                        Log.d("URLis", url);
+
+                        DownloadDirectionsMapData downloadDirectionsMapData = new DownloadDirectionsMapData(map);
+                        downloadDirectionsMapData.execute(url);
+                    }else{
+                        marker.setPosition(origen);
+                        //points.add(origen);
+                        //
+                        polylineOptions.add(origen);
+                        polylineOptions.width(10);
+                        polylineOptions.color(Color.RED);
+                        map.addPolyline(polylineOptions);
+                    }
+
+            }
+
+        }
+
+    }
+
 }

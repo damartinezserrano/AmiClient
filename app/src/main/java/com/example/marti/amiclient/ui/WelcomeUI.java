@@ -75,6 +75,7 @@ public class WelcomeUI extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ((DrawerLocker)getActivity()).setDrawerEnabled(true);
         ((MainActivity)getActivity()).getCalificacionesPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.LISTAR_CALIFICACIONES_PENDIENTES + Constant.SLASH + Constant.ID);
+        ((MainActivity)getActivity()).getTripulacionPendientes(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.VER_TRIPULACION + Constant.SLASH + Constant.ID);
         super.onViewCreated(view, savedInstanceState);
     }
 

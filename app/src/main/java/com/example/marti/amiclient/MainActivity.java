@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.opengl.Visibility;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
@@ -20,6 +21,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.marti.amiclient.estructura.calificaciones.ListaCalificacionesPendientes;
+import com.example.marti.amiclient.estructura.tripulacion.VerTripulacion;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 import com.example.marti.amiclient.settings.Constant;
 import com.example.marti.amiclient.settings.LocationAddress;
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
     LocationManager lm;
     LocationListener ll;
 
-    double longitude = 0, latitude = 0;
+    public static double longitude = 0, latitude = 0; // pos dispositivo
     String direccionActual="";
 
     RequestQueue requestQueue;
@@ -378,6 +381,59 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
         }
     }
+
+    public void getTripulacionPendientes(String UrlQuest){
+
+        requestQueue = getRequestQueue();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, UrlQuest,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.i("getTrip :", "success");
+                        Menu menu = navigationView.getMenu();
+                        MenuItem menuItem = menu.findItem(R.id.movil);
+                        menuItem.setEnabled(true);
+                        parseTripulacionResponse(response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) { //errores de peticion
+                Log.i("getTrip :", "error");
+                Menu menu = navigationView.getMenu();
+                MenuItem menuItem = menu.findItem(R.id.movil);
+                menuItem.setEnabled(false);
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError { //autorizamos basic
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Token",Constant.TOKEN);
+                headers.put("Authorization",Constant.AUTH);
+                Log.i("auth",Constant.TOKEN+" "+Constant.AUTH);
+                return headers;
+            }
+
+        };
+        requestQueue.add(stringRequest);
+    }
+
+    public void parseTripulacionResponse(String response) { //3400505
+
+        /*Gson gson3 = new Gson();
+        VerTripulacion verTripulacion = new VerTripulacion();
+
+        verTripulacion = gson3.fromJson(response,VerTripulacion.class);
+
+        Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO = verTripulacion.getTripulacion().getConsec_movserv();
+        Log.i("consec_medico", Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO);*/
+
+        Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO = "3400505";
+
+
+    }
+
     public void parseLogInError(VolleyError error) {
 
         try {

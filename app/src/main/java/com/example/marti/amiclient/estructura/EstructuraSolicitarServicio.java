@@ -10,6 +10,8 @@ public class EstructuraSolicitarServicio {
 
     String persona_cc;
 
+    String persona_cc_solicitante;
+
     String motivo_consulta;
 
     String direccion_servicio;
@@ -17,6 +19,8 @@ public class EstructuraSolicitarServicio {
     String ciudad_cod_ciudad;
 
     String telefono_servicio;
+
+    String observacion;
 
     public EstructuraSolicitarServicio() {
     }
@@ -35,6 +39,14 @@ public class EstructuraSolicitarServicio {
 
     public void setPersona_cc(String persona_cc) {
         this.persona_cc = persona_cc;
+    }
+
+    public String getPersona_cc_solicitante() {
+        return persona_cc_solicitante;
+    }
+
+    public void setPersona_cc_solicitante(String persona_cc_solicitante) {
+        this.persona_cc_solicitante = persona_cc_solicitante;
     }
 
     public String getMotivo_consulta() {
@@ -67,5 +79,13 @@ public class EstructuraSolicitarServicio {
 
     public void setTelefono_servicio(String telefono_servicio) {
         this.telefono_servicio = telefono_servicio;
+    }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
     }
 }
