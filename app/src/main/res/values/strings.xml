@@ -13,7 +13,7 @@
     <string name="cel">Celular</string>
     <string name="ingresar">Ingresar</string>
     <string name="noreg">¿No esta registrado?</string>
-    <string name="terminosycond">Acepto terminos y</string>
+    <string name="terminosycond">Acepto términos y</string>
     <string name="condiciones">condiciones</string>
     <string name="contactarcliente">Contactar servicio cliente</string>
     <string name="asesorcomercial">Asesor comercial</string>
@@ -37,7 +37,7 @@
     <string name="enmora">Este usuario presenta inconvenientes al ingresar, por favor comunicate con cartera.</string>
 
     <!-- Opciones Servicio Texts -->
-    <string name="opcionesviewtitle">Como deseas realizar tu servicio</string>
+    <string name="opcionesviewtitle">¿Cómo deseas realizar tu servicio?</string>
     <string name="ingresarinfo">Ingresar información del servicio</string>
     <string name="solicitarllamada">Solicitar llamada</string>
     <string name="llamardirectamente">Llamar directamente</string>
@@ -61,7 +61,7 @@
     <string name="tiempollegada">Tiempo estimado de llegada</string>
 
     <!-- Contactar servicio cliente -->
-    <string name="contactoservicio">Contactar servicio al cliente</string>
+    <string name="contactoservicio">Agente/Operador center servicio médico</string>
     <string name="selciudad">Seleccionar ciudad</string>
     <string name="selbenef">Seleccionar beneficiario</string>
 

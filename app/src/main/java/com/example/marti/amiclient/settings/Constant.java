@@ -12,6 +12,10 @@ public class Constant {
 
     public static final String RANDOM_CODE="codigo_aleatorio";
 
+    public static String PRIMER_NOMBRE="";
+
+    public static String PRIMER_APELLIDO="";
+
     public static boolean formularioOtros = false;
 
     public static boolean servicioAltaPrioridad = false;

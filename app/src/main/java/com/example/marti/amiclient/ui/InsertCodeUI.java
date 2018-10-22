@@ -54,7 +54,7 @@ public class InsertCodeUI extends Fragment {
 
 
         sharedPreferences = getActivity().getSharedPreferences(Constant.PREFERENCE_RANDOM, Context.MODE_PRIVATE);
-        newcodeTView = view.findViewById(R.id.newcode);
+        /*newcodeTView = view.findViewById(R.id.newcode);
         newcodeTView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,30 +64,10 @@ public class InsertCodeUI extends Fragment {
 
 
             }
-        });
+        });*/
 
 
-        checkBox = view.findViewById(R.id.checkbox);
-        conditionsTView = view.findViewById(R.id.cond);
-        conditionsTView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                new AlertDialog.Builder(getContext())
-                        .setTitle(getResources().getString(R.string.popupTitle))
-                        .setPositiveButton(getResources().getString(R.string.popupPositivo), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                checkBox.setChecked(true);
-                            }
-                        })
-                        .setNegativeButton(getResources().getString(R.string.popupNegativo),null)
-                        .setMessage(getResources().getString(R.string.popupMsg))
-                        .show();
-
-
-            }
-        });
 
         inputLayoutCod = view.findViewById(R.id.codigoWrapper);
         codTView = view.findViewById(R.id.codigo);

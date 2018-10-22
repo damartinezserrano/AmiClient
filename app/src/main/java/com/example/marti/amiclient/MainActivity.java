@@ -421,15 +421,15 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
 
     public void parseTripulacionResponse(String response) { //3400505
 
-        /*Gson gson3 = new Gson();
+        Gson gson3 = new Gson();
         VerTripulacion verTripulacion = new VerTripulacion();
 
         verTripulacion = gson3.fromJson(response,VerTripulacion.class);
 
         Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO = verTripulacion.getTripulacion().getConsec_movserv();
-        Log.i("consec_medico", Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO);*/
+        Log.i("consec_medico", Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO);
 
-        Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO = "3400505";
+       // Constant.CONSEC_MOVSERV_ASIGNADO_A_MEDICO = "3400505";
 
 
     }

@@ -11,14 +11,13 @@
         android:id="@+id/fotousuario"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@drawable/icono_usuario"
         android:layout_marginBottom="@dimen/margin10dp"
         android:layout_marginStart="@dimen/mediumMargin"/>
     <TextView
         android:id="@+id/nombreusuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nombre Usuario Ejemplo"
+        android:text=""
         android:layout_marginBottom="@dimen/margin10dp"
         android:paddingStart="@dimen/mediumMargin"
         android:textColor="@color/white"

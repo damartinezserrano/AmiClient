@@ -101,17 +101,9 @@ public class LogInFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                new AlertDialog.Builder(getContext())
-                        .setTitle(getResources().getString(R.string.popupTitle))
-                        .setPositiveButton(getResources().getString(R.string.popupPositivo), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                              checkBox.setChecked(true);
-                            }
-                        })
-                        .setNegativeButton(getResources().getString(R.string.popupNegativo),null)
-                        .setMessage(getResources().getString(R.string.popupMsg))
-                        .show();
+                Fragment fg = TerminosWebView.newInstance();
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
 
 
             }
@@ -152,7 +144,9 @@ public class LogInFragment extends Fragment {
                      layoutBotonesAyuda.setVisibility(View.VISIBLE);
                  }
               }else{
-                 popupTerminosCondiciones();
+                 Fragment fg = TerminosWebView.newInstance();
+                 getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
              }
             }
         });
@@ -287,6 +281,9 @@ public class LogInFragment extends Fragment {
         Constant.ID = estructuraLogin.getUsuario().getCedula();
         Constant.TOKEN = estructuraLogin.getToken();
         Constant.slistaContratos = estructuraLogin.getLista();
+        Constant.PRIMER_NOMBRE = estructuraLogin.getUsuario().getPrimer_nombre();
+        Constant.PRIMER_APELLIDO = estructuraLogin.getUsuario().getPrimer_apellido();
+        ((DrawerLocker)getActivity()).editHeaderName(Constant.PRIMER_NOMBRE+" "+Constant.PRIMER_APELLIDO);
         Fragment fg = SendCodeUI.newInstance();
         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
