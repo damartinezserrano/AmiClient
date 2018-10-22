@@ -571,9 +571,13 @@ public class PerfilUI extends Fragment {
         try {
 
             String myEPSName="";
+            nombre_eps = new String[listaEPS.getLista().length];
+            codigo_eps = new String[listaEPS.getLista().length];
 
 
             for (int i = 0 ; i<listaEPS.getLista().length ; i++){
+                nombre_eps[i]=listaEPS.getLista()[i].getNom_eps();
+                codigo_eps[i]=listaEPS.getLista()[i].getCod_eps();
                 if(codigo_eps[i].equals(epscode)){
                     myEPSName=nombre_eps[i];
                     eps.setText(myEPSName);
