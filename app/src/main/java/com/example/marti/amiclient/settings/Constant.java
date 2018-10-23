@@ -77,6 +77,8 @@ public class Constant {
 
     public static  String VER_TRIPULACION="/ver_tripulacion";
 
+    public static  String ACTUALIZAR_DATOS="/actualizar_datos";
+
     // servicios web nativapps
 
     public static  String HTTP_DOMAIN_DVD="http://35.237.175.163:3000";

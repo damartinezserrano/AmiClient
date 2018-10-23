@@ -51,14 +51,15 @@
                     android:layout_marginStart="@dimen/shortMargin"
                     android:textStyle="bold"
                     android:textSize="@dimen/subTitleSize"/>
-                <TextView
+                <EditText
                     android:id="@+id/nombre1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/editTextSize"
                     android:text=""
                     android:layout_toEndOf="@+id/contact_icon1"
                     android:layout_below="@+id/nombrefield1"
-                    android:layout_marginStart="@dimen/shortMargin"/>
+                    android:layout_marginStart="@dimen/shortMargin"
+                    android:background="@color/transparent"/>
                 <ImageView
                     android:id="@+id/editarnombre"
                     android:layout_width="30dp"
@@ -67,7 +68,8 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/margin10dp"
-                    android:layout_marginTop="@dimen/margin5dp"/>
+                    android:layout_marginTop="@dimen/margin5dp"
+                    android:visibility="gone"/>
 
 
                 <View
@@ -112,14 +114,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/snom"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon6"
                         android:layout_below="@+id/snomfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editsnom"
                         android:layout_width="30dp"
@@ -128,7 +131,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -173,14 +177,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/pap"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon7"
                         android:layout_below="@+id/papfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editpap"
                         android:layout_width="30dp"
@@ -189,7 +194,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -234,14 +240,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/sap"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon8"
                         android:layout_below="@+id/sapfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editsap"
                         android:layout_width="30dp"
@@ -250,7 +257,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -295,14 +303,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/mail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon9"
                         android:layout_below="@+id/mailfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editmail"
                         android:layout_width="30dp"
@@ -311,7 +320,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -356,14 +366,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/tel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon2"
                         android:layout_below="@+id/telfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editartel"
                         android:layout_width="30dp"
@@ -372,7 +383,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -417,14 +429,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/docum"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon3"
                         android:layout_below="@+id/documfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editardocum"
                         android:layout_width="30dp"
@@ -434,6 +447,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
                         android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"
                         />
 
 
@@ -477,14 +491,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/ciudad"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon4"
                         android:layout_below="@+id/ciudadfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
 
                     <ImageView
                         android:id="@+id/editarciud"
@@ -536,14 +551,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <AutoCompleteTextView
                         android:id="@+id/barrio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon10"
                         android:layout_below="@+id/barriofield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editarbarrio"
                         android:layout_width="30dp"
@@ -552,7 +568,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -597,14 +614,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/dir"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon"
                         android:layout_below="@+id/dirfield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editardir"
                         android:layout_width="30dp"
@@ -613,7 +631,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -659,14 +678,15 @@
                         android:layout_marginStart="@dimen/shortMargin"
                         android:textStyle="bold"
                         android:textSize="@dimen/subTitleSize"/>
-                    <TextView
+                    <EditText
                         android:id="@+id/ref"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:text=""
                         android:layout_toEndOf="@+id/contact_icon11"
                         android:layout_below="@+id/reffield"
-                        android:layout_marginStart="@dimen/shortMargin"/>
+                        android:layout_marginStart="@dimen/shortMargin"
+                        android:background="@color/transparent"/>
                     <ImageView
                         android:id="@+id/editarref"
                         android:layout_width="30dp"
@@ -675,7 +695,8 @@
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
-                        android:layout_marginTop="@dimen/margin5dp"/>
+                        android:layout_marginTop="@dimen/margin5dp"
+                        android:visibility="gone"/>
 
 
                     <View
@@ -721,14 +742,15 @@
                         android:textSize="@dimen/subTitleSize"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <AutoCompleteTextView
                         android:id="@+id/eps"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/editTextSize"
                         android:layout_below="@+id/epsfield"
                         android:layout_marginStart="@dimen/shortMargin"
                         android:layout_toEndOf="@+id/contact_icon12"
-                        android:text="" />
+                        android:text=""
+                        android:background="@color/transparent"/>
 
                     <ImageView
                         android:id="@+id/editareps"
@@ -738,7 +760,8 @@
                         android:layout_centerVertical="true"
                         android:layout_marginEnd="@dimen/margin10dp"
                         android:layout_marginTop="@dimen/margin5dp"
-                        android:background="@drawable/modify_icon" />
+                        android:background="@drawable/modify_icon"
+                        android:visibility="gone"/>
 
 
                     <View

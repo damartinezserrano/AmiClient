@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -35,9 +37,17 @@ public class TerminosWebView extends Fragment {
         View view = inflater.inflate(R.layout.fragment_terminos_web_view, container, false);
 
 
+
+
         WebView webView = (WebView) view.findViewById(R.id.webview);
-        webView.loadUrl("https://www.google.com.co");
+
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccess(true);
+        String pdf = "https://storage.googleapis.com/tyc/TyC_AMI.pdf";
+        webView.loadUrl("http://drive.google.com/viewerng/viewer?embedded=true&url=" + pdf);
         webView.setWebViewClient(new WebViewClient());
+        //webView.setWebChromeClient(new WebChromeClient());
 
         return view;
     }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -40,6 +41,7 @@ import com.example.marti.amiclient.estructura.ciudad.Ciudad;
 import com.example.marti.amiclient.estructura.ciudad.CiudadPorCodigo;
 import com.example.marti.amiclient.estructura.contrato.ListaContratos;
 import com.example.marti.amiclient.estructura.eps.ListaEPS;
+import com.example.marti.amiclient.estructura.persona.ActualizarDatosPersonales;
 import com.example.marti.amiclient.estructura.persona.DatosPersonales;
 import com.example.marti.amiclient.interfaces.drawer.DrawerLocker;
 import com.example.marti.amiclient.settings.Constant;
@@ -79,11 +81,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class PerfilUI extends Fragment {
 
-    TextView nombre,nombre2,apellido,apellido2,mail,tel,docum,ciudad,barrio,ref,eps,dir, benef;
+    TextView benef;
+    EditText nombre,nombre2,apellido,apellido2,mail,tel,docum,ref,dir,ciudad;
+    AutoCompleteTextView barrio,eps;
     ImageView editarNombre, editarSnombre, editarPap, editarSap, editarMail, editarTel,editarDocum,editarCiudad,editarDir,editarBenef,editarBarrio,editarEps;
     String m_Text = "";
     EditText input;
     AutoCompleteTextView autoCompleteTextView;
+    Button actualizar;
 
     String[] nombre_barrio;
     String[] codigo_barrio;
@@ -102,6 +107,10 @@ public class PerfilUI extends Fragment {
 
     RequestQueue requestQueue;
 
+    GsonBuilder gsonBuilder;
+    Gson gson;
+
+    ActualizarDatosPersonales actualizarDatosPersonales;
 
     public PerfilUI() {
         // Required empty public constructor
@@ -133,7 +142,17 @@ public class PerfilUI extends Fragment {
         dir = view.findViewById(R.id.dir);
         //benef = view.findViewById(R.id.benef);
 
-        editarNombre = view.findViewById(R.id.editarnombre);
+
+        actualizar = view.findViewById(R.id.actualizar);
+        actualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                putActualizarDatosPersonales(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.ACTUALIZAR_DATOS);
+            }
+        });
+
+
+        /*editarNombre = view.findViewById(R.id.editarnombre);
         editarTel = view.findViewById(R.id.editartel);
         editarDocum = view.findViewById(R.id.editardocum);
         editarCiudad = view.findViewById(R.id.editarciud);
@@ -235,7 +254,7 @@ public class PerfilUI extends Fragment {
                 editDialog("Ingresar e-mail",mail,InputType.TYPE_CLASS_TEXT);
 
             }
-        });
+        });*/
 
         return view;
     }
@@ -584,6 +603,16 @@ public class PerfilUI extends Fragment {
                 }
             }
 
+            final List<String> epsList = new ArrayList<>(Arrays.asList(nombre_eps));
+
+            ArrayAdapter<String> epsAdapter = new ArrayAdapter<String>(
+                    getActivity(),
+                    android.R.layout.simple_list_item_1,
+                    epsList
+            );
+            epsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            eps.setAdapter(epsAdapter);
+
 
         }catch (Exception e){e.printStackTrace();}
     }
@@ -638,18 +667,27 @@ public class PerfilUI extends Fragment {
 
             }
 
+            final List<String> barriosList = new ArrayList<>(Arrays.asList(nombre_barrio));
+
+            ArrayAdapter<String> barrioAdapter = new ArrayAdapter<String>(
+                    getActivity(),
+                    android.R.layout.simple_list_item_1,
+                    barriosList
+            );
+            barrioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            barrio.setAdapter(barrioAdapter);
 
         }catch (Exception e){e.printStackTrace();}
     }
 
-    public void putActualizarDatosPersonales(String URL, String codserv, int calif, String observ) {
+    public void putActualizarDatosPersonales(String URL) {
 
 
 
         requestQueue = getRequestQueue();
 
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, URL, putActualizarBodyJSON(codserv,calif,observ), //hacemos la peticion post
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.PUT, URL, putActualizarBodyJSON(), //hacemos la peticion post
                 response -> {
 
                     Log.i("LogInFragment", "Se ha realizado el put perfil con exito");
@@ -675,7 +713,7 @@ public class PerfilUI extends Fragment {
         requestQueue.add(request);
     }
 
-    public JSONObject putActualizarBodyJSON(String codserv, int calif, String observ) { //construimos el json
+    public JSONObject putActualizarBodyJSON() { //construimos el json
         //primero json device
         String loginBody="";
         JSONObject jsonObject=null;
@@ -700,6 +738,46 @@ public class PerfilUI extends Fragment {
             e.printStackTrace();
         }*/
 
+       actualizarDatosPersonales = new ActualizarDatosPersonales();
+       actualizarDatosPersonales.setNro_contrato(Constant.NRO_CONTRATO_SELECCIONADO);
+       actualizarDatosPersonales.setCc(docum.getText().toString());
+       actualizarDatosPersonales.setP_nombre(nombre.getText().toString());
+       actualizarDatosPersonales.setS_nombre(nombre2.getText().toString());
+       actualizarDatosPersonales.setP_apellido(apellido.getText().toString());
+       actualizarDatosPersonales.setS_apellido(apellido2.getText().toString());
+       actualizarDatosPersonales.setEmail(mail.getText().toString());
+       actualizarDatosPersonales.setDireccion(dir.getText().toString());
+       actualizarDatosPersonales.setReferencia(ref.getText().toString());
+       String barrioCod="";
+        for (int i = 0 ; i<nombre_barrio.length ; i++){
+
+            if(nombre_barrio[i].equals(barrio.getText().toString())){
+               barrioCod = codigo_barrio[i];
+            }
+        }
+       actualizarDatosPersonales.setBarrio(barrioCod);
+       actualizarDatosPersonales.setTelefono(tel.getText().toString());
+        String epsCod="";
+        for (int i = 0 ; i<nombre_eps.length ; i++){
+
+            if(nombre_eps[i].equals(eps.getText().toString())){
+                epsCod = codigo_eps[i];
+            }
+        }
+       actualizarDatosPersonales.setCod_eps(epsCod);
+
+        gsonBuilder = new GsonBuilder();
+        gson = gsonBuilder.create();
+
+        loginBody = gson.toJson(actualizarDatosPersonales);
+        Log.i("loginRbody",loginBody);
+
+        try {
+            jsonObject = new JSONObject(loginBody);
+            Log.i("jsonObject",jsonObject.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return jsonObject;
     }
 
