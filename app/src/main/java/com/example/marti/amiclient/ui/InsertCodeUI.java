@@ -34,7 +34,7 @@ public class InsertCodeUI extends Fragment {
     TextInputEditText codTView;
     String campoCod,randomCode;
     SharedPreferences sharedPreferences;
-
+    SharedPreferences sharedPref;
 
     public InsertCodeUI() {
         // Required empty public constructor
@@ -54,6 +54,8 @@ public class InsertCodeUI extends Fragment {
 
 
         sharedPreferences = getActivity().getSharedPreferences(Constant.PREFERENCE_RANDOM, Context.MODE_PRIVATE);
+        sharedPref = getActivity().getSharedPreferences(Constant.PREFERENCE_LOGIN, Context.MODE_PRIVATE);
+
         /*newcodeTView = view.findViewById(R.id.newcode);
         newcodeTView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +89,7 @@ public class InsertCodeUI extends Fragment {
                          drError.setBounds(new Rect(0, 0, codTView.getHeight()/2, codTView.getHeight()/2));
                          codTView.setError(getResources().getString(R.string.codigoincorrecto),drError);
                      }else{
+                         sharedPref.edit().putString(Constant.USER_PREF,Constant.CAMPO_IDEN).apply();
                          Fragment fg = ListaContratosUI.newInstance();
                          getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
 
@@ -94,6 +97,7 @@ public class InsertCodeUI extends Fragment {
 
                      //Entrada provisional para practicas
                     if (campoCod.equals("123")){
+                        sharedPref.edit().putString(Constant.USER_PREF,Constant.CAMPO_IDEN).apply();
                         Fragment fg = ListaContratosUI.newInstance();
                         getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
                         codTView.setError(null);

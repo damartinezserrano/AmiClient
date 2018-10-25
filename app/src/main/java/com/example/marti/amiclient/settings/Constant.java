@@ -24,6 +24,8 @@ public class Constant {
 
     public static String ID="";
 
+    public static String CAMPO_IDEN="";
+
     public static String CELULAR="";
 
     public static String TOKEN="";
@@ -104,4 +106,8 @@ public class Constant {
     public static Contrato[] slistaContratos;
 
 
+    // Preferencias
+
+    public static final String PREFERENCE_LOGIN = "inicio_de_sesion";
+    public final static String USER_PREF = "usuario";
 }

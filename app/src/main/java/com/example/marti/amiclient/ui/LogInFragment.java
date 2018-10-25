@@ -1,7 +1,9 @@
 package com.example.marti.amiclient.ui;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -70,6 +72,8 @@ public class LogInFragment extends Fragment {
 
     RequestQueue requestQueue;
 
+    SharedPreferences sharedPref;
+
     public LogInFragment() {
         // Required empty public constructor
     }
@@ -85,6 +89,8 @@ public class LogInFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_log_in, container, false);
+
+        sharedPref = getActivity().getSharedPreferences(Constant.PREFERENCE_LOGIN, Context.MODE_PRIVATE);
 
         checkBox = view.findViewById(R.id.checkbox);
         inputLayoutIden = view.findViewById(R.id.identificacionWrapper);
@@ -109,6 +115,10 @@ public class LogInFragment extends Fragment {
             }
         });
 
+
+        if(!sharedPref.getString(Constant.USER_PREF, "").equals("")) {
+            postLogin(Constant.HTTP_DOMAIN + Constant.APP_PATH + Constant.ENDPOINT_USUARIO + Constant.VALIDAR_USUARIO, sharedPref.getString(Constant.USER_PREF,""));
+        }
 
         loginBtn=view.findViewById(R.id.ingresar);
         loginBtn.setOnClickListener(new View.OnClickListener() {
@@ -284,8 +294,16 @@ public class LogInFragment extends Fragment {
         Constant.PRIMER_NOMBRE = estructuraLogin.getUsuario().getPrimer_nombre();
         Constant.PRIMER_APELLIDO = estructuraLogin.getUsuario().getPrimer_apellido();
         ((DrawerLocker)getActivity()).editHeaderName(Constant.PRIMER_NOMBRE+" "+Constant.PRIMER_APELLIDO);
-        Fragment fg = SendCodeUI.newInstance();
-        getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+        if(sharedPref.getString(Constant.USER_PREF, "").equals("")) {
+            Constant.CAMPO_IDEN = campoIden;
+            Fragment fg = SendCodeUI.newInstance();
+            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+        }else{
+            Fragment fg = ListaContratosUI.newInstance();
+            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg).addToBackStack(null).commit();
+
+        }
 
 
         Log.i("TOKEN ",Constant.TOKEN);

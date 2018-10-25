@@ -2,6 +2,7 @@ package com.example.marti.amiclient;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
     String direccionActual="";
 
     RequestQueue requestQueue;
+    SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this.getApplicationContext();
+        sharedPref = getSharedPreferences(Constant.PREFERENCE_LOGIN, Context.MODE_PRIVATE);
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS, Manifest.permission.READ_PHONE_STATE, Manifest.permission.CALL_PHONE, Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         toolbar = findViewById(R.id.toolbar);
         drawerLayout = findViewById(R.id.layout);
@@ -120,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements DrawerLocker {
                         return true;
 
                     case R.id.cerrar:
+                        sharedPref.edit().clear().apply();
                         getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         Fragment fg2 = LogInFragment.newInstance();
                         getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, fg2).addToBackStack(null).commit();
